@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://entities/spike.gd" id="1_spike"]
+
+[sub_resource type="RectangleShape2D" id="SpikeShape"]
+size = Vector2(22, 11)
+
+[node name="Spike" type="Area2D"]
+collision_layer = 0
+collision_mask = 1
+monitorable = false
+script = ExtResource("1_spike")
+
+[node name="Shadow" type="Polygon2D" parent="."]
+position = Vector2(1, 1)
+polygon = PackedVector2Array(-12, 6, -8, -7, -4, 6, 0, -9, 4, 6, 8, -7, 12, 6)
+color = Color(0.18, 0.2, 0.18, 1)
+
+[node name="Blades" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(-12, 6, -8, -7, -4, 6, 0, -9, 4, 6, 8, -7, 12, 6)
+color = Color(0.78, 0.84, 0.78, 1)
+
+[node name="Highlight" type="Line2D" parent="."]
+points = PackedVector2Array(-8, -5, -5, 4, 0, -7, 3, 4, 8, -5)
+width = 1.0
+default_color = Color(1, 1, 0.94, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("SpikeShape")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

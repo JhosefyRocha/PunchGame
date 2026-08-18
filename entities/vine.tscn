@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://entities/vine.gd" id="1_vine"]
+
+[sub_resource type="RectangleShape2D" id="VineShape"]
+size = Vector2(15, 104)
+
+[node name="Vine" type="Area2D"]
+collision_layer = 0
+collision_mask = 1
+monitorable = false
+script = ExtResource("1_vine")
+
+[node name="StemDark" type="Line2D" parent="."]
+points = PackedVector2Array(1, -52, -2, -36, 2, -20, -1, -4, 2, 12, -2, 28, 0, 52)
+width = 4.0
+default_color = Color(0.08, 0.27, 0.1, 1)
+
+[node name="Stem" type="Line2D" parent="."]
+points = PackedVector2Array(0, -52, -3, -36, 1, -20, -2, -4, 1, 12, -3, 28, -1, 52)
+width = 2.0
+default_color = Color(0.2, 0.58, 0.18, 1)
+
+[node name="Leaves" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(-2, -35, -9, -40, -7, -31, -2, -27, 1, -18, 8, -23, 7, -14, 1, -10, -2, 1, -9, -4, -7, 5, -1, 9, 1, 20, 8, 15, 7, 25, 0, 29, -3, 39, -9, 34, -7, 44, -1, 48)
+color = Color(0.29, 0.68, 0.2, 0.72)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("VineShape")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

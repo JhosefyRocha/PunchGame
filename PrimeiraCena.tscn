@@ -4,6 +4,10 @@
 [ext_resource type="TileSet" uid="uid://cjt3v8su0g6k" path="res://tiles/Terrain.tres" id="2_pw7wf"]
 [ext_resource type="TileSet" uid="uid://ddrhor0n7wld6" path="res://tiles/Decoration.tres" id="3_0q2ab"]
 [ext_resource type="Texture2D" uid="uid://de0k616rrqdg4" path="res://sprites/Seasonal Tilesets/Seasonal Tilesets/2 - Autumn Forest/Background parts/6 - Distant_trees.png" id="4_0q2ab"]
+[ext_resource type="PackedScene" path="res://entities/game_menu.tscn" id="5_menu"]
+[ext_resource type="PackedScene" path="res://entities/water_hazard.tscn" id="6_water"]
+[ext_resource type="PackedScene" path="res://entities/finish_flag.tscn" id="7_flag"]
+[ext_resource type="PackedScene" path="res://entities/level_complete_menu.tscn" id="8_complete"]
 
 [node name="Game" type="Node2D" unique_id=2002910798]
 
@@ -35,3 +39,13 @@ texture = ExtResource("4_0q2ab")
 centered = false
 region_enabled = true
 region_rect = Rect2(0, 0, 576, 208)
+
+[node name="GameMenu" parent="." unique_id=726246469 instance=ExtResource("5_menu")]
+
+[node name="WaterFrames" parent="." unique_id=1136019479 instance=ExtResource("6_water")]
+position = Vector2(441, 199)
+
+[node name="FinishFlag" parent="." instance=ExtResource("7_flag")]
+position = Vector2(500, 182)
+
+[node name="LevelCompleteMenu" parent="." instance=ExtResource("8_complete")]

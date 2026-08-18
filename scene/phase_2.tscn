@@ -1,0 +1,171 @@
+[gd_scene format=3 uid="uid://ckjxu2641mvm4"]
+
+[ext_resource type="PackedScene" uid="uid://dn6xlrm3ydrhe" path="res://entities/player.tscn" id="1_player"]
+[ext_resource type="PackedScene" path="res://entities/game_menu.tscn" id="2_menu"]
+[ext_resource type="PackedScene" path="res://entities/tile_platform.tscn" id="3_platform"]
+[ext_resource type="PackedScene" path="res://entities/spike.tscn" id="4_spike"]
+[ext_resource type="PackedScene" path="res://entities/vine.tscn" id="5_vine"]
+[ext_resource type="PackedScene" path="res://entities/water_hazard.tscn" id="6_water"]
+[ext_resource type="Texture2D" uid="uid://bgro08luh3rcd" path="res://sprites/Seasonal Tilesets/Seasonal Tilesets/1 - Grassland/Background parts/_Complete_static_BG_(288 x 208).png" id="7_bg"]
+[ext_resource type="Texture2D" uid="uid://dqdtuvtsnj2re" path="res://sprites/Seasonal Tilesets/Seasonal Tilesets/1 - Grassland/Grassland_entities (16 x 16).png" id="8_decor"]
+
+[node name="Phase2" type="Node2D" unique_id=1082971088]
+
+[node name="Background" type="ParallaxBackground" parent="." unique_id=572367135]
+scroll_ignore_camera_zoom = true
+
+[node name="Sky" type="ParallaxLayer" parent="Background" unique_id=59416610]
+motion_scale = Vector2(0.08, 0.08)
+motion_mirroring = Vector2(288, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Sky" unique_id=346013835]
+texture_repeat = 2
+position = Vector2(7, 14)
+texture = ExtResource("7_bg")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 1440, 208)
+
+[node name="WaterVisuals" type="Node2D" parent="." unique_id=1887011084]
+z_index = -1
+
+[node name="FirstPool" type="Polygon2D" parent="WaterVisuals" unique_id=974690273]
+color = Color(0.08, 0.42, 0.72, 1)
+polygon = PackedVector2Array(224, 176, 272, 176, 272, 208, 224, 208)
+
+[node name="SecondPool" type="Polygon2D" parent="WaterVisuals" unique_id=1269648619]
+color = Color(0.08, 0.42, 0.72, 1)
+polygon = PackedVector2Array(480, 176, 528, 176, 528, 208, 480, 208)
+
+[node name="VinePool" type="Polygon2D" parent="WaterVisuals" unique_id=691632112]
+color = Color(0.08, 0.42, 0.72, 1)
+polygon = PackedVector2Array(704, 176, 800, 176, 800, 208, 704, 208)
+
+[node name="Player" parent="." unique_id=909789665 instance=ExtResource("1_player")]
+position = Vector2(42, 150)
+
+[node name="GroundStart" parent="." unique_id=121126096 instance=ExtResource("3_platform")]
+position = Vector2(0, 176)
+platform_size = Vector2(224, 32)
+
+[node name="GroundChallenges" parent="." unique_id=994183795 instance=ExtResource("3_platform")]
+position = Vector2(272, 176)
+platform_size = Vector2(208, 32)
+
+[node name="GroundClimb" parent="." unique_id=420234315 instance=ExtResource("3_platform")]
+position = Vector2(528, 176)
+platform_size = Vector2(176, 32)
+
+[node name="GroundFinish" parent="." unique_id=646696910 instance=ExtResource("3_platform")]
+position = Vector2(800, 176)
+platform_size = Vector2(480, 32)
+
+[node name="TrainingPlatform" parent="." unique_id=804914491 instance=ExtResource("3_platform")]
+position = Vector2(96, 132)
+platform_size = Vector2(64, 16)
+
+[node name="SpikePlatform" parent="." unique_id=930310031 instance=ExtResource("3_platform")]
+position = Vector2(304, 132)
+platform_size = Vector2(64, 16)
+
+[node name="HighSpikePlatform" parent="." unique_id=1844182581 instance=ExtResource("3_platform")]
+position = Vector2(400, 100)
+platform_size = Vector2(64, 16)
+
+[node name="ClimbApproach" parent="." unique_id=553677441 instance=ExtResource("3_platform")]
+position = Vector2(592, 128)
+platform_size = Vector2(64, 16)
+
+[node name="VineLanding" parent="." unique_id=802926947 instance=ExtResource("3_platform")]
+position = Vector2(816, 112)
+platform_size = Vector2(72, 16)
+
+[node name="FinalStep" parent="." unique_id=1461556097 instance=ExtResource("3_platform")]
+position = Vector2(936, 144)
+platform_size = Vector2(80, 16)
+
+[node name="Hazards" type="Node2D" parent="." unique_id=1923090288]
+
+[node name="SpikeGroundA" parent="Hazards" unique_id=1840256018 instance=ExtResource("4_spike")]
+position = Vector2(164, 169)
+
+[node name="SpikeGroundB" parent="Hazards" unique_id=1691124065 instance=ExtResource("4_spike")]
+position = Vector2(192, 169)
+
+[node name="SpikeRunA" parent="Hazards" unique_id=1823998476 instance=ExtResource("4_spike")]
+position = Vector2(342, 169)
+
+[node name="SpikeRunB" parent="Hazards" unique_id=1451550636 instance=ExtResource("4_spike")]
+position = Vector2(370, 169)
+
+[node name="SpikeOnPlatform" parent="Hazards" unique_id=1275701021 instance=ExtResource("4_spike")]
+position = Vector2(336, 125)
+
+[node name="SpikeHigh" parent="Hazards" unique_id=914768723 instance=ExtResource("4_spike")]
+position = Vector2(432, 93)
+
+[node name="SpikeClimb" parent="Hazards" unique_id=770764431 instance=ExtResource("4_spike")]
+position = Vector2(624, 121)
+
+[node name="SpikeFinishA" parent="Hazards" unique_id=406954190 instance=ExtResource("4_spike")]
+position = Vector2(1028, 169)
+
+[node name="SpikeFinishB" parent="Hazards" unique_id=124723213 instance=ExtResource("4_spike")]
+position = Vector2(1056, 169)
+
+[node name="SpikeFinishC" parent="Hazards" unique_id=125906247 instance=ExtResource("4_spike")]
+position = Vector2(1084, 169)
+
+[node name="WaterA" parent="Hazards" unique_id=1725929464 instance=ExtResource("6_water")]
+position = Vector2(248, 200)
+
+[node name="WaterB" parent="Hazards" unique_id=756002241 instance=ExtResource("6_water")]
+position = Vector2(504, 200)
+
+[node name="WaterC1" parent="Hazards" unique_id=1925341198 instance=ExtResource("6_water")]
+position = Vector2(728, 200)
+
+[node name="WaterC2" parent="Hazards" unique_id=396561691 instance=ExtResource("6_water")]
+position = Vector2(776, 200)
+
+[node name="Vines" type="Node2D" parent="." unique_id=748273072]
+
+[node name="TrainingVine" parent="Vines" unique_id=1882873031 instance=ExtResource("5_vine")]
+position = Vector2(552, 92)
+
+[node name="GapVineA" parent="Vines" unique_id=1520348875 instance=ExtResource("5_vine")]
+position = Vector2(730, 91)
+
+[node name="GapVineB" parent="Vines" unique_id=1316742618 instance=ExtResource("5_vine")]
+position = Vector2(772, 75)
+
+[node name="Decorations" type="Node2D" parent="." unique_id=630538438]
+
+[node name="TreeA" type="Sprite2D" parent="Decorations" unique_id=1070624547]
+position = Vector2(64, 128)
+texture = ExtResource("8_decor")
+region_enabled = true
+region_rect = Rect2(16, 16, 48, 48)
+
+[node name="TreeB" type="Sprite2D" parent="Decorations" unique_id=340841289]
+position = Vector2(1160, 128)
+texture = ExtResource("8_decor")
+region_enabled = true
+region_rect = Rect2(16, 16, 48, 48)
+
+[node name="VineHint" type="CanvasLayer" parent="." unique_id=1235515358]
+layer = 5
+
+[node name="Label" type="Label" parent="VineHint" unique_id=2063785796]
+offset_left = 254.0
+offset_top = 8.0
+offset_right = 393.0
+offset_bottom = 29.0
+theme_override_colors/font_color = Color(0.12, 0.28, 0.1, 1)
+theme_override_colors/font_outline_color = Color(0.91, 1, 0.72, 1)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 9
+text = "CIPÓ: W/S OU ↑/↓ • ESPAÇO SOLTA"
+horizontal_alignment = 2
+
+[node name="GameMenu" parent="." unique_id=44998665 instance=ExtResource("2_menu")]

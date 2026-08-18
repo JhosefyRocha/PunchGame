@@ -1,0 +1,93 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://entities/level_complete_menu.gd" id="1_menu"]
+
+[sub_resource type="StyleBoxFlat" id="OverlayStyle"]
+bg_color = Color(0.02, 0.07, 0.035, 0.72)
+
+[sub_resource type="StyleBoxFlat" id="PanelStyle"]
+bg_color = Color(0.08, 0.18, 0.1, 0.98)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.96, 0.68, 0.16, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="ButtonStyle"]
+bg_color = Color(0.14, 0.29, 0.16, 1)
+border_width_left = 2
+border_color = Color(0.95, 0.67, 0.18, 1)
+
+[node name="LevelCompleteMenu" type="CanvasLayer"]
+process_mode = 3
+layer = 20
+script = ExtResource("1_menu")
+
+[node name="Overlay" type="Panel" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("OverlayStyle")
+
+[node name="Center" type="CenterContainer" parent="Overlay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="PanelContainer" parent="Overlay/Center"]
+custom_minimum_size = Vector2(230, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("PanelStyle")
+
+[node name="Margin" type="MarginContainer" parent="Overlay/Center/Panel"]
+layout_mode = 2
+theme_override_constants/margin_left = 18
+theme_override_constants/margin_top = 14
+theme_override_constants/margin_right = 18
+theme_override_constants/margin_bottom = 14
+
+[node name="VBox" type="VBoxContainer" parent="Overlay/Center/Panel/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Title" type="Label" parent="Overlay/Center/Panel/Margin/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.77, 0.24, 1)
+theme_override_font_sizes/font_size = 22
+text = "FASE CONCLUÍDA!"
+horizontal_alignment = 1
+
+[node name="Message" type="Label" parent="Overlay/Center/Panel/Margin/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.87, 0.95, 0.83, 1)
+theme_override_font_sizes/font_size = 10
+text = "A bandeira foi alcançada."
+horizontal_alignment = 1
+
+[node name="NextButton" type="Button" parent="Overlay/Center/Panel/Margin/VBox"]
+custom_minimum_size = Vector2(0, 27)
+layout_mode = 2
+theme_override_styles/normal = SubResource("ButtonStyle")
+theme_override_styles/hover = SubResource("ButtonStyle")
+theme_override_styles/focus = SubResource("ButtonStyle")
+text = "PRÓXIMA FASE"
+
+[node name="MenuButton" type="Button" parent="Overlay/Center/Panel/Margin/VBox"]
+custom_minimum_size = Vector2(0, 27)
+layout_mode = 2
+theme_override_styles/normal = SubResource("ButtonStyle")
+theme_override_styles/hover = SubResource("ButtonStyle")
+theme_override_styles/focus = SubResource("ButtonStyle")
+text = "MENU PRINCIPAL"
+
+[connection signal="pressed" from="Overlay/Center/Panel/Margin/VBox/NextButton" to="." method="_on_next_button_pressed"]
+[connection signal="pressed" from="Overlay/Center/Panel/Margin/VBox/MenuButton" to="." method="_on_menu_button_pressed"]

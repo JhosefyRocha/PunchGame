@@ -13,12 +13,14 @@ static var start_after_reload := false
 
 var is_death_screen := false
 var completion_locked := false
+var run_was_started := false
 
 
 func _ready() -> void:
 	add_to_group(&"game_menu")
 	if start_after_reload:
 		start_after_reload = false
+		run_was_started = true
 		start_game()
 	else:
 		show_menu()
@@ -80,6 +82,7 @@ func show_credits() -> void:
 
 
 func restart_game() -> void:
+	HealthManager.reset_lives()
 	start_after_reload = true
 	get_tree().paused = false
 	get_tree().reload_current_scene()
@@ -103,12 +106,18 @@ func lock_for_level_complete() -> void:
 
 
 func return_to_menu() -> void:
+	HealthManager.reset_lives()
 	start_after_reload = false
 	get_tree().paused = false
 	get_tree().reload_current_scene()
 
 
 func _on_start_button_pressed() -> void:
+	if not run_was_started and get_tree().current_scene.scene_file_path == "res://PrimeiraCena.tscn":
+		RescueManager.reset_run()
+		HealthManager.reset_lives()
+		ScoreManager.reset_score()
+	run_was_started = true
 	start_game()
 
 

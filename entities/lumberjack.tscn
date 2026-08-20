@@ -1,0 +1,101 @@
+[gd_scene load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://entities/lumberjack.gd" id="1_lumberjack"]
+[ext_resource type="Texture2D" path="res://sprites/enemies/lumberjack.png" id="2_sprite"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lumberjack"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_sprite")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_sprite")
+}],
+"loop": false,
+"name": &"die",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_sprite")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_sprite")
+}],
+"loop": false,
+"name": &"hurt",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_sprite")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 6.0
+}]
+
+[sub_resource type="RectangleShape2D" id="BodyShape"]
+size = Vector2(17, 23)
+
+[sub_resource type="RectangleShape2D" id="HurtboxShape"]
+size = Vector2(21, 27)
+
+[sub_resource type="RectangleShape2D" id="AxeShape"]
+size = Vector2(22, 24)
+
+[node name="Lenhador" type="CharacterBody2D" groups=["enemies"]]
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_lumberjack")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 0.1)
+scale = Vector2(0.019, 0.019)
+sprite_frames = SubResource("SpriteFrames_lumberjack")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("BodyShape")
+
+[node name="LedgeCheck" type="RayCast2D" parent="."]
+position = Vector2(-10, 10)
+target_position = Vector2(0, 16)
+collision_mask = 1
+enabled = true
+
+[node name="WallCheck" type="RayCast2D" parent="."]
+target_position = Vector2(-12, 0)
+collision_mask = 1
+enabled = true
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("HurtboxShape")
+
+[node name="AxeHitbox" type="Area2D" parent="."]
+position = Vector2(-15, 0)
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AxeHitbox"]
+shape = SubResource("AxeShape")
+
+[connection signal="body_entered" from="AxeHitbox" to="." method="_on_axe_hitbox_body_entered"]
+[connection signal="body_exited" from="AxeHitbox" to="." method="_on_axe_hitbox_body_exited"]

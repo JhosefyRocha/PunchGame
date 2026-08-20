@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://entities/fruit.gd" id="1_fruit"]
+
+[sub_resource type="CircleShape2D" id="CircleShape_fruit"]
+radius = 7.0
+
+[node name="Fruit" type="Area2D"]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("1_fruit")
+
+[node name="FruitBody" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(-5, -4, 0, -7, 5, -4, 6, 2, 2, 7, -2, 7, -6, 2)
+color = Color(0.92, 0.18, 0.12, 1)
+
+[node name="Leaf" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(0, -7, 6, -10, 4, -5)
+color = Color(0.24, 0.75, 0.22, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape_fruit")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -7,7 +7,7 @@ size = Vector2(22, 11)
 
 [node name="Spike" type="Area2D"]
 collision_layer = 0
-collision_mask = 1
+collision_mask = 4
 monitorable = false
 script = ExtResource("1_spike")
 

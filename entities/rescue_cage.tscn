@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://entities/rescue_cage.gd" id="1_cage"]
+[ext_resource type="Texture2D" path="res://sprites/rescue/animal_cage.png" id="2_cage"]
+
+[sub_resource type="RectangleShape2D" id="CageRange"]
+size = Vector2(64, 54)
+
+[node name="RescueCage" type="Area2D"]
+collision_layer = 0
+collision_mask = 4
+monitorable = false
+script = ExtResource("1_cage")
+
+[node name="Visual" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Visual"]
+texture = ExtResource("2_cage")
+region_enabled = true
+region_rect = Rect2(224, 216, 816, 800)
+scale = Vector2(0.04, 0.04)
+
+[node name="InteractionHint" type="Label" parent="."]
+offset_left = -9.0
+offset_top = -31.0
+offset_right = 9.0
+offset_bottom = -15.0
+theme_override_colors/font_color = Color(1, 0.82, 0.28, 1)
+theme_override_colors/font_outline_color = Color(0.06, 0.09, 0.045, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 12
+text = "J"
+horizontal_alignment = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CageRange")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

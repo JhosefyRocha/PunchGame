@@ -18,6 +18,12 @@
 [ext_resource type="Texture2D" path="res://sprites/HitPunch/sprite_1.png" id="15_hit1"]
 [ext_resource type="Texture2D" path="res://sprites/HitPunch/sprite_2.png" id="16_hit2"]
 [ext_resource type="Texture2D" path="res://sprites/HitPunch/sprite_3.png" id="17_hit3"]
+[ext_resource type="Texture2D" path="res://sprites/PunchJumping/sprite_06.png" id="18_fall0"]
+[ext_resource type="Texture2D" path="res://sprites/PunchJumping/sprite_07.png" id="19_fall1"]
+[ext_resource type="Texture2D" path="res://sprites/PunchJumping/sprite_08.png" id="20_fall2"]
+[ext_resource type="Texture2D" path="res://sprites/PunchJumping/sprite_09.png" id="21_fall3"]
+[ext_resource type="Texture2D" path="res://sprites/PunchJumping/sprite_10.png" id="22_fall4"]
+[ext_resource type="Texture2D" path="res://sprites/PunchJumping/sprite_11.png" id="23_fall5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qly61"]
 atlas = ExtResource("2_rfe5m")
@@ -115,6 +121,29 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("18_fall0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_fall1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_fall2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_fall3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_fall4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_fall5")
+}],
+"loop": true,
+"name": &"fall",
+"speed": 11.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_7db53")
 }, {
 "duration": 1.0,
@@ -148,7 +177,12 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8rie4"]
 size = Vector2(15, 19)
 
-[node name="CharacterBody2D" type="CharacterBody2D" unique_id=381482022]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_attack"]
+size = Vector2(20, 14)
+
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=381482022 groups=["player"]]
+collision_layer = 4
+collision_mask = 3
 script = ExtResource("1_merdl")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=699346994]
@@ -165,6 +199,15 @@ frame_progress = 0.85634714
 position = Vector2(2.5, 0.5)
 shape = SubResource("RectangleShape2D_8rie4")
 
+[node name="AttackHitbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackHitbox"]
+shape = SubResource("RectangleShape2D_attack")
+
 [node name="Camera2D" type="Camera2D" parent="." unique_id=515548357]
 position = Vector2(0, 1)
 limit_left = 0
@@ -173,3 +216,5 @@ limit_bottom = 200
 position_smoothing_enabled = true
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="area_entered" from="AttackHitbox" to="." method="_on_attack_hitbox_area_entered"]
+[connection signal="body_entered" from="AttackHitbox" to="." method="_on_attack_hitbox_body_entered"]

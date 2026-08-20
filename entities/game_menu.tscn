@@ -213,7 +213,7 @@ horizontal_alignment = 1
 layout_mode = 2
 theme_override_colors/font_color = Color(0.88, 0.92, 0.85, 1)
 theme_override_font_sizes/font_size = 11
-text = "A / ←   Mover para esquerda\nD / →   Mover para direita\nW / ↑ / Espaço   Pular\nW/S ou ↑/↓   Escalar cipó\nEspaço   Soltar cipó\nJ   Atacar\nEsc   Abrir ou fechar menu"
+text = "A / ←   Mover para esquerda\nD / →   Mover para direita\nW / ↑ / Espaço   Pular\nW/S ou ↑/↓   Escalar cipó\nEspaço   Soltar cipó\nE   Atacar\nJ   Interagir / resgatar\nEsc   Abrir ou fechar menu"
 horizontal_alignment = 1
 
 [node name="BackButton" type="Button" parent="Overlay/Center/ControlsPanel/Margin/VBox"]

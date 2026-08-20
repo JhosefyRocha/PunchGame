@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://entities/final_animal_goal.gd" id="1_goal"]
+[ext_resource type="Texture2D" path="res://sprites/rescue/rescued_animals_hug.png" id="2_animals"]
+
+[sub_resource type="RectangleShape2D" id="GoalShape"]
+size = Vector2(84, 68)
+
+[node name="FinalAnimalGoal" type="Area2D"]
+collision_layer = 0
+collision_mask = 4
+monitorable = false
+script = ExtResource("1_goal")
+
+[node name="Visual" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Visual"]
+texture = ExtResource("2_animals")
+region_enabled = true
+region_rect = Rect2(208, 112, 1008, 896)
+scale = Vector2(0.08, 0.08)
+
+[node name="CountLabel" type="Label" parent="."]
+offset_left = -47.0
+offset_top = -51.0
+offset_right = 47.0
+offset_bottom = -35.0
+theme_override_colors/font_color = Color(1, 0.88, 0.36, 1)
+theme_override_colors/font_outline_color = Color(0.04, 0.08, 0.045, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 9
+text = "0 RESGATADOS"
+horizontal_alignment = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("GoalShape")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -17,9 +17,13 @@ func show_level_complete(scene_path: String) -> void:
 
 
 func _on_next_button_pressed() -> void:
-	get_tree().paused = false
 	GameMenu.start_after_reload = true
-	get_tree().change_scene_to_file(next_scene_path)
+	var transition := get_tree().get_first_node_in_group(&"phase_transition")
+	if transition != null and transition.has_method(&"transition_to"):
+		await transition.transition_to(next_scene_path)
+	else:
+		get_tree().paused = false
+		get_tree().change_scene_to_file(next_scene_path)
 
 
 func _on_menu_button_pressed() -> void:

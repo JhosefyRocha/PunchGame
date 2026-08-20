@@ -5,7 +5,7 @@ var was_reached := false
 
 
 func _on_body_entered(body: Node2D) -> void:
-	if was_reached or not body.has_method(&"die"):
+	if was_reached or not body.is_in_group(&"player"):
 		return
 
 	was_reached = true

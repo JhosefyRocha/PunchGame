@@ -6,8 +6,18 @@
 [ext_resource type="PackedScene" path="res://entities/spike.tscn" id="4_spike"]
 [ext_resource type="PackedScene" path="res://entities/vine.tscn" id="5_vine"]
 [ext_resource type="PackedScene" path="res://entities/water_hazard.tscn" id="6_water"]
-[ext_resource type="Texture2D" uid="uid://bgro08luh3rcd" path="res://sprites/Seasonal Tilesets/Seasonal Tilesets/1 - Grassland/Background parts/_Complete_static_BG_(288 x 208).png" id="7_bg"]
+[ext_resource type="Texture2D" uid="uid://burr4viit44gh" path="res://sprites/environment/forest_canopy_phase_2.png" id="7_bg"]
 [ext_resource type="Texture2D" uid="uid://dqdtuvtsnj2re" path="res://sprites/Seasonal Tilesets/Seasonal Tilesets/1 - Grassland/Grassland_entities (16 x 16).png" id="8_decor"]
+[ext_resource type="PackedScene" path="res://entities/phase_transition.tscn" id="9_transition"]
+[ext_resource type="PackedScene" path="res://entities/rescue_cage.tscn" id="10_cage"]
+[ext_resource type="PackedScene" path="res://entities/rescue_hud.tscn" id="11_hud"]
+[ext_resource type="PackedScene" path="res://entities/final_animal_goal.tscn" id="12_goal"]
+[ext_resource type="PackedScene" path="res://entities/game_complete_menu.tscn" id="13_complete"]
+[ext_resource type="PackedScene" path="res://entities/health_hud.tscn" id="14_health"]
+[ext_resource type="PackedScene" path="res://entities/lumberjack.tscn" id="15_logger"]
+[ext_resource type="PackedScene" path="res://entities/fruit.tscn" id="16_fruit"]
+[ext_resource type="PackedScene" path="res://entities/checkpoint.tscn" id="17_checkpoint"]
+[ext_resource type="PackedScene" path="res://entities/score_hud.tscn" id="18_score"]
 
 [node name="Phase2" type="Node2D" unique_id=1082971088]
 
@@ -15,16 +25,14 @@
 scroll_ignore_camera_zoom = true
 
 [node name="Sky" type="ParallaxLayer" parent="Background" unique_id=59416610]
-motion_scale = Vector2(0.08, 0.08)
-motion_mirroring = Vector2(288, 0)
+motion_scale = Vector2(0.06, 0.03)
+motion_mirroring = Vector2(400, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="Background/Sky" unique_id=346013835]
 texture_repeat = 2
-position = Vector2(7, 14)
+scale = Vector2(0.23, 0.23)
 texture = ExtResource("7_bg")
 centered = false
-region_enabled = true
-region_rect = Rect2(0, 0, 1440, 208)
 
 [node name="WaterVisuals" type="Node2D" parent="." unique_id=1887011084]
 z_index = -1
@@ -69,7 +77,7 @@ position = Vector2(304, 132)
 platform_size = Vector2(64, 16)
 
 [node name="HighSpikePlatform" parent="." unique_id=1844182581 instance=ExtResource("3_platform")]
-position = Vector2(400, 100)
+position = Vector2(394, 100)
 platform_size = Vector2(64, 16)
 
 [node name="ClimbApproach" parent="." unique_id=553677441 instance=ExtResource("3_platform")]
@@ -87,22 +95,22 @@ platform_size = Vector2(80, 16)
 [node name="Hazards" type="Node2D" parent="." unique_id=1923090288]
 
 [node name="SpikeGroundA" parent="Hazards" unique_id=1840256018 instance=ExtResource("4_spike")]
-position = Vector2(164, 169)
+position = Vector2(160, 169)
 
 [node name="SpikeGroundB" parent="Hazards" unique_id=1691124065 instance=ExtResource("4_spike")]
-position = Vector2(192, 169)
+position = Vector2(185, 169)
 
 [node name="SpikeRunA" parent="Hazards" unique_id=1823998476 instance=ExtResource("4_spike")]
-position = Vector2(342, 169)
+position = Vector2(307, 169)
 
 [node name="SpikeRunB" parent="Hazards" unique_id=1451550636 instance=ExtResource("4_spike")]
-position = Vector2(370, 169)
+position = Vector2(377, 172)
 
 [node name="SpikeOnPlatform" parent="Hazards" unique_id=1275701021 instance=ExtResource("4_spike")]
 position = Vector2(336, 125)
 
 [node name="SpikeHigh" parent="Hazards" unique_id=914768723 instance=ExtResource("4_spike")]
-position = Vector2(432, 93)
+position = Vector2(426, 93)
 
 [node name="SpikeClimb" parent="Hazards" unique_id=770764431 instance=ExtResource("4_spike")]
 position = Vector2(624, 121)
@@ -111,30 +119,54 @@ position = Vector2(624, 121)
 position = Vector2(1028, 169)
 
 [node name="SpikeFinishB" parent="Hazards" unique_id=124723213 instance=ExtResource("4_spike")]
-position = Vector2(1056, 169)
+position = Vector2(1051, 169)
 
-[node name="SpikeFinishC" parent="Hazards" unique_id=125906247 instance=ExtResource("4_spike")]
-position = Vector2(1084, 169)
+[node name="Lenhador" parent="Hazards" instance=ExtResource("15_logger")]
+position = Vector2(870, 165)
+patrol_distance = 44.0
+
+[node name="Fruit" parent="Hazards" instance=ExtResource("16_fruit")]
+position = Vector2(614, 110)
+
+[node name="Checkpoint" parent="Hazards" instance=ExtResource("17_checkpoint")]
+position = Vector2(552, 165)
 
 [node name="WaterA" parent="Hazards" unique_id=1725929464 instance=ExtResource("6_water")]
-position = Vector2(248, 200)
+position = Vector2(248, 211)
 
 [node name="WaterB" parent="Hazards" unique_id=756002241 instance=ExtResource("6_water")]
-position = Vector2(504, 200)
+position = Vector2(504, 210)
 
 [node name="WaterC1" parent="Hazards" unique_id=1925341198 instance=ExtResource("6_water")]
-position = Vector2(728, 200)
+position = Vector2(728, 210)
 
 [node name="WaterC2" parent="Hazards" unique_id=396561691 instance=ExtResource("6_water")]
-position = Vector2(776, 200)
+position = Vector2(775, 210)
+
+[node name="RescueCages" type="Node2D" parent="." unique_id=1437660342]
+
+[node name="CageA" parent="RescueCages" unique_id=325917472 instance=ExtResource("10_cage")]
+position = Vector2(128, 107)
+rescue_id = &"phase_2_cage_a"
+animal_kind = &"mouse"
+
+[node name="CageB" parent="RescueCages" unique_id=928620062 instance=ExtResource("10_cage")]
+position = Vector2(426, 75)
+rescue_id = &"phase_2_cage_b"
+animal_kind = &"deer"
+
+[node name="CageC" parent="RescueCages" unique_id=710437204 instance=ExtResource("10_cage")]
+position = Vector2(913, 156)
+rescue_id = &"phase_2_cage_c"
+animal_kind = &"squirrel"
 
 [node name="Vines" type="Node2D" parent="." unique_id=748273072]
 
 [node name="TrainingVine" parent="Vines" unique_id=1882873031 instance=ExtResource("5_vine")]
-position = Vector2(552, 92)
+position = Vector2(550, 75)
 
 [node name="GapVineA" parent="Vines" unique_id=1520348875 instance=ExtResource("5_vine")]
-position = Vector2(730, 91)
+position = Vector2(730, 75)
 
 [node name="GapVineB" parent="Vines" unique_id=1316742618 instance=ExtResource("5_vine")]
 position = Vector2(772, 75)
@@ -142,16 +174,22 @@ position = Vector2(772, 75)
 [node name="Decorations" type="Node2D" parent="." unique_id=630538438]
 
 [node name="TreeA" type="Sprite2D" parent="Decorations" unique_id=1070624547]
-position = Vector2(64, 128)
+position = Vector2(28, 153)
+scale = Vector2(1.35, 1.35)
 texture = ExtResource("8_decor")
 region_enabled = true
 region_rect = Rect2(16, 16, 48, 48)
 
 [node name="TreeB" type="Sprite2D" parent="Decorations" unique_id=340841289]
-position = Vector2(1160, 128)
+position = Vector2(1128, 154)
+scale = Vector2(1.35, 1.35)
 texture = ExtResource("8_decor")
 region_enabled = true
 region_rect = Rect2(16, 16, 48, 48)
+
+[node name="FinalAnimalGoal" parent="." unique_id=1894291092 instance=ExtResource("12_goal")]
+position = Vector2(1211, 151)
+scale = Vector2(0.88, 0.88)
 
 [node name="VineHint" type="CanvasLayer" parent="." unique_id=1235515358]
 layer = 5
@@ -169,3 +207,15 @@ text = "CIPÓ: W/S OU ↑/↓ • ESPAÇO SOLTA"
 horizontal_alignment = 2
 
 [node name="GameMenu" parent="." unique_id=44998665 instance=ExtResource("2_menu")]
+visible = false
+
+[node name="RescueHUD" parent="." unique_id=675142284 instance=ExtResource("11_hud")]
+
+[node name="HealthHUD" parent="." instance=ExtResource("14_health")]
+
+[node name="ScoreHUD" parent="." instance=ExtResource("18_score")]
+
+[node name="GameCompleteMenu" parent="." unique_id=1770381865 instance=ExtResource("13_complete")]
+
+[node name="PhaseTransition" parent="." unique_id=969874533 instance=ExtResource("9_transition")]
+fade_color = Color(0.015, 0.12, 0.105, 1)

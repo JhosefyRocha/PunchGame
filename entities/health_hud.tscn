@@ -1,0 +1,48 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://entities/health_hud.gd" id="1_hud"]
+[ext_resource type="Texture2D" path="res://sprites/hud/heart_full.png" id="2_full"]
+
+[sub_resource type="StyleBoxFlat" id="HeartPanelStyle"]
+bg_color = Color(0.055, 0.075, 0.055, 0.88)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.5, 0.23, 0.12, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[node name="HealthHUD" type="CanvasLayer"]
+layer = 7
+script = ExtResource("1_hud")
+
+[node name="HeartPanel" type="Panel" parent="."]
+offset_left = 6.0
+offset_top = 5.0
+offset_right = 67.0
+offset_bottom = 28.0
+theme_override_styles/panel = SubResource("HeartPanelStyle")
+
+[node name="Heart1" type="Sprite2D" parent="HeartPanel"]
+position = Vector2(12, 12)
+texture = ExtResource("2_full")
+region_enabled = true
+region_rect = Rect2(272, 288, 720, 608)
+scale = Vector2(0.024, 0.024)
+
+[node name="Heart2" type="Sprite2D" parent="HeartPanel"]
+position = Vector2(30, 12)
+texture = ExtResource("2_full")
+region_enabled = true
+region_rect = Rect2(272, 288, 720, 608)
+scale = Vector2(0.024, 0.024)
+
+[node name="Heart3" type="Sprite2D" parent="HeartPanel"]
+position = Vector2(48, 12)
+texture = ExtResource("2_full")
+region_enabled = true
+region_rect = Rect2(272, 288, 720, 608)
+scale = Vector2(0.024, 0.024)

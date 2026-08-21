@@ -10,15 +10,15 @@
 [ext_resource type="PackedScene" path="res://entities/level_complete_menu.tscn" id="8_complete"]
 [ext_resource type="PackedScene" path="res://entities/phase_transition.tscn" id="9_transition"]
 [ext_resource type="PackedScene" path="res://entities/rescue_cage.tscn" id="10_cage"]
-[ext_resource type="PackedScene" path="res://entities/rescue_hud.tscn" id="11_hud"]
+[ext_resource type="PackedScene" path="res://entities/gameplay_hud.tscn" id="11_hud"]
 [ext_resource type="PackedScene" path="res://entities/tile_platform.tscn" id="12_platform"]
 [ext_resource type="PackedScene" path="res://entities/spike.tscn" id="13_spike"]
 [ext_resource type="PackedScene" path="res://entities/vine.tscn" id="14_vine"]
-[ext_resource type="PackedScene" path="res://entities/health_hud.tscn" id="15_health"]
 [ext_resource type="PackedScene" path="res://entities/lumberjack.tscn" id="16_logger"]
 [ext_resource type="PackedScene" path="res://entities/fruit.tscn" id="17_fruit"]
 [ext_resource type="PackedScene" path="res://entities/checkpoint.tscn" id="18_checkpoint"]
-[ext_resource type="PackedScene" path="res://entities/score_hud.tscn" id="19_score"]
+[ext_resource type="PackedScene" path="res://entities/moving_platform.tscn" id="19_moving"]
+[ext_resource type="Script" uid="uid://cxfo33j1sjfqk" path="res://entities/phase_1_extension.gd" id="20_extension"]
 
 [node name="Game" type="Node2D" unique_id=2002910798]
 
@@ -37,6 +37,12 @@ position = Vector2(0, 112)
 tile_map_data = PackedByteArray("AAAPAAEAAAABAAEAAAAWAAAAAQAAAAAAAAAFAAQAAAABAAUAAAABAAMAAAABAAEAAAAaAAMAAgAMAAUAAAAbAAMAAgAMAAUAAAAcAAMAAgAMAAUAAAAaAAQAAgAMAAYAAAAbAAQAAgAMAAYAAAAcAAQAAgAMAAYAAAAcAAUAAgAMAAYAAAAbAAUAAgAMAAYAAAAaAAUAAgAMAAYAAAA=")
 tile_set = ExtResource("3_0q2ab")
 
+[node name="ExtendedTerrain" type="TileMapLayer" parent="tiles" unique_id=1230722105]
+position = Vector2(0, 112)
+tile_map_data = PackedByteArray("AABOAAQAAQAEAAEAAABOAAUAAQAEAAMAAABPAAQAAQAEAAEAAABPAAUAAQAEAAMAAABQAAQAAQAEAAEAAABQAAUAAQAEAAMAAABRAAQAAQAEAAEAAABRAAUAAQAEAAMAAABSAAQAAQAEAAEAAABSAAUAAQAEAAMAAABTAAQAAQAEAAEAAABTAAUAAQAEAAMAAABUAAQAAQAEAAEAAABUAAUAAQAEAAMAAABVAAQAAQAEAAEAAABVAAUAAQAEAAMAAABWAAQAAQAEAAEAAABWAAUAAQAEAAMAAABXAAQAAQAEAAEAAABXAAUAAQAEAAMAAABYAAQAAQAEAAEAAABYAAUAAQAEAAMAAABZAAQAAQAEAAEAAABZAAUAAQAEAAMAAABaAAQAAQAEAAEAAABaAAUAAQAEAAMAAABbAAQAAQAEAAEAAABbAAUAAQAEAAMAAABcAAQAAQAEAAEAAABcAAUAAQAEAAMAAABdAAQAAQAEAAEAAABdAAUAAQAEAAMAAABeAAQAAQAEAAEAAABeAAUAAQAEAAMAAABfAAQAAQAEAAEAAABfAAUAAQAEAAMAAABgAAQAAQAEAAEAAABgAAUAAQAEAAMAAABhAAQAAQAEAAEAAABhAAUAAQAEAAMAAABiAAQAAQAEAAEAAABiAAUAAQAEAAMAAABjAAQAAQAEAAEAAABjAAUAAQAEAAMAAABkAAQAAQAEAAEAAABkAAUAAQAEAAMAAABlAAQAAQAEAAEAAABlAAUAAQAEAAMAAABmAAQAAQAEAAEAAABmAAUAAQAEAAMAAABnAAQAAQAEAAEAAABnAAUAAQAEAAMAAABoAAQAAQAEAAEAAABoAAUAAQAEAAMAAABpAAQAAQAEAAEAAABpAAUAAQAEAAMAAABqAAQAAQAEAAEAAABqAAUAAQAEAAMAAABrAAQAAQAEAAEAAABrAAUAAQAEAAMAAABsAAQAAQAEAAEAAABsAAUAAQAEAAMAAABtAAQAAQAEAAEAAABtAAUAAQAEAAMAAABuAAQAAQAEAAEAAABuAAUAAQAEAAMAAABvAAQAAQAEAAEAAABvAAUAAQAEAAMAAABwAAQAAQAEAAEAAABwAAUAAQAEAAMAAABxAAQAAQAEAAEAAABxAAUAAQAEAAMAAAByAAQAAQAEAAEAAAByAAUAAQAEAAMAAABzAAQAAQAEAAEAAABzAAUAAQAEAAMAAAB0AAQAAQAEAAEAAAB0AAUAAQAEAAMAAAB1AAQAAQAEAAEAAAB1AAUAAQAEAAMAAAB2AAQAAQAEAAEAAAB2AAUAAQAEAAMAAAB3AAQAAQAEAAEAAAB3AAUAAQAEAAMAAAB4AAQAAQAEAAEAAAB4AAUAAQAEAAMAAAB5AAQAAQAEAAEAAAB5AAUAAQAEAAMAAAB6AAQAAQAEAAEAAAB6AAUAAQAEAAMAAAB7AAQAAQAEAAEAAAB7AAUAAQAEAAMAAAB8AAQAAQAEAAEAAAB8AAUAAQAEAAMAAAB9AAQAAQAEAAEAAAB9AAUAAQAEAAMAAAB+AAQAAQAEAAEAAAB+AAUAAQAEAAMAAAB/AAQAAQAEAAEAAAB/AAUAAQAEAAMAAACAAAQAAQAEAAEAAACAAAUAAQAEAAMAAACBAAQAAQAEAAEAAACBAAUAAQAEAAMAAACCAAQAAQAEAAEAAACCAAUAAQAEAAMAAACDAAQAAQAEAAEAAACDAAUAAQAEAAMAAACEAAQAAQAEAAEAAACEAAUAAQAEAAMAAACFAAQAAQAEAAEAAACFAAUAAQAEAAMAAACGAAQAAQAEAAEAAACGAAUAAQAEAAMAAACHAAQAAQAEAAEAAACHAAUAAQAEAAMAAACIAAQAAQAEAAEAAACIAAUAAQAEAAMAAACJAAQAAQAEAAEAAACJAAUAAQAEAAMAAACKAAQAAQAEAAEAAACKAAUAAQAEAAMAAACLAAQAAQAEAAEAAACLAAUAAQAEAAMAAACMAAQAAQAEAAEAAACMAAUAAQAEAAMAAACNAAQAAQAEAAEAAACNAAUAAQAEAAMAAACOAAQAAQAEAAEAAACOAAUAAQAEAAMAAACPAAQAAQAEAAEAAACPAAUAAQAEAAMAAACQAAQAAQAEAAEAAACQAAUAAQAEAAMAAACRAAQAAQAEAAEAAACRAAUAAQAEAAMAAACSAAQAAQAEAAEAAACSAAUAAQAEAAMAAACTAAQAAQAEAAEAAACTAAUAAQAEAAMAAACUAAQAAQAEAAEAAACUAAUAAQAEAAMAAACVAAQAAQAEAAEAAACVAAUAAQAEAAMAAACWAAQAAQAEAAEAAACWAAUAAQAEAAMAAACXAAQAAQAEAAEAAACXAAUAAQAEAAMAAACYAAQAAQAEAAEAAACYAAUAAQAEAAMAAACZAAQAAQAEAAEAAACZAAUAAQAEAAMAAACaAAQAAQAEAAEAAACaAAUAAQAEAAMAAACbAAQAAQAEAAEAAACbAAUAAQAEAAMAAACcAAQAAQAEAAEAAACcAAUAAQAEAAMAAACdAAQAAQAEAAEAAACdAAUAAQAEAAMAAACeAAQAAQAEAAEAAACeAAUAAQAEAAMAAACfAAQAAQAEAAEAAACfAAUAAQAEAAMAAACgAAQAAQAEAAEAAACgAAUAAQAEAAMAAAChAAQAAQAEAAEAAAChAAUAAQAEAAMAAACiAAQAAQAEAAEAAACiAAUAAQAEAAMAAACjAAQAAQAEAAEAAACjAAUAAQAEAAMAAACkAAQAAQAEAAEAAACkAAUAAQAEAAMAAAClAAQAAQAEAAEAAAClAAUAAQAEAAMAAACmAAQAAQAEAAEAAACmAAUAAQAEAAMAAACnAAQAAQAEAAEAAACnAAUAAQAEAAMAAACoAAQAAQAEAAEAAACoAAUAAQAEAAMAAACpAAQAAQAEAAEAAACpAAUAAQAEAAMAAACqAAQAAQAEAAEAAACqAAUAAQAEAAMAAACrAAQAAQAEAAEAAACrAAUAAQAEAAMAAACsAAQAAQAEAAEAAACsAAUAAQAEAAMAAACtAAQAAQAEAAEAAACtAAUAAQAEAAMAAACuAAQAAQAEAAEAAACuAAUAAQAEAAMAAACvAAQAAQAEAAEAAACvAAUAAQAEAAMAAACwAAQAAQAEAAEAAACwAAUAAQAEAAMAAACxAAQAAQAEAAEAAACxAAUAAQAEAAMAAACyAAQAAQAEAAEAAACyAAUAAQAEAAMAAACzAAQAAQAEAAEAAACzAAUAAQAEAAMAAAC0AAQAAQAEAAEAAAC0AAUAAQAEAAMAAAC1AAQAAQAEAAEAAAC1AAUAAQAEAAMAAAC2AAQAAQAEAAEAAAC2AAUAAQAEAAMAAAC3AAQAAQAEAAEAAAC3AAUAAQAEAAMAAAC4AAQAAQAEAAEAAAC4AAUAAQAEAAMAAAC5AAQAAQAEAAEAAAC5AAUAAQAEAAMAAAC6AAQAAQAEAAEAAAC6AAUAAQAEAAMAAAC7AAQAAQAEAAEAAAC7AAUAAQAEAAMAAAC8AAQAAQAEAAEAAAC8AAUAAQAEAAMAAAC9AAQAAQAEAAEAAAC9AAUAAQAEAAMAAAC+AAQAAQAEAAEAAAC+AAUAAQAEAAMAAAC/AAQAAQAEAAEAAAC/AAUAAQAEAAMAAADAAAQAAQAEAAEAAADAAAUAAQAEAAMAAADBAAQAAQAEAAEAAADBAAUAAQAEAAMAAADCAAQAAQAEAAEAAADCAAUAAQAEAAMAAADDAAQAAQAEAAEAAADDAAUAAQAEAAMAAADEAAQAAQAEAAEAAADEAAUAAQAEAAMAAADFAAQAAQAEAAEAAADFAAUAAQAEAAMAAADGAAQAAQAEAAEAAADGAAUAAQAEAAMAAADHAAQAAQAEAAEAAADHAAUAAQAEAAMAAADIAAQAAQAEAAEAAADIAAUAAQAEAAMAAADJAAQAAQAEAAEAAADJAAUAAQAEAAMAAADKAAQAAQAEAAEAAADKAAUAAQAEAAMAAADLAAQAAQAEAAEAAADLAAUAAQAEAAMAAADMAAQAAQAEAAEAAADMAAUAAQAEAAMAAADNAAQAAQAEAAEAAADNAAUAAQAEAAMAAADOAAQAAQAEAAEAAADOAAUAAQAEAAMAAADPAAQAAQAEAAEAAADPAAUAAQAEAAMAAADQAAQAAQAEAAEAAADQAAUAAQAEAAMAAADRAAQAAQAEAAEAAADRAAUAAQAEAAMAAADSAAQAAQAEAAEAAADSAAUAAQAEAAMAAADTAAQAAQAEAAEAAADTAAUAAQAEAAMAAADUAAQAAQAEAAEAAADUAAUAAQAEAAMAAADVAAQAAQAEAAEAAADVAAUAAQAEAAMAAADWAAQAAQAEAAEAAADWAAUAAQAEAAMAAADXAAQAAQAEAAEAAADXAAUAAQAEAAMAAADYAAQAAQAEAAEAAADYAAUAAQAEAAMAAADZAAQAAQAEAAEAAADZAAUAAQAEAAMAAADaAAQAAQAEAAEAAADaAAUAAQAEAAMAAADbAAQAAQAEAAEAAADbAAUAAQAEAAMAAAA=")
+tile_set = ExtResource("2_pw7wf")
+script = ExtResource("20_extension")
+
 [node name="ParallaxBackground" type="ParallaxBackground" parent="." unique_id=1896624314]
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground" unique_id=376327651]
@@ -50,6 +56,7 @@ texture = ExtResource("4_0q2ab")
 centered = false
 
 [node name="GameMenu" parent="." unique_id=726246469 instance=ExtResource("5_menu")]
+visible = false
 
 [node name="WaterFrames" parent="." unique_id=1136019479 instance=ExtResource("6_water")]
 position = Vector2(441, 199)
@@ -62,15 +69,12 @@ position = Vector2(246, 160)
 [node name="SpikeC" parent="ChallengeObstacles" unique_id=549479190 instance=ExtResource("13_spike")]
 position = Vector2(420, 160)
 
-[node name="Lenhador" parent="ChallengeObstacles" instance=ExtResource("16_logger")]
+[node name="Lenhador" parent="ChallengeObstacles" unique_id=1700031174 instance=ExtResource("16_logger")]
 position = Vector2(205, 160)
 patrol_distance = 24.0
 
-[node name="Fruit" parent="ChallengeObstacles" instance=ExtResource("17_fruit")]
+[node name="Fruit" parent="ChallengeObstacles" unique_id=1005418112 instance=ExtResource("17_fruit")]
 position = Vector2(282, 87)
-
-[node name="Checkpoint" parent="ChallengeObstacles" instance=ExtResource("18_checkpoint")]
-position = Vector2(302, 163)
 
 [node name="RooftopRoute" type="Node2D" parent="." unique_id=442553227]
 
@@ -111,6 +115,293 @@ position = Vector2(306, 69)
 [node name="RoofVineRight" parent="RooftopRoute" unique_id=996145750 instance=ExtResource("14_vine")]
 position = Vector2(411, 69)
 
+[node name="ExpandedRoute" type="Node2D" parent="." unique_id=2135565783]
+
+[node name="GapVisualA" type="Polygon2D" parent="ExpandedRoute" unique_id=1144330804]
+z_index = -1
+color = Color(0.08, 0.3, 0.5, 1)
+polygon = PackedVector2Array(584, 170, 712, 170, 712, 208, 584, 208)
+
+[node name="GapVisualB" type="Polygon2D" parent="ExpandedRoute" unique_id=744885815]
+z_index = -1
+color = Color(0.08, 0.3, 0.5, 1)
+polygon = PackedVector2Array(920, 170, 1024, 170, 1024, 208, 920, 208)
+
+[node name="GapVisualC" type="Polygon2D" parent="ExpandedRoute" unique_id=621445632]
+z_index = -1
+color = Color(0.08, 0.3, 0.5, 1)
+polygon = PackedVector2Array(1264, 170, 1392, 170, 1392, 208, 1264, 208)
+
+[node name="PostHouseStep" parent="ExpandedRoute" unique_id=1227784106 instance=ExtResource("12_platform")]
+position = Vector2(520, 132)
+platform_size = Vector2(56, 16)
+use_autumn_tiles = true
+
+[node name="GapAPlatform" parent="ExpandedRoute" unique_id=255295464 instance=ExtResource("19_moving")]
+position = Vector2(612, 144)
+platform_size = Vector2(48, 16)
+movement = Vector2(0, -48)
+travel_time = 1.8
+
+[node name="GapALanding" parent="ExpandedRoute" unique_id=1456177677 instance=ExtResource("12_platform")]
+position = Vector2(704, 128)
+platform_size = Vector2(112, 16)
+use_autumn_tiles = true
+
+[node name="MidCheckpoint" parent="ExpandedRoute" unique_id=616688347 instance=ExtResource("18_checkpoint")]
+position = Vector2(1808, 131)
+
+[node name="CombatPlatform" parent="ExpandedRoute" unique_id=2081892678 instance=ExtResource("12_platform")]
+position = Vector2(824, 144)
+platform_size = Vector2(88, 16)
+use_autumn_tiles = true
+
+[node name="GapBPlatformLeft" parent="ExpandedRoute" unique_id=1076109062 instance=ExtResource("19_moving")]
+position = Vector2(928, 142)
+platform_size = Vector2(40, 16)
+movement = Vector2(36, -34)
+travel_time = 2.1
+
+[node name="GapBPlatformRight" parent="ExpandedRoute" unique_id=1346286323 instance=ExtResource("19_moving")]
+position = Vector2(992, 105)
+platform_size = Vector2(40, 16)
+movement = Vector2(0, 48)
+travel_time = 1.6
+
+[node name="HighRoute" parent="ExpandedRoute" unique_id=1031510886 instance=ExtResource("12_platform")]
+position = Vector2(1060, 116)
+platform_size = Vector2(72, 16)
+use_autumn_tiles = true
+
+[node name="EnemyArena" parent="ExpandedRoute" unique_id=726803385 instance=ExtResource("12_platform")]
+position = Vector2(1148, 152)
+platform_size = Vector2(112, 16)
+use_autumn_tiles = true
+
+[node name="GapCPlatform" parent="ExpandedRoute" unique_id=996179926 instance=ExtResource("19_moving")]
+position = Vector2(1292, 140)
+platform_size = Vector2(48, 16)
+movement = Vector2(40, -26)
+travel_time = 2.3
+
+[node name="FinalApproach" parent="ExpandedRoute" unique_id=1767406395 instance=ExtResource("12_platform")]
+position = Vector2(1400, 128)
+platform_size = Vector2(104, 16)
+use_autumn_tiles = true
+
+[node name="GapAVineLeft" parent="ExpandedRoute" unique_id=268283290 instance=ExtResource("14_vine")]
+position = Vector2(604, 78)
+
+[node name="GapAVineRight" parent="ExpandedRoute" unique_id=1328503662 instance=ExtResource("14_vine")]
+position = Vector2(686, 78)
+
+[node name="GapCVine" parent="ExpandedRoute" unique_id=1021019852 instance=ExtResource("14_vine")]
+position = Vector2(1348, 78)
+
+[node name="WaterA1" parent="ExpandedRoute" unique_id=1790337963 instance=ExtResource("6_water")]
+position = Vector2(608, 198)
+
+[node name="WaterA2" parent="ExpandedRoute" unique_id=1280923949 instance=ExtResource("6_water")]
+position = Vector2(656, 198)
+
+[node name="WaterA3" parent="ExpandedRoute" unique_id=1860055101 instance=ExtResource("6_water")]
+position = Vector2(688, 198)
+
+[node name="WaterB1" parent="ExpandedRoute" unique_id=423274381 instance=ExtResource("6_water")]
+position = Vector2(944, 198)
+
+[node name="WaterB2" parent="ExpandedRoute" unique_id=2135744866 instance=ExtResource("6_water")]
+position = Vector2(992, 198)
+
+[node name="WaterC1" parent="ExpandedRoute" unique_id=494786913 instance=ExtResource("6_water")]
+position = Vector2(1288, 198)
+
+[node name="WaterC2" parent="ExpandedRoute" unique_id=685717873 instance=ExtResource("6_water")]
+position = Vector2(1336, 198)
+
+[node name="WaterC3" parent="ExpandedRoute" unique_id=1593119155 instance=ExtResource("6_water")]
+position = Vector2(1368, 198)
+
+[node name="SpikeAfterHouse" parent="ExpandedRoute" unique_id=592615218 instance=ExtResource("13_spike")]
+position = Vector2(548, 125)
+
+[node name="SpikeArenaA" parent="ExpandedRoute" unique_id=931964163 instance=ExtResource("13_spike")]
+position = Vector2(836, 138)
+
+[node name="SpikeArenaB" parent="ExpandedRoute" unique_id=1055755364 instance=ExtResource("13_spike")]
+position = Vector2(901, 137)
+
+[node name="SpikeHigh" parent="ExpandedRoute" unique_id=701884478 instance=ExtResource("13_spike")]
+position = Vector2(1096, 109)
+
+[node name="SpikeFinalA" parent="ExpandedRoute" unique_id=739854558 instance=ExtResource("13_spike")]
+position = Vector2(1432, 121)
+
+[node name="LenhadorMid" parent="ExpandedRoute" unique_id=475470134 instance=ExtResource("16_logger")]
+position = Vector2(875, 132)
+patrol_distance = 30.0
+
+[node name="LenhadorFinal" parent="ExpandedRoute" unique_id=1360207140 instance=ExtResource("16_logger")]
+position = Vector2(3144, 140)
+patrol_distance = 54.0
+
+[node name="LongRoute" type="Node2D" parent="." unique_id=1875064842]
+
+[node name="BridgeToMid" parent="LongRoute" unique_id=1786711593 instance=ExtResource("12_platform")]
+position = Vector2(1512, 148)
+platform_size = Vector2(88, 16)
+use_autumn_tiles = true
+
+[node name="GapDVisual" type="Polygon2D" parent="LongRoute" unique_id=21017579]
+z_index = -1
+color = Color(0.065, 0.27, 0.47, 1)
+polygon = PackedVector2Array(1600, 170, 1760, 170, 1760, 208, 1600, 208)
+
+[node name="GapDMovingLeft" parent="LongRoute" unique_id=694221448 instance=ExtResource("19_moving")]
+position = Vector2(1616, 142)
+platform_size = Vector2(48, 16)
+movement = Vector2(28, -42)
+travel_time = 2.2
+
+[node name="GapDMovingRight" parent="LongRoute" unique_id=840553099 instance=ExtResource("19_moving")]
+position = Vector2(1696, 104)
+platform_size = Vector2(48, 16)
+movement = Vector2(0, 52)
+travel_time = 1.9
+
+[node name="CheckpointIsland" parent="LongRoute" unique_id=1466614344 instance=ExtResource("12_platform")]
+position = Vector2(1760, 144)
+platform_size = Vector2(112, 16)
+use_autumn_tiles = true
+
+[node name="MidHighStep" parent="LongRoute" unique_id=32790979 instance=ExtResource("12_platform")]
+position = Vector2(1904, 112)
+platform_size = Vector2(72, 16)
+use_autumn_tiles = true
+
+[node name="MidDrop" parent="LongRoute" unique_id=133663693 instance=ExtResource("12_platform")]
+position = Vector2(1992, 148)
+platform_size = Vector2(64, 16)
+use_autumn_tiles = true
+
+[node name="GapEVisual" type="Polygon2D" parent="LongRoute" unique_id=1319287814]
+z_index = -1
+color = Color(0.065, 0.27, 0.47, 1)
+polygon = PackedVector2Array(2064, 170, 2256, 170, 2256, 208, 2064, 208)
+
+[node name="GapEVineLeft" parent="LongRoute" unique_id=1334244841 instance=ExtResource("14_vine")]
+position = Vector2(2104, 78)
+
+[node name="GapEVineRight" parent="LongRoute" unique_id=248249158 instance=ExtResource("14_vine")]
+position = Vector2(2216, 78)
+
+[node name="GapEMoving" parent="LongRoute" unique_id=1767033212 instance=ExtResource("19_moving")]
+position = Vector2(2140, 136)
+platform_size = Vector2(48, 16)
+movement = Vector2(40, -30)
+travel_time = 2.5
+
+[node name="UpperRunA" parent="LongRoute" unique_id=1473578909 instance=ExtResource("12_platform")]
+position = Vector2(2272, 128)
+platform_size = Vector2(96, 16)
+use_autumn_tiles = true
+
+[node name="UpperRunB" parent="LongRoute" unique_id=847139370 instance=ExtResource("12_platform")]
+position = Vector2(2400, 96)
+platform_size = Vector2(88, 16)
+use_autumn_tiles = true
+
+[node name="UpperRunC" parent="LongRoute" unique_id=350548838 instance=ExtResource("12_platform")]
+position = Vector2(2520, 132)
+platform_size = Vector2(96, 16)
+use_autumn_tiles = true
+
+[node name="GapFVisual" type="Polygon2D" parent="LongRoute" unique_id=616271201]
+z_index = -1
+color = Color(0.065, 0.27, 0.47, 1)
+polygon = PackedVector2Array(2640, 170, 2832, 170, 2832, 208, 2640, 208)
+
+[node name="GapFMovingA" parent="LongRoute" unique_id=282048824 instance=ExtResource("19_moving")]
+position = Vector2(2656, 140)
+platform_size = Vector2(48, 16)
+movement = Vector2(0, -50)
+travel_time = 1.7
+
+[node name="GapFMovingB" parent="LongRoute" unique_id=1125003545 instance=ExtResource("19_moving")]
+position = Vector2(2744, 100)
+platform_size = Vector2(48, 16)
+movement = Vector2(32, 42)
+travel_time = 2.1
+
+[node name="GapFVine" parent="LongRoute" unique_id=2042575929 instance=ExtResource("14_vine")]
+position = Vector2(2800, 78)
+
+[node name="FinalArena" parent="LongRoute" unique_id=875616743 instance=ExtResource("12_platform")]
+position = Vector2(2848, 152)
+platform_size = Vector2(416, 16)
+use_autumn_tiles = true
+
+[node name="FinalTower" parent="LongRoute" unique_id=1588176265 instance=ExtResource("12_platform")]
+position = Vector2(3016, 108)
+platform_size = Vector2(80, 16)
+use_autumn_tiles = true
+
+[node name="FlagApproach" parent="LongRoute" unique_id=27054812 instance=ExtResource("12_platform")]
+position = Vector2(3296, 128)
+platform_size = Vector2(112, 16)
+use_autumn_tiles = true
+
+[node name="SpikeMidA" parent="LongRoute" unique_id=2058952814 instance=ExtResource("13_spike")]
+position = Vector2(1932, 105)
+
+[node name="SpikeMidB" parent="LongRoute" unique_id=1069750523 instance=ExtResource("13_spike")]
+position = Vector2(2024, 141)
+
+[node name="SpikeUpperA" parent="LongRoute" unique_id=1378741276 instance=ExtResource("13_spike")]
+position = Vector2(2310, 121)
+
+[node name="SpikeUpperB" parent="LongRoute" unique_id=1145666231 instance=ExtResource("13_spike")]
+position = Vector2(2438, 89)
+
+[node name="SpikeArenaA" parent="LongRoute" unique_id=889542760 instance=ExtResource("13_spike")]
+position = Vector2(2940, 145)
+
+[node name="SpikeArenaB" parent="LongRoute" unique_id=309014932 instance=ExtResource("13_spike")]
+position = Vector2(3220, 145)
+
+[node name="WaterD1" parent="LongRoute" unique_id=944355547 instance=ExtResource("6_water")]
+position = Vector2(1624, 198)
+
+[node name="WaterD2" parent="LongRoute" unique_id=475175732 instance=ExtResource("6_water")]
+position = Vector2(1672, 198)
+
+[node name="WaterD3" parent="LongRoute" unique_id=1157806724 instance=ExtResource("6_water")]
+position = Vector2(1720, 198)
+
+[node name="WaterE1" parent="LongRoute" unique_id=894068459 instance=ExtResource("6_water")]
+position = Vector2(2088, 198)
+
+[node name="WaterE2" parent="LongRoute" unique_id=2031407605 instance=ExtResource("6_water")]
+position = Vector2(2136, 198)
+
+[node name="WaterE3" parent="LongRoute" unique_id=238560611 instance=ExtResource("6_water")]
+position = Vector2(2184, 198)
+
+[node name="WaterE4" parent="LongRoute" unique_id=1147874814 instance=ExtResource("6_water")]
+position = Vector2(2232, 198)
+
+[node name="WaterF1" parent="LongRoute" unique_id=240242437 instance=ExtResource("6_water")]
+position = Vector2(2664, 198)
+
+[node name="WaterF2" parent="LongRoute" unique_id=740184755 instance=ExtResource("6_water")]
+position = Vector2(2712, 198)
+
+[node name="WaterF3" parent="LongRoute" unique_id=94100543 instance=ExtResource("6_water")]
+position = Vector2(2760, 198)
+
+[node name="WaterF4" parent="LongRoute" unique_id=954379710 instance=ExtResource("6_water")]
+position = Vector2(2808, 198)
+
 [node name="RescueCages" type="Node2D" parent="." unique_id=1644429681]
 
 [node name="CageA" parent="RescueCages" unique_id=915475067 instance=ExtResource("10_cage")]
@@ -129,15 +420,13 @@ rescue_id = &"phase_1_cage_c"
 animal_kind = &"fox"
 
 [node name="FinishFlag" parent="." unique_id=667629001 instance=ExtResource("7_flag")]
-position = Vector2(500, 182)
+position = Vector2(3456, 166)
 
 [node name="LevelCompleteMenu" parent="." unique_id=1834598645 instance=ExtResource("8_complete")]
+visible = false
 
-[node name="RescueHUD" parent="." unique_id=672482333 instance=ExtResource("11_hud")]
-
-[node name="HealthHUD" parent="." unique_id=465341215 instance=ExtResource("15_health")]
-
-[node name="ScoreHUD" parent="." instance=ExtResource("19_score")]
+[node name="GameplayHUD" parent="." unique_id=672482333 instance=ExtResource("11_hud")]
 
 [node name="PhaseTransition" parent="." unique_id=1806634267 instance=ExtResource("9_transition")]
+visible = false
 fade_color = Color(0.075, 0.09, 0.035, 1)

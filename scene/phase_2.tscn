@@ -10,14 +10,12 @@
 [ext_resource type="Texture2D" uid="uid://dqdtuvtsnj2re" path="res://sprites/Seasonal Tilesets/Seasonal Tilesets/1 - Grassland/Grassland_entities (16 x 16).png" id="8_decor"]
 [ext_resource type="PackedScene" path="res://entities/phase_transition.tscn" id="9_transition"]
 [ext_resource type="PackedScene" path="res://entities/rescue_cage.tscn" id="10_cage"]
-[ext_resource type="PackedScene" path="res://entities/rescue_hud.tscn" id="11_hud"]
+[ext_resource type="PackedScene" path="res://entities/gameplay_hud.tscn" id="11_hud"]
 [ext_resource type="PackedScene" path="res://entities/final_animal_goal.tscn" id="12_goal"]
 [ext_resource type="PackedScene" path="res://entities/game_complete_menu.tscn" id="13_complete"]
-[ext_resource type="PackedScene" path="res://entities/health_hud.tscn" id="14_health"]
 [ext_resource type="PackedScene" path="res://entities/lumberjack.tscn" id="15_logger"]
 [ext_resource type="PackedScene" path="res://entities/fruit.tscn" id="16_fruit"]
 [ext_resource type="PackedScene" path="res://entities/checkpoint.tscn" id="17_checkpoint"]
-[ext_resource type="PackedScene" path="res://entities/score_hud.tscn" id="18_score"]
 
 [node name="Phase2" type="Node2D" unique_id=1082971088]
 
@@ -191,29 +189,11 @@ region_rect = Rect2(16, 16, 48, 48)
 position = Vector2(1211, 151)
 scale = Vector2(0.88, 0.88)
 
-[node name="VineHint" type="CanvasLayer" parent="." unique_id=1235515358]
-layer = 5
-
-[node name="Label" type="Label" parent="VineHint" unique_id=2063785796]
-offset_left = 254.0
-offset_top = 8.0
-offset_right = 393.0
-offset_bottom = 29.0
-theme_override_colors/font_color = Color(0.12, 0.28, 0.1, 1)
-theme_override_colors/font_outline_color = Color(0.91, 1, 0.72, 1)
-theme_override_constants/outline_size = 2
-theme_override_font_sizes/font_size = 9
-text = "CIPÓ: W/S OU ↑/↓ • ESPAÇO SOLTA"
-horizontal_alignment = 2
-
 [node name="GameMenu" parent="." unique_id=44998665 instance=ExtResource("2_menu")]
 visible = false
 
-[node name="RescueHUD" parent="." unique_id=675142284 instance=ExtResource("11_hud")]
-
-[node name="HealthHUD" parent="." instance=ExtResource("14_health")]
-
-[node name="ScoreHUD" parent="." instance=ExtResource("18_score")]
+[node name="GameplayHUD" parent="." unique_id=675142284 instance=ExtResource("11_hud")]
+tutorial_text = "CIPÓ W/S OU ↑/↓  •  ESPAÇO SOLTA"
 
 [node name="GameCompleteMenu" parent="." unique_id=1770381865 instance=ExtResource("13_complete")]
 

@@ -5,6 +5,8 @@
 [ext_resource type="TileSet" uid="uid://ddrhor0n7wld6" path="res://tiles/Decoration.tres" id="3_0q2ab"]
 [ext_resource type="Texture2D" uid="uid://big5fb1fs5mhp" path="res://sprites/environment/forest_canopy_phase_1.png" id="4_0q2ab"]
 [ext_resource type="PackedScene" path="res://entities/game_menu.tscn" id="5_menu"]
+[ext_resource type="AudioStream" path="res://sounds/phase_01.ogg" id="22_music"]
+[ext_resource type="Script" path="res://entities/level_music.gd" id="22_music_script"]
 [ext_resource type="PackedScene" path="res://entities/water_hazard.tscn" id="6_water"]
 [ext_resource type="PackedScene" path="res://entities/finish_flag.tscn" id="7_flag"]
 [ext_resource type="PackedScene" path="res://entities/level_complete_menu.tscn" id="8_complete"]
@@ -58,6 +60,11 @@ centered = false
 [node name="GameMenu" parent="." unique_id=726246469 instance=ExtResource("5_menu")]
 visible = false
 
+[node name="LevelMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("22_music")
+volume_db = -10.0
+script = ExtResource("22_music_script")
+
 [node name="WaterFrames" parent="." unique_id=1136019479 instance=ExtResource("6_water")]
 position = Vector2(441, 199)
 
@@ -79,7 +86,7 @@ position = Vector2(282, 87)
 [node name="RooftopRoute" type="Node2D" parent="." unique_id=442553227]
 
 [node name="FirstClimb" parent="RooftopRoute" unique_id=17362001 instance=ExtResource("12_platform")]
-position = Vector2(104, 124)
+position = Vector2(78, 114)
 platform_size = Vector2(40, 16)
 use_autumn_tiles = true
 
@@ -225,12 +232,6 @@ position = Vector2(1368, 198)
 [node name="SpikeAfterHouse" parent="ExpandedRoute" unique_id=592615218 instance=ExtResource("13_spike")]
 position = Vector2(548, 125)
 
-[node name="SpikeArenaA" parent="ExpandedRoute" unique_id=931964163 instance=ExtResource("13_spike")]
-position = Vector2(836, 138)
-
-[node name="SpikeArenaB" parent="ExpandedRoute" unique_id=1055755364 instance=ExtResource("13_spike")]
-position = Vector2(901, 137)
-
 [node name="SpikeHigh" parent="ExpandedRoute" unique_id=701884478 instance=ExtResource("13_spike")]
 position = Vector2(1096, 109)
 
@@ -238,7 +239,7 @@ position = Vector2(1096, 109)
 position = Vector2(1432, 121)
 
 [node name="LenhadorMid" parent="ExpandedRoute" unique_id=475470134 instance=ExtResource("16_logger")]
-position = Vector2(875, 132)
+position = Vector2(869, 132)
 patrol_distance = 30.0
 
 [node name="LenhadorFinal" parent="ExpandedRoute" unique_id=1360207140 instance=ExtResource("16_logger")]
@@ -405,12 +406,12 @@ position = Vector2(2808, 198)
 [node name="RescueCages" type="Node2D" parent="." unique_id=1644429681]
 
 [node name="CageA" parent="RescueCages" unique_id=915475067 instance=ExtResource("10_cage")]
-position = Vector2(124, 107)
+position = Vector2(103, 101)
 rescue_id = &"phase_1_cage_a"
 animal_kind = &"bear"
 
 [node name="CageB" parent="RescueCages" unique_id=1767051933 instance=ExtResource("10_cage")]
-position = Vector2(232, 103)
+position = Vector2(237, 107)
 rescue_id = &"phase_1_cage_b"
 animal_kind = &"rabbit"
 

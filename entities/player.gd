@@ -13,6 +13,9 @@ const DAMAGE_INVULNERABILITY_TIME := 1.0
 
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
 @onready var attack_hitbox: Area2D = $AttackHitbox
+@onready var punch_swing_sound: AudioStreamPlayer = $PunchSwingSound
+@onready var punch_hit_sound: AudioStreamPlayer = $PunchHitSound
+@onready var punch_miss_sound: AudioStreamPlayer = $PunchMissSound
 
 var is_hitting := false
 var is_dead := false
@@ -76,6 +79,7 @@ func start_attack() -> void:
 	attack_hitbox.monitoring = true
 	anim.scale = default_sprite_scale * HIT_SCALE_FACTOR
 	anim.play(&"hit")
+	punch_swing_sound.play()
 
 	# Tambem detecta alvos que ja estavam dentro da area quando ela foi ativada.
 	await get_tree().physics_frame
@@ -89,6 +93,8 @@ func start_attack() -> void:
 	await get_tree().create_timer(attack_active_time).timeout
 	if current_sequence == attack_sequence:
 		attack_hitbox.monitoring = false
+		if attack_targets_hit.is_empty():
+			punch_miss_sound.play()
 
 
 func try_hit_enemy(target: Node) -> void:
@@ -103,8 +109,11 @@ func try_hit_enemy(target: Node) -> void:
 	if attack_targets_hit.has(enemy) or not enemy.has_method(&"take_damage"):
 		return
 
+	var is_first_connection := attack_targets_hit.is_empty()
 	attack_targets_hit[enemy] = true
 	enemy.take_damage(attack_damage, global_position)
+	if is_first_connection:
+		punch_hit_sound.play()
 
 
 func _on_attack_hitbox_body_entered(body: Node2D) -> void:

@@ -10,6 +10,7 @@ static var start_after_reload := false
 @onready var credits_panel: PanelContainer = $Overlay/Center/CreditsPanel
 @onready var death_panel: PanelContainer = $Overlay/Center/DeathPanel
 @onready var start_button: Button = $Overlay/Center/MenuPanel/Margin/VBox/StartButton
+@onready var menu_music: AudioStreamPlayer = $MenuMusic
 
 var is_death_screen := false
 var completion_locked := false
@@ -51,11 +52,23 @@ func show_menu() -> void:
 	death_tint.hide()
 	show_main_panel()
 	start_button.grab_focus()
+	play_menu_music()
 
 
 func start_game() -> void:
 	hide()
 	get_tree().paused = false
+	stop_menu_music()
+
+
+func play_menu_music() -> void:
+	if menu_music.stream != null and not menu_music.playing:
+		menu_music.play()
+
+
+func stop_menu_music() -> void:
+	if menu_music.playing:
+		menu_music.stop()
 
 
 func show_main_panel() -> void:
@@ -98,11 +111,13 @@ func show_death_screen() -> void:
 	credits_panel.hide()
 	death_panel.show()
 	$Overlay/Center/DeathPanel/Margin/VBox/RestartButton.grab_focus()
+	play_menu_music()
 
 
 func lock_for_level_complete() -> void:
 	completion_locked = true
 	hide()
+	stop_menu_music()
 
 
 func return_to_menu() -> void:

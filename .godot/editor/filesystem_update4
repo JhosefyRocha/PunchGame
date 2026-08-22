@@ -1,3 +1,2 @@
-res://PrimeiraCena.tscn
-res://tiles/Terrain.tres
-res://tiles/Decoration.tres
+res://entities/player.gd
+res://entities/player.tscn

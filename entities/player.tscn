@@ -14,16 +14,21 @@
 [ext_resource type="Texture2D" uid="uid://bifsfrg73dlhh" path="res://sprites/PunchRunning certo/sprite_03.png" id="11_q0i8f"]
 [ext_resource type="Texture2D" uid="uid://cywm73lytbhha" path="res://sprites/PunchJumping/sprite_04.png" id="12_28s6d"]
 [ext_resource type="Texture2D" uid="uid://cqdby4cxqvuwn" path="res://sprites/PunchJumping/sprite_05.png" id="13_cicqb"]
-[ext_resource type="Texture2D" path="res://sprites/HitPunch/sprite_0.png" id="14_hit0"]
-[ext_resource type="Texture2D" path="res://sprites/HitPunch/sprite_1.png" id="15_hit1"]
-[ext_resource type="Texture2D" path="res://sprites/HitPunch/sprite_2.png" id="16_hit2"]
-[ext_resource type="Texture2D" path="res://sprites/HitPunch/sprite_3.png" id="17_hit3"]
-[ext_resource type="Texture2D" path="res://sprites/PunchJumping/sprite_06.png" id="18_fall0"]
-[ext_resource type="Texture2D" path="res://sprites/PunchJumping/sprite_07.png" id="19_fall1"]
-[ext_resource type="Texture2D" path="res://sprites/PunchJumping/sprite_08.png" id="20_fall2"]
-[ext_resource type="Texture2D" path="res://sprites/PunchJumping/sprite_09.png" id="21_fall3"]
-[ext_resource type="Texture2D" path="res://sprites/PunchJumping/sprite_10.png" id="22_fall4"]
-[ext_resource type="Texture2D" path="res://sprites/PunchJumping/sprite_11.png" id="23_fall5"]
+[ext_resource type="Texture2D" uid="uid://c7omwio3g8d1w" path="res://sprites/HitPunch/sprite_0.png" id="14_hit0"]
+[ext_resource type="Texture2D" uid="uid://cb5nmd4xy5aj" path="res://sprites/HitPunch/sprite_1.png" id="15_hit1"]
+[ext_resource type="Texture2D" uid="uid://dkm50fce3jsy7" path="res://sprites/HitPunch/sprite_2.png" id="16_hit2"]
+[ext_resource type="Texture2D" uid="uid://bm0rb6g76i8dy" path="res://sprites/HitPunch/sprite_3.png" id="17_hit3"]
+[ext_resource type="Texture2D" uid="uid://b1hs1kg43flcv" path="res://sprites/PunchJumping/sprite_06.png" id="18_fall0"]
+[ext_resource type="Texture2D" uid="uid://c4gosl23q8k5" path="res://sprites/PunchJumping/sprite_07.png" id="19_fall1"]
+[ext_resource type="Texture2D" uid="uid://0i0ccfgbks03" path="res://sprites/PunchJumping/sprite_08.png" id="20_fall2"]
+[ext_resource type="Texture2D" uid="uid://b5ek6qnix7msg" path="res://sprites/PunchJumping/sprite_09.png" id="21_fall3"]
+[ext_resource type="Texture2D" uid="uid://8pg4v4hvurr5" path="res://sprites/PunchJumping/sprite_10.png" id="22_fall4"]
+[ext_resource type="Texture2D" uid="uid://i5yxbn1pdjii" path="res://sprites/PunchJumping/sprite_11.png" id="23_fall5"]
+[ext_resource type="AudioStream" uid="uid://bx728he6p7fu8" path="res://sounds/player_punch_01.wav" id="24_punch1"]
+[ext_resource type="AudioStream" uid="uid://bx728he6p8fu8" path="res://sounds/player_punch_02.wav" id="25_punch2"]
+[ext_resource type="AudioStream" uid="uid://bx728he6qafu8" path="res://sounds/player_punch_03.wav" id="26_punch3"]
+[ext_resource type="AudioStream" uid="uid://qehgremwu6sf" path="res://sounds/player_solid_punch.wav" id="27_solid"]
+[ext_resource type="AudioStream" uid="uid://dpkuh4p3i22gv" path="res://sounds/player_missed_punch.wav" id="28_missed"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qly61"]
 atlas = ExtResource("2_rfe5m")
@@ -81,46 +86,6 @@ region = Rect2(0, 0, 32, 32)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_qly61")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_oprnr")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_8rie4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_dp3pk")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_cgp7q")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_1n8aq")
-}],
-"loop": true,
-"name": &"idle",
-"speed": 3.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("14_hit0")
-}, {
-"duration": 1.0,
-"texture": ExtResource("15_hit1")
-}, {
-"duration": 1.0,
-"texture": ExtResource("16_hit2")
-}, {
-"duration": 1.0,
-"texture": ExtResource("17_hit3")
-}],
-"loop": false,
-"name": &"hit",
-"speed": 14.0
-}, {
-"frames": [{
-"duration": 1.0,
 "texture": ExtResource("18_fall0")
 }, {
 "duration": 1.0,
@@ -138,9 +103,49 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("23_fall5")
 }],
-"loop": true,
+"loop": 1,
 "name": &"fall",
 "speed": 11.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_hit0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_hit1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_hit2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_hit3")
+}],
+"loop": 0,
+"name": &"hit",
+"speed": 14.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qly61")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oprnr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8rie4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dp3pk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cgp7q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1n8aq")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 3.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -152,7 +157,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ib8tg")
 }],
-"loop": true,
+"loop": 1,
 "name": &"jump",
 "speed": 11.0
 }, {
@@ -169,16 +174,24 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_hj0ki")
 }],
-"loop": true,
+"loop": 1,
 "name": &"walk",
 "speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8rie4"]
-size = Vector2(15, 19)
+size = Vector2(11, 19)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_attack"]
 size = Vector2(20, 14)
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_punch"]
+random_pitch = 1.12
+random_volume_offset_db = 2.0
+streams_count = 3
+stream_0/stream = ExtResource("24_punch1")
+stream_1/stream = ExtResource("25_punch2")
+stream_2/stream = ExtResource("26_punch3")
 
 [node name="CharacterBody2D" type="CharacterBody2D" unique_id=381482022 groups=["player"]]
 collision_layer = 4
@@ -199,13 +212,13 @@ frame_progress = 0.85634714
 position = Vector2(2.5, 0.5)
 shape = SubResource("RectangleShape2D_8rie4")
 
-[node name="AttackHitbox" type="Area2D" parent="."]
+[node name="AttackHitbox" type="Area2D" parent="." unique_id=126085018]
 collision_layer = 0
 collision_mask = 2
 monitoring = false
 monitorable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackHitbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackHitbox" unique_id=1398204540]
 shape = SubResource("RectangleShape2D_attack")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=515548357]
@@ -214,6 +227,19 @@ limit_left = 0
 limit_top = 0
 limit_bottom = 200
 position_smoothing_enabled = true
+
+[node name="PunchSwingSound" type="AudioStreamPlayer" parent="." unique_id=426109339]
+stream = SubResource("AudioStreamRandomizer_punch")
+volume_db = -6.0
+max_polyphony = 2
+
+[node name="PunchHitSound" type="AudioStreamPlayer" parent="." unique_id=1039509479]
+stream = ExtResource("27_solid")
+volume_db = -3.0
+
+[node name="PunchMissSound" type="AudioStreamPlayer" parent="." unique_id=96731397]
+stream = ExtResource("28_missed")
+volume_db = -9.0
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="area_entered" from="AttackHitbox" to="." method="_on_attack_hitbox_area_entered"]

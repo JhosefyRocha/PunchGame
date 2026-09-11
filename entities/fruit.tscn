@@ -3,20 +3,53 @@
 [ext_resource type="Script" path="res://entities/fruit.gd" id="1_fruit"]
 
 [sub_resource type="CircleShape2D" id="CircleShape_fruit"]
-radius = 7.0
+radius = 6.0
 
 [node name="Fruit" type="Area2D"]
 collision_layer = 0
 collision_mask = 4
 script = ExtResource("1_fruit")
 
-[node name="FruitBody" type="Polygon2D" parent="."]
-polygon = PackedVector2Array(-5, -4, 0, -7, 5, -4, 6, 2, 2, 7, -2, 7, -6, 2)
-color = Color(0.92, 0.18, 0.12, 1)
+; Maca sombreada: corpo, crescente escuro embaixo/direita, brilho quente em
+; cima/esquerda, cabo e folha em dois tons. O balanco leve vem do script.
+; Para trocar por PNG: atribua a textura em "Art Texture" no inspetor.
+[node name="Art" type="Node2D" parent="."]
 
-[node name="Leaf" type="Polygon2D" parent="."]
-polygon = PackedVector2Array(0, -7, 6, -10, 4, -5)
-color = Color(0.24, 0.75, 0.22, 1)
+[node name="ProceduralArt" type="Node2D" parent="Art"]
+
+[node name="Shadow" type="Polygon2D" parent="Art/ProceduralArt"]
+color = Color(0.05, 0.08, 0.05, 0.35)
+polygon = PackedVector2Array(-4.5, 7, -2.5, 6.2, 2.5, 6.2, 4.5, 7, 2.5, 7.8, -2.5, 7.8)
+
+[node name="Body" type="Polygon2D" parent="Art/ProceduralArt"]
+color = Color(0.8, 0.13, 0.12, 1)
+polygon = PackedVector2Array(0, -5.5, 2.5, -6.5, 4.5, -5.5, 6, -3, 6, 1, 4.5, 4.5, 2, 6.5, 0, 6, -2, 6.5, -4.5, 4.5, -6, 1, -6, -3, -4.5, -5.5, -2.5, -6.5)
+
+[node name="Shade" type="Polygon2D" parent="Art/ProceduralArt"]
+color = Color(0.56, 0.07, 0.09, 1)
+polygon = PackedVector2Array(6, -1, 6, 1, 4.5, 4.5, 2, 6.5, 0, 6, 2.5, 4, 4, 1, 4.2, -1.5)
+
+[node name="Highlight" type="Polygon2D" parent="Art/ProceduralArt"]
+color = Color(1, 0.85, 0.78, 1)
+polygon = PackedVector2Array(-3.6, -3.6, -2, -4.4, -1.4, -3, -3, -2.2)
+
+[node name="Stem" type="Line2D" parent="Art/ProceduralArt"]
+points = PackedVector2Array(0, -5.5, 0.8, -9)
+width = 1.6
+default_color = Color(0.36, 0.22, 0.12, 1)
+
+[node name="LeafBase" type="Polygon2D" parent="Art/ProceduralArt"]
+color = Color(0.16, 0.46, 0.16, 1)
+polygon = PackedVector2Array(0.6, -8, 5.5, -10.5, 4.2, -6.6)
+
+[node name="LeafLight" type="Polygon2D" parent="Art/ProceduralArt"]
+color = Color(0.35, 0.78, 0.28, 1)
+polygon = PackedVector2Array(1.2, -8, 4.6, -9.6, 3.9, -7.4)
+
+; Slot de arte para o artista: assim que "Art Texture" receber um PNG este
+; Sprite2D aparece e o ProceduralArt some.
+[node name="ArtOverride" type="Sprite2D" parent="Art"]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape_fruit")

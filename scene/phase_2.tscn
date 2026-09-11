@@ -2,8 +2,6 @@
 
 [ext_resource type="PackedScene" uid="uid://dn6xlrm3ydrhe" path="res://entities/player.tscn" id="1_player"]
 [ext_resource type="PackedScene" path="res://entities/game_menu.tscn" id="2_menu"]
-[ext_resource type="AudioStream" path="res://sounds/phase_02.mp3" id="18_music"]
-[ext_resource type="Script" path="res://entities/level_music.gd" id="19_music_script"]
 [ext_resource type="PackedScene" path="res://entities/tile_platform.tscn" id="3_platform"]
 [ext_resource type="PackedScene" path="res://entities/spike.tscn" id="4_spike"]
 [ext_resource type="PackedScene" path="res://entities/vine.tscn" id="5_vine"]
@@ -18,6 +16,9 @@
 [ext_resource type="PackedScene" path="res://entities/lumberjack.tscn" id="15_logger"]
 [ext_resource type="PackedScene" path="res://entities/fruit.tscn" id="16_fruit"]
 [ext_resource type="PackedScene" path="res://entities/checkpoint.tscn" id="17_checkpoint"]
+[ext_resource type="AudioStream" uid="uid://bphase02mp3" path="res://sounds/phase_02.mp3" id="18_music"]
+[ext_resource type="Script" uid="uid://4bkm6q1n4uaj" path="res://entities/level_music.gd" id="19_music_script"]
+[ext_resource type="PackedScene" path="res://entities/level_bounds.tscn" id="20_bounds"]
 
 [node name="Phase2" type="Node2D" unique_id=1082971088]
 
@@ -104,7 +105,7 @@ position = Vector2(185, 169)
 position = Vector2(307, 169)
 
 [node name="SpikeRunB" parent="Hazards" unique_id=1451550636 instance=ExtResource("4_spike")]
-position = Vector2(377, 172)
+position = Vector2(377, 169)
 
 [node name="SpikeOnPlatform" parent="Hazards" unique_id=1275701021 instance=ExtResource("4_spike")]
 position = Vector2(336, 125)
@@ -121,14 +122,17 @@ position = Vector2(1028, 169)
 [node name="SpikeFinishB" parent="Hazards" unique_id=124723213 instance=ExtResource("4_spike")]
 position = Vector2(1051, 169)
 
-[node name="Lenhador" parent="Hazards" instance=ExtResource("15_logger")]
+[node name="Lenhador" parent="Hazards" unique_id=429131712 instance=ExtResource("15_logger")]
 position = Vector2(870, 165)
 patrol_distance = 44.0
 
-[node name="Fruit" parent="Hazards" instance=ExtResource("16_fruit")]
+[node name="Fruit" parent="Hazards" unique_id=820628081 instance=ExtResource("16_fruit")]
 position = Vector2(614, 110)
 
-[node name="Checkpoint" parent="Hazards" instance=ExtResource("17_checkpoint")]
+[node name="Fruit2" parent="Hazards" unique_id=2129713360 instance=ExtResource("16_fruit")]
+position = Vector2(810, 168)
+
+[node name="Checkpoint" parent="Hazards" unique_id=1711567775 instance=ExtResource("17_checkpoint")]
 position = Vector2(552, 165)
 
 [node name="WaterA" parent="Hazards" unique_id=1725929464 instance=ExtResource("6_water")]
@@ -194,7 +198,7 @@ scale = Vector2(0.88, 0.88)
 [node name="GameMenu" parent="." unique_id=44998665 instance=ExtResource("2_menu")]
 visible = false
 
-[node name="LevelMusic" type="AudioStreamPlayer" parent="."]
+[node name="LevelMusic" type="AudioStreamPlayer" parent="." unique_id=1919576961]
 stream = ExtResource("18_music")
 volume_db = -8.0
 script = ExtResource("19_music_script")
@@ -203,6 +207,8 @@ script = ExtResource("19_music_script")
 tutorial_text = "CIPÓ W/S OU ↑/↓  •  ESPAÇO SOLTA"
 
 [node name="GameCompleteMenu" parent="." unique_id=1770381865 instance=ExtResource("13_complete")]
+
+[node name="LevelBounds" parent="." unique_id=550044478 instance=ExtResource("20_bounds")]
 
 [node name="PhaseTransition" parent="." unique_id=969874533 instance=ExtResource("9_transition")]
 fade_color = Color(0.015, 0.12, 0.105, 1)

@@ -9,13 +9,14 @@ const DAMAGE_INVULNERABILITY_TIME := 1.0
 @export_category("Combat")
 @export var attack_damage := 1
 @export_range(0.05, 1.0, 0.01) var attack_active_time := 0.16
-@export var attack_offset := 14.0
+@export var attack_offset := 12.0
 
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
 @onready var attack_hitbox: Area2D = $AttackHitbox
 @onready var punch_swing_sound: AudioStreamPlayer = $PunchSwingSound
 @onready var punch_hit_sound: AudioStreamPlayer = $PunchHitSound
 @onready var punch_miss_sound: AudioStreamPlayer = $PunchMissSound
+@onready var camera: Camera2D = $Camera2D
 
 var is_hitting := false
 var is_dead := false
@@ -150,6 +151,9 @@ func take_damage(amount: int = 1, _source_position: Vector2 = Vector2.INF) -> vo
 	vines_in_reach = 0
 	velocity = Vector2.ZERO
 	global_position = respawn_position
+	# Sem isto o amortecimento da camera arrasta a visao por todo o mapa ate o
+	# checkpoint, passando por cima de area sem cenario.
+	camera.reset_smoothing()
 	anim.play(&"idle")
 
 	var blink := create_tween().set_loops(5)

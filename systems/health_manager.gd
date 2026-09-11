@@ -25,6 +25,12 @@ func is_full_health() -> bool:
 	return current_lives >= MAX_LIVES
 
 
-func reset_lives() -> void:
+## Ponto unico de reinicio do autoload. `reload_current_scene()` e
+## `change_scene_to_file()` NAO recriam autoloads, entao todo comeco de
+## partida precisa passar por aqui. Veja `GameMenu.reset_run_state()`.
+func reset_game_state() -> void:
 	current_lives = MAX_LIVES
+	# Emite sempre, mesmo se o valor ja estava no padrao, para que o HUD
+	# recem-criado da cena nova redesenhe os coracoes.
 	lives_changed.emit(current_lives, MAX_LIVES)
+

@@ -1,8 +1,13 @@
-[gd_scene load_steps=7 format=3]
+[gd_scene load_steps=8 format=3]
 
 [ext_resource type="Script" path="res://entities/lumberjack.gd" id="1_lumberjack"]
 [ext_resource type="Texture2D" path="res://sprites/enemies/lumberjack.png" id="2_sprite"]
 
+; ARTE PENDENTE: as cinco animacoes abaixo (attack, die, idle, hurt, walk)
+; apontam todas para o mesmo quadro estatico, entao os estados do lenhador
+; nao tem leitura visual propria. O feedback atual vem do codigo (rotacao do
+; golpe, flash vermelho ao levar dano, giro de morte). Ao receber as folhas
+; de sprite, basta trocar os quadros aqui -- lumberjack.gd nao muda.
 [sub_resource type="SpriteFrames" id="SpriteFrames_lumberjack"]
 animations = [{
 "frames": [{
@@ -47,17 +52,20 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="BodyShape"]
-size = Vector2(17, 23)
+size = Vector2(13, 23)
 
 [sub_resource type="RectangleShape2D" id="HurtboxShape"]
-size = Vector2(21, 27)
+size = Vector2(15, 25)
+
+[sub_resource type="RectangleShape2D" id="DetectionShape"]
+size = Vector2(140, 44)
 
 [sub_resource type="RectangleShape2D" id="AxeShape"]
-size = Vector2(22, 24)
+size = Vector2(12, 20)
 
 [node name="Lenhador" type="CharacterBody2D" groups=["enemies"]]
 collision_layer = 2
-collision_mask = 5
+collision_mask = 1
 script = ExtResource("1_lumberjack")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -90,12 +98,17 @@ monitoring = false
 shape = SubResource("HurtboxShape")
 
 [node name="AxeHitbox" type="Area2D" parent="."]
-position = Vector2(-15, 0)
+position = Vector2(-10, 0)
 collision_layer = 0
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AxeHitbox"]
 shape = SubResource("AxeShape")
 
-[connection signal="body_entered" from="AxeHitbox" to="." method="_on_axe_hitbox_body_entered"]
-[connection signal="body_exited" from="AxeHitbox" to="." method="_on_axe_hitbox_body_exited"]
+[node name="DetectionArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+shape = SubResource("DetectionShape")

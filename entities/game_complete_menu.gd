@@ -17,18 +17,14 @@ func show_victory() -> void:
 
 
 func _on_play_again_button_pressed() -> void:
-	RescueManager.reset_run()
-	HealthManager.reset_lives()
-	ScoreManager.reset_score()
+	GameMenu.reset_run_state()
 	GameMenu.start_after_reload = true
 	get_tree().paused = false
-	get_tree().change_scene_to_file("res://PrimeiraCena.tscn")
+	get_tree().change_scene_to_file(GameMenu.FIRST_SCENE)
 
 
 func _on_menu_button_pressed() -> void:
-	RescueManager.reset_run()
-	HealthManager.reset_lives()
-	ScoreManager.reset_score()
+	GameMenu.reset_run_state()
 	GameMenu.start_after_reload = false
 	get_tree().paused = false
-	get_tree().change_scene_to_file("res://PrimeiraCena.tscn")
+	get_tree().change_scene_to_file(GameMenu.FIRST_SCENE)

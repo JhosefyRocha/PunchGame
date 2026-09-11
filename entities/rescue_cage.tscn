@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" path="res://sprites/rescue/animal_cage.png" id="2_cage"]
 
 [sub_resource type="RectangleShape2D" id="CageRange"]
-size = Vector2(64, 54)
+size = Vector2(44, 40)
 
 [node name="RescueCage" type="Area2D"]
 collision_layer = 0
@@ -33,6 +33,7 @@ text = "J"
 horizontal_alignment = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -4)
 shape = SubResource("CageRange")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

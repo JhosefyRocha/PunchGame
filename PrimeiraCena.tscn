@@ -74,6 +74,9 @@ position = Vector2(441, 199)
 [node name="SpikeA" parent="ChallengeObstacles" unique_id=499906470 instance=ExtResource("13_spike")]
 position = Vector2(246, 153)
 
+[node name="SpikeC" parent="ChallengeObstacles" unique_id=549479190 instance=ExtResource("13_spike")]
+position = Vector2(432, 105)
+
 [node name="Lenhador" parent="ChallengeObstacles" unique_id=1700031174 instance=ExtResource("16_logger")]
 position = Vector2(205, 148)
 patrol_distance = 24.0
@@ -81,14 +84,14 @@ patrol_distance = 24.0
 [node name="Fruit" parent="ChallengeObstacles" unique_id=1005418112 instance=ExtResource("17_fruit")]
 position = Vector2(283, 83)
 
-[node name="Fruit" parent="ChallengeObstacles/Fruit" unique_id=403030949 instance=ExtResource("17_fruit")]
-position = Vector2(282, 87)
+[node name="FruitB" parent="ChallengeObstacles" unique_id=403030949 instance=ExtResource("17_fruit")]
+position = Vector2(565, 170)
 
 [node name="Fruit2" parent="ChallengeObstacles" unique_id=1099817504 instance=ExtResource("17_fruit")]
 position = Vector2(900, 135)
 
-[node name="Fruit" parent="ChallengeObstacles/Fruit2" unique_id=455638674 instance=ExtResource("17_fruit")]
-position = Vector2(445, 72)
+[node name="Fruit2B" parent="ChallengeObstacles" unique_id=455638674 instance=ExtResource("17_fruit")]
+position = Vector2(1345, 207)
 
 [node name="RooftopRoute" type="Node2D" parent="." unique_id=442553227]
 

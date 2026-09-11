@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://entities/spike.gd" id="1_spike"]
 
 [sub_resource type="RectangleShape2D" id="SpikeShape"]
-size = Vector2(22, 11)
+size = Vector2(18, 10)
 
 [node name="Spike" type="Area2D"]
 collision_layer = 0
@@ -11,22 +11,45 @@ collision_mask = 4
 monitorable = false
 script = ExtResource("1_spike")
 
-[node name="Shadow" type="Polygon2D" parent="."]
+; Estacas de madeira afiadas cravadas num monte de terra com musgo -- leitura
+; de armadilha feita pelos lenhadores, na mesma paleta de casca e folhagem do
+; resto da fase. A silhueta cabe em x [-12, 12] e y [-9, 6], a mesma da arte
+; anterior, entao nenhuma posicao autorada nas fases precisou mudar.
+; Para trocar por PNG: atribua a textura em "Art Texture" no inspetor.
+[node name="ProceduralArt" type="Node2D" parent="."]
+
+[node name="Mound" type="Polygon2D" parent="ProceduralArt"]
+color = Color(0.16, 0.28, 0.14, 1)
+polygon = PackedVector2Array(-12, 6, -10, 3.5, -6, 4.5, -2, 3.5, 2, 4.5, 6, 3.5, 10, 4.5, 12, 6)
+
+[node name="StakeShadow" type="Polygon2D" parent="ProceduralArt"]
 position = Vector2(1, 1)
-polygon = PackedVector2Array(-12, 6, -8, -7, -4, 6, 0, -9, 4, 6, 8, -7, 12, 6)
-color = Color(0.18, 0.2, 0.18, 1)
+color = Color(0.12, 0.09, 0.06, 1)
+polygon = PackedVector2Array(-11, 6, -11, 2, -9.5, 2, -7, -6, -4.5, 2, -2.5, 2, 0, -9, 2.5, 2, 4.5, 2, 7, -6, 9.5, 2, 11, 2, 11, 6)
 
-[node name="Blades" type="Polygon2D" parent="."]
-polygon = PackedVector2Array(-12, 6, -8, -7, -4, 6, 0, -9, 4, 6, 8, -7, 12, 6)
-color = Color(0.78, 0.84, 0.78, 1)
+[node name="Stakes" type="Polygon2D" parent="ProceduralArt"]
+color = Color(0.42, 0.28, 0.16, 1)
+polygon = PackedVector2Array(-11, 6, -11, 2, -9.5, 2, -7, -6, -4.5, 2, -2.5, 2, 0, -9, 2.5, 2, 4.5, 2, 7, -6, 9.5, 2, 11, 2, 11, 6)
 
-[node name="Highlight" type="Line2D" parent="."]
-points = PackedVector2Array(-8, -5, -5, 4, 0, -7, 3, 4, 8, -5)
-width = 1.0
-default_color = Color(1, 1, 0.94, 1)
+[node name="StakeLight" type="Polygon2D" parent="ProceduralArt"]
+color = Color(0.58, 0.41, 0.22, 1)
+polygon = PackedVector2Array(-9.5, 2, -7, -6, -8, 2, -2.5, 2, 0, -9, -1.2, 2, 4.5, 2, 7, -6, 5.9, 2)
+polygons = [PackedInt32Array(0, 1, 2), PackedInt32Array(3, 4, 5), PackedInt32Array(6, 7, 8)]
 
+[node name="Tips" type="Polygon2D" parent="ProceduralArt"]
+color = Color(0.91, 0.87, 0.74, 1)
+polygon = PackedVector2Array(-8.06, -2.6, -7, -6, -5.94, -2.6, -0.98, -4.7, 0, -9, 0.98, -4.7, 5.94, -2.6, 7, -6, 8.06, -2.6)
+polygons = [PackedInt32Array(0, 1, 2), PackedInt32Array(3, 4, 5), PackedInt32Array(6, 7, 8)]
+
+; Slot de arte para o artista: assim que "Art Texture" receber um PNG este
+; Sprite2D aparece e o ProceduralArt some.
+[node name="ArtOverride" type="Sprite2D" parent="."]
+visible = false
+
+; Um pouco mais estreita que a arte nos dois lados: o dano passa a registrar
+; quando o jogador encosta na estaca, nao 5px antes dela.
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 1)
+position = Vector2(0, -1)
 shape = SubResource("SpikeShape")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

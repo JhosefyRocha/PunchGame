@@ -4,6 +4,19 @@ class_name GameMenu
 
 static var start_after_reload := false
 
+const FIRST_SCENE := "res://PrimeiraCena.tscn"
+
+
+## Unico lugar que zera a partida inteira. Autoloads sobrevivem a troca de
+## cena, entao qualquer caminho que comece um run novo (morte, voltar ao menu,
+## jogar de novo) precisa passar por aqui -- senao pontos e resgates vazam
+## para a partida seguinte e as gaiolas ja abertas somem do mapa.
+static func reset_run_state() -> void:
+	HealthManager.reset_game_state()
+	ScoreManager.reset_game_state()
+	RescueManager.reset_game_state()
+
+
 @onready var death_tint: ColorRect = $Overlay/DeathTint
 @onready var menu_panel: PanelContainer = $Overlay/Center/MenuPanel
 @onready var controls_panel: PanelContainer = $Overlay/Center/ControlsPanel
@@ -95,10 +108,12 @@ func show_credits() -> void:
 
 
 func restart_game() -> void:
-	HealthManager.reset_lives()
+	# Volta para a fase 1: `reload_current_scene()` recarregaria a fase 2 com os
+	# resgates ja zerados, deixando a meta de 6/6 inalcancavel.
+	reset_run_state()
 	start_after_reload = true
 	get_tree().paused = false
-	get_tree().reload_current_scene()
+	get_tree().change_scene_to_file(FIRST_SCENE)
 
 
 func show_death_screen() -> void:
@@ -121,17 +136,15 @@ func lock_for_level_complete() -> void:
 
 
 func return_to_menu() -> void:
-	HealthManager.reset_lives()
+	reset_run_state()
 	start_after_reload = false
 	get_tree().paused = false
-	get_tree().reload_current_scene()
+	get_tree().change_scene_to_file(FIRST_SCENE)
 
 
 func _on_start_button_pressed() -> void:
-	if not run_was_started and get_tree().current_scene.scene_file_path == "res://PrimeiraCena.tscn":
-		RescueManager.reset_run()
-		HealthManager.reset_lives()
-		ScoreManager.reset_score()
+	if not run_was_started and get_tree().current_scene.scene_file_path == FIRST_SCENE:
+		reset_run_state()
 	run_was_started = true
 	start_game()
 

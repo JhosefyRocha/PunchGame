@@ -27,6 +27,9 @@ func _on_next_button_pressed() -> void:
 
 
 func _on_menu_button_pressed() -> void:
+	# Abandonar a fase no meio tambem encerra a partida: sem este reset o menu
+	# principal voltaria com os pontos e resgates da tentativa anterior.
+	GameMenu.reset_run_state()
 	get_tree().paused = false
 	GameMenu.start_after_reload = false
-	get_tree().change_scene_to_file("res://PrimeiraCena.tscn")
+	get_tree().change_scene_to_file(GameMenu.FIRST_SCENE)

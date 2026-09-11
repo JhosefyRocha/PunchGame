@@ -195,7 +195,7 @@ stream_2/stream = ExtResource("26_punch3")
 
 [node name="CharacterBody2D" type="CharacterBody2D" unique_id=381482022 groups=["player"]]
 collision_layer = 4
-collision_mask = 3
+collision_mask = 1
 script = ExtResource("1_merdl")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=699346994]
@@ -209,7 +209,7 @@ autoplay = "idle"
 frame_progress = 0.85634714
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1577564333]
-position = Vector2(2.5, 0.5)
+position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_8rie4")
 
 [node name="AttackHitbox" type="Area2D" parent="." unique_id=126085018]
@@ -223,9 +223,8 @@ shape = SubResource("RectangleShape2D_attack")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=515548357]
 position = Vector2(0, 1)
-limit_left = 0
-limit_top = 0
-limit_bottom = 200
+limit_bottom = 208
+limit_smoothed = true
 position_smoothing_enabled = true
 
 [node name="PunchSwingSound" type="AudioStreamPlayer" parent="." unique_id=426109339]

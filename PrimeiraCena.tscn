@@ -21,6 +21,9 @@
 [ext_resource type="PackedScene" path="res://entities/checkpoint.tscn" id="18_checkpoint"]
 [ext_resource type="PackedScene" path="res://entities/moving_platform.tscn" id="19_moving"]
 [ext_resource type="Script" uid="uid://cxfo33j1sjfqk" path="res://entities/phase_1_extension.gd" id="20_extension"]
+[ext_resource type="PackedScene" path="res://entities/level_bounds.tscn" id="21_bounds"]
+[ext_resource type="AudioStream" uid="uid://bphase01ogg" path="res://sounds/phase_01.ogg" id="22_music"]
+[ext_resource type="Script" uid="uid://4bkm6q1n4uaj" path="res://entities/level_music.gd" id="22_music_script"]
 
 [node name="Game" type="Node2D" unique_id=2002910798]
 
@@ -60,7 +63,7 @@ centered = false
 [node name="GameMenu" parent="." unique_id=726246469 instance=ExtResource("5_menu")]
 visible = false
 
-[node name="LevelMusic" type="AudioStreamPlayer" parent="."]
+[node name="LevelMusic" type="AudioStreamPlayer" parent="." unique_id=1982030605]
 stream = ExtResource("22_music")
 volume_db = -10.0
 script = ExtResource("22_music_script")
@@ -71,17 +74,23 @@ position = Vector2(441, 199)
 [node name="ChallengeObstacles" type="Node2D" parent="." unique_id=513504343]
 
 [node name="SpikeA" parent="ChallengeObstacles" unique_id=499906470 instance=ExtResource("13_spike")]
-position = Vector2(246, 160)
-
-[node name="SpikeC" parent="ChallengeObstacles" unique_id=549479190 instance=ExtResource("13_spike")]
-position = Vector2(420, 160)
+position = Vector2(246, 153)
 
 [node name="Lenhador" parent="ChallengeObstacles" unique_id=1700031174 instance=ExtResource("16_logger")]
-position = Vector2(205, 160)
+position = Vector2(205, 148)
 patrol_distance = 24.0
 
 [node name="Fruit" parent="ChallengeObstacles" unique_id=1005418112 instance=ExtResource("17_fruit")]
+position = Vector2(283, 83)
+
+[node name="Fruit" parent="ChallengeObstacles/Fruit" unique_id=403030949 instance=ExtResource("17_fruit")]
 position = Vector2(282, 87)
+
+[node name="Fruit2" parent="ChallengeObstacles" unique_id=1099817504 instance=ExtResource("17_fruit")]
+position = Vector2(900, 135)
+
+[node name="Fruit" parent="ChallengeObstacles/Fruit2" unique_id=455638674 instance=ExtResource("17_fruit")]
+position = Vector2(445, 72)
 
 [node name="RooftopRoute" type="Node2D" parent="." unique_id=442553227]
 
@@ -427,6 +436,9 @@ position = Vector2(3456, 166)
 visible = false
 
 [node name="GameplayHUD" parent="." unique_id=672482333 instance=ExtResource("11_hud")]
+
+[node name="LevelBounds" parent="." unique_id=1975954777 instance=ExtResource("21_bounds")]
+bounds = Rect2(0, 0, 3520, 208)
 
 [node name="PhaseTransition" parent="." unique_id=1806634267 instance=ExtResource("9_transition")]
 visible = false

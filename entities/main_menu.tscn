@@ -1,0 +1,321 @@
+[gd_scene load_steps=14 format=3]
+
+[ext_resource type="Script" path="res://entities/main_menu.gd" id="1_menu"]
+[ext_resource type="Texture2D" path="res://sprites/ui/main_menu_background.png" id="2_bg"]
+[ext_resource type="AudioStream" path="res://sounds/menu_music.ogg" id="3_music"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleHotspot"]
+
+[sub_resource type="StyleBoxFlat" id="StyleHotspotHover"]
+bg_color = Color(1, 0.86, 0.45, 0.16)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 0.78, 0.3, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleHotspotPressed"]
+bg_color = Color(0.1, 0.05, 0.01, 0.28)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 0.78, 0.3, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleOverlay"]
+bg_color = Color(0.02, 0.05, 0.03, 0.62)
+
+[sub_resource type="StyleBoxFlat" id="StylePanel"]
+bg_color = Color(0.29, 0.16, 0.06, 0.97)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.91, 0.58, 0.14, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+shadow_color = Color(0, 0, 0, 0.5)
+shadow_size = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleButton"]
+bg_color = Color(0.12, 0.22, 0.13, 0.82)
+border_width_left = 2
+border_color = Color(0.91, 0.58, 0.14, 1)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleButtonHover"]
+bg_color = Color(0.25, 0.4, 0.2, 1)
+border_width_left = 3
+border_color = Color(1, 0.72, 0.27, 1)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleButtonPressed"]
+bg_color = Color(0.4, 0.25, 0.08, 1)
+border_width_left = 3
+border_color = Color(1, 0.78, 0.35, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleSliderFocus"]
+bg_color = Color(1, 1, 1, 0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 0.72, 0.27, 1)
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_menu")
+
+[node name="Letterbox" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.1, 0.07, 0.03, 1)
+
+[node name="MenuMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_music")
+volume_db = -8.0
+autoplay = true
+
+[node name="Frame" type="AspectRatioContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+ratio = 1.7778
+stretch_mode = 2
+
+[node name="Background" type="TextureRect" parent="Frame"]
+texture_filter = 1
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("2_bg")
+expand_mode = 1
+
+[node name="Buttons" type="Control" parent="Frame/Background"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="NewGameButton" type="Button" parent="Frame/Background/Buttons"]
+layout_mode = 1
+anchor_left = 0.419
+anchor_top = 0.4062
+anchor_right = 0.6065
+anchor_bottom = 0.4827
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleHotspot")
+theme_override_styles/hover = SubResource("StyleHotspotHover")
+theme_override_styles/pressed = SubResource("StyleHotspotPressed")
+theme_override_styles/focus = SubResource("StyleHotspotHover")
+
+[node name="SettingsButton" type="Button" parent="Frame/Background/Buttons"]
+layout_mode = 1
+anchor_left = 0.419
+anchor_top = 0.5022
+anchor_right = 0.6065
+anchor_bottom = 0.5778
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleHotspot")
+theme_override_styles/hover = SubResource("StyleHotspotHover")
+theme_override_styles/pressed = SubResource("StyleHotspotPressed")
+theme_override_styles/focus = SubResource("StyleHotspotHover")
+
+[node name="QuitButton" type="Button" parent="Frame/Background/Buttons"]
+layout_mode = 1
+anchor_left = 0.419
+anchor_top = 0.6
+anchor_right = 0.6065
+anchor_bottom = 0.6773
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleHotspot")
+theme_override_styles/hover = SubResource("StyleHotspotHover")
+theme_override_styles/pressed = SubResource("StyleHotspotPressed")
+theme_override_styles/focus = SubResource("StyleHotspotHover")
+
+[node name="SettingsOverlay" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleOverlay")
+
+[node name="Center" type="CenterContainer" parent="SettingsOverlay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="PanelContainer" parent="SettingsOverlay/Center"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StylePanel")
+
+[node name="Margin" type="MarginContainer" parent="SettingsOverlay/Center/Panel"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 8
+
+[node name="VBox" type="VBoxContainer" parent="SettingsOverlay/Center/Panel/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="Title" type="Label" parent="SettingsOverlay/Center/Panel/Margin/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.76, 0.25, 1)
+theme_override_colors/font_shadow_color = Color(0.08, 0.04, 0.01, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 16
+text = "CONFIGURAÇÕES"
+horizontal_alignment = 1
+
+[node name="VolumeRow" type="HBoxContainer" parent="SettingsOverlay/Center/Panel/Margin/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="VolumeLabel" type="Label" parent="SettingsOverlay/Center/Panel/Margin/VBox/VolumeRow"]
+custom_minimum_size = Vector2(62, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.92, 0.88, 0.76, 1)
+theme_override_font_sizes/font_size = 10
+text = "Volume"
+
+[node name="VolumeSlider" type="HSlider" parent="SettingsOverlay/Center/Panel/Margin/VBox/VolumeRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_styles/focus = SubResource("StyleSliderFocus")
+step = 5.0
+value = 80.0
+
+[node name="VolumeValue" type="Label" parent="SettingsOverlay/Center/Panel/Margin/VBox/VolumeRow"]
+custom_minimum_size = Vector2(26, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.79, 0.34, 1)
+theme_override_font_sizes/font_size = 10
+text = "80%"
+horizontal_alignment = 2
+
+[node name="FullscreenCheck" type="CheckButton" parent="SettingsOverlay/Center/Panel/Margin/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.92, 0.88, 0.76, 1)
+theme_override_colors/font_hover_color = Color(1, 0.79, 0.34, 1)
+theme_override_colors/font_focus_color = Color(1, 0.79, 0.34, 1)
+theme_override_font_sizes/font_size = 10
+text = "Tela cheia"
+
+[node name="ControlsTitle" type="Label" parent="SettingsOverlay/Center/Panel/Margin/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.76, 0.25, 1)
+theme_override_font_sizes/font_size = 9
+text = "CONTROLES"
+
+[node name="Controls" type="HBoxContainer" parent="SettingsOverlay/Center/Panel/Margin/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="LeftKeys" type="Label" parent="SettingsOverlay/Center/Panel/Margin/VBox/Controls"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(1, 0.79, 0.34, 1)
+theme_override_font_sizes/font_size = 8
+text = "A/D  ←/→
+W/↑/Espaço
+W/S  ↑/↓
+Esc"
+
+[node name="LeftActions" type="Label" parent="SettingsOverlay/Center/Panel/Margin/VBox/Controls"]
+layout_mode = 2
+size_flags_vertical = 0
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.88, 0.92, 0.85, 1)
+theme_override_font_sizes/font_size = 8
+text = "Mover
+Pular (2x no ar)
+Escalar cipó
+Pausar"
+
+[node name="RightKeys" type="Label" parent="SettingsOverlay/Center/Panel/Margin/VBox/Controls"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(1, 0.79, 0.34, 1)
+theme_override_font_sizes/font_size = 8
+text = "E
+J
+Espaço"
+
+[node name="RightActions" type="Label" parent="SettingsOverlay/Center/Panel/Margin/VBox/Controls"]
+layout_mode = 2
+size_flags_vertical = 0
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.88, 0.92, 0.85, 1)
+theme_override_font_sizes/font_size = 8
+text = "Atacar
+Resgatar
+Soltar cipó"
+
+[node name="BackButton" type="Button" parent="SettingsOverlay/Center/Panel/Margin/VBox"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.91, 0.96, 0.85, 1)
+theme_override_colors/font_hover_color = Color(1, 0.79, 0.34, 1)
+theme_override_colors/font_focus_color = Color(1, 0.79, 0.34, 1)
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = SubResource("StyleButton")
+theme_override_styles/hover = SubResource("StyleButtonHover")
+theme_override_styles/pressed = SubResource("StyleButtonPressed")
+theme_override_styles/focus = SubResource("StyleButtonHover")
+text = "VOLTAR"
+
+[connection signal="pressed" from="Frame/Background/Buttons/NewGameButton" to="." method="_on_new_game_button_pressed"]
+[connection signal="pressed" from="Frame/Background/Buttons/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="Frame/Background/Buttons/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="value_changed" from="SettingsOverlay/Center/Panel/Margin/VBox/VolumeRow/VolumeSlider" to="." method="_on_volume_slider_value_changed"]
+[connection signal="toggled" from="SettingsOverlay/Center/Panel/Margin/VBox/FullscreenCheck" to="." method="_on_fullscreen_check_toggled"]
+[connection signal="pressed" from="SettingsOverlay/Center/Panel/Margin/VBox/BackButton" to="." method="_on_back_button_pressed"]

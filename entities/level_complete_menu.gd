@@ -32,4 +32,4 @@ func _on_menu_button_pressed() -> void:
 	GameMenu.reset_run_state()
 	get_tree().paused = false
 	GameMenu.start_after_reload = false
-	get_tree().change_scene_to_file(GameMenu.FIRST_SCENE)
+	get_tree().change_scene_to_file(GameMenu.MAIN_MENU_SCENE)

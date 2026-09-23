@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="ProjetoJogo"
-run/main_scene="res://PrimeiraCena.tscn"
+run/main_scene="res://entities/main_menu.tscn"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 RescueManager="*res://systems/rescue_manager.gd"
 HealthManager="*res://systems/health_manager.gd"
 ScoreManager="*res://systems/score_manager.gd"
+SettingsManager="*res://systems/settings_manager.gd"
 
 [display]
 

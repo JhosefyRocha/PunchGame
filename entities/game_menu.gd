@@ -5,6 +5,7 @@ class_name GameMenu
 static var start_after_reload := false
 
 const FIRST_SCENE := "res://PrimeiraCena.tscn"
+const MAIN_MENU_SCENE := "res://entities/main_menu.tscn"
 
 
 ## Unico lugar que zera a partida inteira. Autoloads sobrevivem a troca de
@@ -139,7 +140,7 @@ func return_to_menu() -> void:
 	reset_run_state()
 	start_after_reload = false
 	get_tree().paused = false
-	get_tree().change_scene_to_file(FIRST_SCENE)
+	get_tree().change_scene_to_file(MAIN_MENU_SCENE)
 
 
 func _on_start_button_pressed() -> void:
@@ -159,6 +160,10 @@ func _on_restart_button_pressed() -> void:
 
 func _on_credits_button_pressed() -> void:
 	show_credits()
+
+
+func _on_main_menu_button_pressed() -> void:
+	return_to_menu()
 
 
 func _on_back_button_pressed() -> void:

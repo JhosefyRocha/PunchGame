@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 const SPEED := 80.0
 const JUMP_VELOCITY := -300.0
+const DOUBLE_JUMP_VELOCITY := -260.0
+const MAX_AIR_JUMPS := 1
 const HIT_SCALE_FACTOR := 0.25
 const VINE_CLIMB_SPEED := 65.0
 const DAMAGE_INVULNERABILITY_TIME := 1.0
@@ -26,6 +28,7 @@ var vines_in_reach := 0
 var respawn_position: Vector2
 var attack_targets_hit: Dictionary = {}
 var attack_sequence := 0
+var air_jumps_left := MAX_AIR_JUMPS
 
 
 func _ready() -> void:
@@ -44,11 +47,23 @@ func _physics_process(delta: float) -> void:
 	elif not is_on_floor():
 		velocity += get_gravity() * delta
 
+	# O pulo extra no ar recarrega ao tocar o chao ou segurar numa vinha.
+	if is_on_floor() or is_on_vine:
+		air_jumps_left = MAX_AIR_JUMPS
+
 	if is_on_vine and Input.is_action_just_pressed(&"vine_release"):
 		velocity.y = JUMP_VELOCITY
 		vines_in_reach = 0
-	elif not is_on_vine and Input.is_action_just_pressed(&"jump") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
+	elif not is_on_vine and Input.is_action_just_pressed(&"jump"):
+		if is_on_floor():
+			velocity.y = JUMP_VELOCITY
+		elif air_jumps_left > 0:
+			air_jumps_left -= 1
+			velocity.y = DOUBLE_JUMP_VELOCITY
+			# Reinicia a animacao para o segundo pulo ficar visivel.
+			if not is_hitting:
+				anim.play(&"jump")
+				anim.frame = 0
 
 	if Input.is_action_just_pressed(&"attack") and not is_hitting:
 		start_attack()

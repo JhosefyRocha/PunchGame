@@ -167,7 +167,7 @@ theme_override_styles/normal = SubResource("StyleButton")
 theme_override_styles/hover = SubResource("StyleButtonHover")
 theme_override_styles/pressed = SubResource("StyleButtonPressed")
 theme_override_styles/focus = SubResource("StyleButtonHover")
-text = "  ↻  REINICIAR JOGO"
+text = "  ↻  REINICIAR FASE"
 alignment = 0
 
 [node name="CreditsButton" type="Button" parent="Overlay/Center/MenuPanel/Margin/VBox"]
@@ -325,7 +325,7 @@ theme_override_styles/normal = SubResource("StyleButton")
 theme_override_styles/hover = SubResource("StyleButtonHover")
 theme_override_styles/pressed = SubResource("StyleButtonPressed")
 theme_override_styles/focus = SubResource("StyleButtonHover")
-text = "↻  REINICIAR JOGO"
+text = "↻  REINICIAR FASE"
 
 [node name="MenuButton" type="Button" parent="Overlay/Center/DeathPanel/Margin/VBox"]
 custom_minimum_size = Vector2(0, 25)

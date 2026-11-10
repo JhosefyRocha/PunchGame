@@ -24,6 +24,11 @@ func get_rescue_count() -> int:
 	return rescued_animals.size()
 
 
+func set_rescued_animals(animals: Dictionary) -> void:
+	rescued_animals = animals.duplicate()
+	rescue_count_changed.emit(get_rescue_count(), TOTAL_ANIMALS)
+
+
 ## Ponto unico de reinicio do autoload. Sem isto, `rescue_cage.gd` apaga no
 ## `_ready()` toda gaiola ja aberta e a meta de 6/6 fica impossivel na partida
 ## seguinte. Veja `GameMenu.reset_run_state()`.

@@ -9,6 +9,7 @@ func _ready() -> void:
 
 
 func show_victory() -> void:
+	SaveManager.complete_current_level()
 	get_tree().call_group(&"game_menu", &"lock_for_level_complete")
 	message.text = "%d animais foram libertados!" % RescueManager.get_rescue_count()
 	get_tree().paused = true
@@ -21,6 +22,11 @@ func _on_play_again_button_pressed() -> void:
 	GameMenu.start_after_reload = true
 	get_tree().paused = false
 	get_tree().change_scene_to_file(GameMenu.FIRST_SCENE)
+
+
+func _on_levels_button_pressed() -> void:
+	GameMenu.open_level_select = true
+	_on_menu_button_pressed()
 
 
 func _on_menu_button_pressed() -> void:

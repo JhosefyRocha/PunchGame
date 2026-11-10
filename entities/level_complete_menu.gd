@@ -1,5 +1,7 @@
 extends CanvasLayer
 
+@onready var message: Label = $Overlay/Center/Panel/Margin/VBox/Message
+
 var next_scene_path := "res://scene/phase_2.tscn"
 
 
@@ -10,6 +12,9 @@ func _ready() -> void:
 
 func show_level_complete(scene_path: String) -> void:
 	next_scene_path = scene_path
+	var unlocked_index := SaveManager.complete_current_level()
+	if unlocked_index >= 0:
+		message.text = "%s liberada!" % SaveManager.LEVELS[unlocked_index]["title"]
 	get_tree().call_group(&"game_menu", &"lock_for_level_complete")
 	get_tree().paused = true
 	show()
@@ -17,6 +22,7 @@ func show_level_complete(scene_path: String) -> void:
 
 
 func _on_next_button_pressed() -> void:
+	GameMenu.mark_phase_start()
 	GameMenu.start_after_reload = true
 	var transition := get_tree().get_first_node_in_group(&"phase_transition")
 	if transition != null and transition.has_method(&"transition_to"):
@@ -24,6 +30,11 @@ func _on_next_button_pressed() -> void:
 	else:
 		get_tree().paused = false
 		get_tree().change_scene_to_file(next_scene_path)
+
+
+func _on_levels_button_pressed() -> void:
+	GameMenu.open_level_select = true
+	_on_menu_button_pressed()
 
 
 func _on_menu_button_pressed() -> void:

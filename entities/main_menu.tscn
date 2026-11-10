@@ -1,8 +1,9 @@
-[gd_scene load_steps=14 format=3]
+[gd_scene load_steps=16 format=3]
 
 [ext_resource type="Script" path="res://entities/main_menu.gd" id="1_menu"]
 [ext_resource type="Texture2D" path="res://sprites/ui/main_menu_background.png" id="2_bg"]
 [ext_resource type="AudioStream" path="res://sounds/menu_music.ogg" id="3_music"]
+[ext_resource type="PackedScene" path="res://entities/level_select.tscn" id="4_levels"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleHotspot"]
 
@@ -70,6 +71,15 @@ bg_color = Color(0.4, 0.25, 0.08, 1)
 border_width_left = 3
 border_color = Color(1, 0.78, 0.35, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleButtonDisabled"]
+bg_color = Color(0.1, 0.1, 0.09, 0.7)
+border_width_left = 2
+border_color = Color(0.33, 0.31, 0.27, 1)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+
 [sub_resource type="StyleBoxFlat" id="StyleSliderFocus"]
 bg_color = Color(1, 1, 1, 0)
 border_width_left = 1
@@ -129,7 +139,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="NewGameButton" type="Button" parent="Frame/Background/Buttons"]
+[node name="PlayButton" type="Button" parent="Frame/Background/Buttons"]
 layout_mode = 1
 anchor_left = 0.419
 anchor_top = 0.4062
@@ -313,9 +323,173 @@ theme_override_styles/pressed = SubResource("StyleButtonPressed")
 theme_override_styles/focus = SubResource("StyleButtonHover")
 text = "VOLTAR"
 
-[connection signal="pressed" from="Frame/Background/Buttons/NewGameButton" to="." method="_on_new_game_button_pressed"]
+[node name="PlayOverlay" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleOverlay")
+
+[node name="Center" type="CenterContainer" parent="PlayOverlay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ModePanel" type="PanelContainer" parent="PlayOverlay/Center"]
+custom_minimum_size = Vector2(190, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StylePanel")
+
+[node name="Margin" type="MarginContainer" parent="PlayOverlay/Center/ModePanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 8
+
+[node name="VBox" type="VBoxContainer" parent="PlayOverlay/Center/ModePanel/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="Title" type="Label" parent="PlayOverlay/Center/ModePanel/Margin/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.76, 0.25, 1)
+theme_override_colors/font_shadow_color = Color(0.08, 0.04, 0.01, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 16
+text = "JOGAR"
+horizontal_alignment = 1
+
+[node name="NewGameButton" type="Button" parent="PlayOverlay/Center/ModePanel/Margin/VBox"]
+custom_minimum_size = Vector2(0, 22)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.91, 0.96, 0.85, 1)
+theme_override_colors/font_hover_color = Color(1, 0.79, 0.34, 1)
+theme_override_colors/font_focus_color = Color(1, 0.79, 0.34, 1)
+theme_override_font_sizes/font_size = 11
+theme_override_styles/normal = SubResource("StyleButton")
+theme_override_styles/hover = SubResource("StyleButtonHover")
+theme_override_styles/pressed = SubResource("StyleButtonPressed")
+theme_override_styles/focus = SubResource("StyleButtonHover")
+text = "NOVO JOGO"
+
+[node name="SavedGameButton" type="Button" parent="PlayOverlay/Center/ModePanel/Margin/VBox"]
+custom_minimum_size = Vector2(0, 22)
+layout_mode = 2
+theme_override_colors/font_disabled_color = Color(0.52, 0.5, 0.44, 1)
+theme_override_colors/font_color = Color(0.91, 0.96, 0.85, 1)
+theme_override_colors/font_hover_color = Color(1, 0.79, 0.34, 1)
+theme_override_colors/font_focus_color = Color(1, 0.79, 0.34, 1)
+theme_override_font_sizes/font_size = 11
+theme_override_styles/normal = SubResource("StyleButton")
+theme_override_styles/hover = SubResource("StyleButtonHover")
+theme_override_styles/pressed = SubResource("StyleButtonPressed")
+theme_override_styles/focus = SubResource("StyleButtonHover")
+theme_override_styles/disabled = SubResource("StyleButtonDisabled")
+text = "JOGO SALVO"
+
+[node name="SaveInfo" type="Label" parent="PlayOverlay/Center/ModePanel/Margin/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.82, 0.74, 0.6, 1)
+theme_override_font_sizes/font_size = 8
+text = "Nenhum jogo salvo ainda."
+horizontal_alignment = 1
+
+[node name="BackButton" type="Button" parent="PlayOverlay/Center/ModePanel/Margin/VBox"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.91, 0.96, 0.85, 1)
+theme_override_colors/font_hover_color = Color(1, 0.79, 0.34, 1)
+theme_override_colors/font_focus_color = Color(1, 0.79, 0.34, 1)
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = SubResource("StyleButton")
+theme_override_styles/hover = SubResource("StyleButtonHover")
+theme_override_styles/pressed = SubResource("StyleButtonPressed")
+theme_override_styles/focus = SubResource("StyleButtonHover")
+text = "VOLTAR"
+
+[node name="ConfirmPanel" type="PanelContainer" parent="PlayOverlay/Center"]
+visible = false
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StylePanel")
+
+[node name="Margin" type="MarginContainer" parent="PlayOverlay/Center/ConfirmPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 8
+
+[node name="VBox" type="VBoxContainer" parent="PlayOverlay/Center/ConfirmPanel/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="Title" type="Label" parent="PlayOverlay/Center/ConfirmPanel/Margin/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.76, 0.25, 1)
+theme_override_colors/font_shadow_color = Color(0.08, 0.04, 0.01, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 16
+text = "NOVO JOGO"
+horizontal_alignment = 1
+
+[node name="Text" type="Label" parent="PlayOverlay/Center/ConfirmPanel/Margin/VBox"]
+custom_minimum_size = Vector2(190, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.92, 0.88, 0.76, 1)
+theme_override_font_sizes/font_size = 9
+text = "Já existe um jogo salvo. Um novo jogo apaga o progresso: só a Fase 1 fica liberada."
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="ConfirmButton" type="Button" parent="PlayOverlay/Center/ConfirmPanel/Margin/VBox"]
+custom_minimum_size = Vector2(0, 22)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.91, 0.96, 0.85, 1)
+theme_override_colors/font_hover_color = Color(1, 0.79, 0.34, 1)
+theme_override_colors/font_focus_color = Color(1, 0.79, 0.34, 1)
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = SubResource("StyleButton")
+theme_override_styles/hover = SubResource("StyleButtonHover")
+theme_override_styles/pressed = SubResource("StyleButtonPressed")
+theme_override_styles/focus = SubResource("StyleButtonHover")
+text = "APAGAR E COMEÇAR"
+
+[node name="CancelButton" type="Button" parent="PlayOverlay/Center/ConfirmPanel/Margin/VBox"]
+custom_minimum_size = Vector2(0, 22)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.91, 0.96, 0.85, 1)
+theme_override_colors/font_hover_color = Color(1, 0.79, 0.34, 1)
+theme_override_colors/font_focus_color = Color(1, 0.79, 0.34, 1)
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = SubResource("StyleButton")
+theme_override_styles/hover = SubResource("StyleButtonHover")
+theme_override_styles/pressed = SubResource("StyleButtonPressed")
+theme_override_styles/focus = SubResource("StyleButtonHover")
+text = "CANCELAR"
+
+[node name="LevelSelect" parent="PlayOverlay/Center" instance=ExtResource("4_levels")]
+visible = false
+layout_mode = 2
+
+[connection signal="pressed" from="Frame/Background/Buttons/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="Frame/Background/Buttons/SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="Frame/Background/Buttons/QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="value_changed" from="SettingsOverlay/Center/Panel/Margin/VBox/VolumeRow/VolumeSlider" to="." method="_on_volume_slider_value_changed"]
 [connection signal="toggled" from="SettingsOverlay/Center/Panel/Margin/VBox/FullscreenCheck" to="." method="_on_fullscreen_check_toggled"]
 [connection signal="pressed" from="SettingsOverlay/Center/Panel/Margin/VBox/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="PlayOverlay/Center/ModePanel/Margin/VBox/NewGameButton" to="." method="_on_new_game_button_pressed"]
+[connection signal="pressed" from="PlayOverlay/Center/ModePanel/Margin/VBox/SavedGameButton" to="." method="_on_saved_game_button_pressed"]
+[connection signal="pressed" from="PlayOverlay/Center/ModePanel/Margin/VBox/BackButton" to="." method="_on_play_back_button_pressed"]
+[connection signal="pressed" from="PlayOverlay/Center/ConfirmPanel/Margin/VBox/ConfirmButton" to="." method="_on_confirm_new_game_button_pressed"]
+[connection signal="pressed" from="PlayOverlay/Center/ConfirmPanel/Margin/VBox/CancelButton" to="." method="_on_confirm_cancel_button_pressed"]
+[connection signal="back_requested" from="PlayOverlay/Center/LevelSelect" to="." method="_on_level_select_back_requested"]

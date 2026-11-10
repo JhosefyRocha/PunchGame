@@ -21,6 +21,7 @@ RescueManager="*res://systems/rescue_manager.gd"
 HealthManager="*res://systems/health_manager.gd"
 ScoreManager="*res://systems/score_manager.gd"
 SettingsManager="*res://systems/settings_manager.gd"
+SaveManager="*res://systems/save_manager.gd"
 
 [display]
 

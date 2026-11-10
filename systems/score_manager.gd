@@ -14,6 +14,11 @@ func add_points(amount: int) -> int:
 	return current_score
 
 
+func set_score(value: int) -> void:
+	current_score = maxi(value, 0)
+	score_changed.emit(current_score)
+
+
 ## Ponto unico de reinicio do autoload. Veja `GameMenu.reset_run_state()`.
 func reset_game_state() -> void:
 	current_score = 0

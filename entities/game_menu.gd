@@ -3,6 +3,9 @@ extends CanvasLayer
 class_name GameMenu
 
 static var start_after_reload := false
+static var open_level_select := false
+static var phase_start_score := 0
+static var phase_start_rescues: Dictionary = {}
 
 const FIRST_SCENE := "res://PrimeiraCena.tscn"
 const MAIN_MENU_SCENE := "res://entities/main_menu.tscn"
@@ -16,6 +19,18 @@ static func reset_run_state() -> void:
 	HealthManager.reset_game_state()
 	ScoreManager.reset_game_state()
 	RescueManager.reset_game_state()
+	mark_phase_start()
+
+
+static func mark_phase_start() -> void:
+	phase_start_score = ScoreManager.current_score
+	phase_start_rescues = RescueManager.rescued_animals.duplicate()
+
+
+static func restore_phase_start() -> void:
+	HealthManager.reset_game_state()
+	ScoreManager.set_score(phase_start_score)
+	RescueManager.set_rescued_animals(phase_start_rescues)
 
 
 @onready var death_tint: ColorRect = $Overlay/DeathTint
@@ -108,13 +123,11 @@ func show_credits() -> void:
 	$Overlay/Center/CreditsPanel/Margin/VBox/BackButton.grab_focus()
 
 
-func restart_game() -> void:
-	# Volta para a fase 1: `reload_current_scene()` recarregaria a fase 2 com os
-	# resgates ja zerados, deixando a meta de 6/6 inalcancavel.
-	reset_run_state()
+func restart_phase() -> void:
+	restore_phase_start()
 	start_after_reload = true
 	get_tree().paused = false
-	get_tree().change_scene_to_file(FIRST_SCENE)
+	get_tree().reload_current_scene()
 
 
 func show_death_screen() -> void:
@@ -155,7 +168,7 @@ func _on_controls_button_pressed() -> void:
 
 
 func _on_restart_button_pressed() -> void:
-	restart_game()
+	restart_phase()
 
 
 func _on_credits_button_pressed() -> void:
@@ -172,7 +185,7 @@ func _on_back_button_pressed() -> void:
 
 
 func _on_death_restart_button_pressed() -> void:
-	restart_game()
+	restart_phase()
 
 
 func _on_death_menu_button_pressed() -> void:

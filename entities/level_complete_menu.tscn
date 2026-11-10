@@ -57,7 +57,7 @@ theme_override_constants/margin_bottom = 14
 
 [node name="VBox" type="VBoxContainer" parent="Overlay/Center/Panel/Margin"]
 layout_mode = 2
-theme_override_constants/separation = 8
+theme_override_constants/separation = 6
 
 [node name="Title" type="Label" parent="Overlay/Center/Panel/Margin/VBox"]
 layout_mode = 2
@@ -74,15 +74,23 @@ text = "A bandeira foi alcançada."
 horizontal_alignment = 1
 
 [node name="NextButton" type="Button" parent="Overlay/Center/Panel/Margin/VBox"]
-custom_minimum_size = Vector2(0, 27)
+custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
 theme_override_styles/normal = SubResource("ButtonStyle")
 theme_override_styles/hover = SubResource("ButtonStyle")
 theme_override_styles/focus = SubResource("ButtonStyle")
 text = "PRÓXIMA FASE"
 
+[node name="LevelsButton" type="Button" parent="Overlay/Center/Panel/Margin/VBox"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+theme_override_styles/normal = SubResource("ButtonStyle")
+theme_override_styles/hover = SubResource("ButtonStyle")
+theme_override_styles/focus = SubResource("ButtonStyle")
+text = "SELEÇÃO DE FASES"
+
 [node name="MenuButton" type="Button" parent="Overlay/Center/Panel/Margin/VBox"]
-custom_minimum_size = Vector2(0, 27)
+custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
 theme_override_styles/normal = SubResource("ButtonStyle")
 theme_override_styles/hover = SubResource("ButtonStyle")
@@ -90,4 +98,5 @@ theme_override_styles/focus = SubResource("ButtonStyle")
 text = "MENU PRINCIPAL"
 
 [connection signal="pressed" from="Overlay/Center/Panel/Margin/VBox/NextButton" to="." method="_on_next_button_pressed"]
+[connection signal="pressed" from="Overlay/Center/Panel/Margin/VBox/LevelsButton" to="." method="_on_levels_button_pressed"]
 [connection signal="pressed" from="Overlay/Center/Panel/Margin/VBox/MenuButton" to="." method="_on_menu_button_pressed"]

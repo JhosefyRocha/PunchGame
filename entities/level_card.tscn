@@ -1,0 +1,166 @@
+[gd_scene load_steps=8 format=3]
+
+[ext_resource type="Script" path="res://entities/level_card.gd" id="1_card"]
+
+[sub_resource type="StyleBoxFlat" id="StyleCard"]
+bg_color = Color(0.12, 0.22, 0.13, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.72, 0.46, 0.13, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleCardHover"]
+bg_color = Color(0.25, 0.4, 0.2, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.78, 0.3, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleCardPressed"]
+bg_color = Color(0.4, 0.25, 0.08, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.78, 0.35, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleCardLocked"]
+bg_color = Color(0.1, 0.1, 0.09, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.33, 0.31, 0.27, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleLockShackle"]
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_color = Color(0.78, 0.76, 0.7, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleLockBody"]
+bg_color = Color(0.93, 0.66, 0.2, 1)
+border_width_bottom = 2
+border_color = Color(0.62, 0.38, 0.1, 1)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+anti_aliasing = false
+
+[node name="LevelCard" type="Button"]
+custom_minimum_size = Vector2(86, 68)
+theme_override_styles/normal = SubResource("StyleCard")
+theme_override_styles/hover = SubResource("StyleCardHover")
+theme_override_styles/pressed = SubResource("StyleCardPressed")
+theme_override_styles/focus = SubResource("StyleCardHover")
+theme_override_styles/disabled = SubResource("StyleCardLocked")
+script = ExtResource("1_card")
+
+[node name="Thumbnail" type="TextureRect" parent="."]
+texture_filter = 2
+layout_mode = 0
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 83.0
+offset_bottom = 41.0
+mouse_filter = 2
+expand_mode = 1
+
+[node name="Shade" type="ColorRect" parent="Thumbnail"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.04, 0.05, 0.04, 0.74)
+
+[node name="Lock" type="Control" parent="Thumbnail"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -7.0
+offset_top = -9.0
+offset_right = 7.0
+offset_bottom = 9.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Shackle" type="Panel" parent="Thumbnail/Lock"]
+layout_mode = 0
+offset_left = 3.0
+offset_right = 11.0
+offset_bottom = 9.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleLockShackle")
+
+[node name="Body" type="Panel" parent="Thumbnail/Lock"]
+layout_mode = 0
+offset_top = 7.0
+offset_right = 14.0
+offset_bottom = 18.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleLockBody")
+
+[node name="Keyhole" type="ColorRect" parent="Thumbnail/Lock"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 10.0
+offset_right = 8.0
+offset_bottom = 14.0
+mouse_filter = 2
+color = Color(0.2, 0.11, 0.03, 1)
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 42.0
+offset_right = 83.0
+offset_bottom = 55.0
+theme_override_colors/font_color = Color(1, 0.79, 0.34, 1)
+theme_override_colors/font_shadow_color = Color(0.08, 0.04, 0.01, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 9
+text = "FASE 1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Status" type="Label" parent="."]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 54.0
+offset_right = 83.0
+offset_bottom = 65.0
+theme_override_font_sizes/font_size = 7
+text = "DISPONÍVEL"
+horizontal_alignment = 1
+vertical_alignment = 1

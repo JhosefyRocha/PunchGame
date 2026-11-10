@@ -82,7 +82,16 @@ No fim da jornada, a verdadeira motivação de Punch é revelada: ele estava ten
 
 Punch inicia a partida com **três corações**. Espinhos, água e ataques inimigos removem um coração. Depois de receber dano, o personagem retorna ao último checkpoint e ganha um breve período de invulnerabilidade, evitando dano repetido imediato.
 
-Quando os três corações são perdidos, a tela de derrota é exibida e o jogador pode reiniciar a partida.
+Quando os três corações são perdidos, a tela de derrota é exibida e o jogador pode reiniciar a fase atual: os três corações voltam, e os pontos e resgates retornam ao que eram quando a fase começou.
+
+### Progresso e seleção de fases
+
+No menu principal, o botão **Novo jogo** abre o painel **Jogar**, com duas opções:
+
+- **Novo jogo**: começa um jogo salvo do zero, apenas com a Fase 1 liberada. Se já houver progresso, o jogo pede confirmação antes de apagá-lo.
+- **Jogo salvo**: continua de onde o jogador parou, com as fases que ele já liberou.
+
+Os dois caminhos levam à **seleção de fases**. Só é possível entrar nas fases liberadas; as demais aparecem com cadeado. Concluir uma fase libera a seguinte, e o progresso é gravado na hora em `user://save.cfg`, então continua valendo depois de fechar o jogo. A seleção de fases também pode ser aberta pelas telas de fase concluída e de jogo concluído.
 
 ### Combate
 
@@ -130,7 +139,7 @@ PunchGame/
 ├── entities/          # Personagem, inimigos, HUD e objetos interativos
 ├── scene/             # Fases e cenas principais
 ├── sprites/           # Sprites, cenários, HUD e pixel art
-├── systems/           # Gerenciadores de vida, pontuação e resgates
+├── systems/           # Gerenciadores de vida, pontuação, resgates e jogo salvo
 ├── tiles/             # TileSets de terreno e decoração
 ├── PrimeiraCena.tscn  # Cena inicial e Fase 1
 └── project.godot      # Configuração principal do projeto
@@ -143,6 +152,7 @@ O projeto utiliza autoloads para manter dados compartilhados entre cenas:
 - `HealthManager`: controla os três corações e emite atualizações de vida.
 - `ScoreManager`: armazena e atualiza a pontuação da partida.
 - `RescueManager`: registra os animais resgatados e o progresso total.
+- `SaveManager`: guarda o jogo salvo (fases liberadas) e a lista ordenada de fases usada pela seleção de fases.
 
 A interface observa os sinais desses sistemas e atualiza automaticamente os indicadores de vida, pontos e resgates.
 

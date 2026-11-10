@@ -79,7 +79,7 @@ text = "0 animais foram libertados!"
 horizontal_alignment = 1
 
 [node name="PlayAgainButton" type="Button" parent="Overlay/Center/Panel/Margin/VBox"]
-custom_minimum_size = Vector2(0, 26)
+custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
 theme_override_font_sizes/font_size = 10
 theme_override_styles/normal = SubResource("ButtonStyle")
@@ -87,8 +87,17 @@ theme_override_styles/hover = SubResource("ButtonStyle")
 theme_override_styles/focus = SubResource("ButtonStyle")
 text = "JOGAR NOVAMENTE"
 
+[node name="LevelsButton" type="Button" parent="Overlay/Center/Panel/Margin/VBox"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = SubResource("ButtonStyle")
+theme_override_styles/hover = SubResource("ButtonStyle")
+theme_override_styles/focus = SubResource("ButtonStyle")
+text = "SELEÇÃO DE FASES"
+
 [node name="MenuButton" type="Button" parent="Overlay/Center/Panel/Margin/VBox"]
-custom_minimum_size = Vector2(0, 26)
+custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
 theme_override_font_sizes/font_size = 10
 theme_override_styles/normal = SubResource("ButtonStyle")
@@ -97,4 +106,5 @@ theme_override_styles/focus = SubResource("ButtonStyle")
 text = "MENU PRINCIPAL"
 
 [connection signal="pressed" from="Overlay/Center/Panel/Margin/VBox/PlayAgainButton" to="." method="_on_play_again_button_pressed"]
+[connection signal="pressed" from="Overlay/Center/Panel/Margin/VBox/LevelsButton" to="." method="_on_levels_button_pressed"]
 [connection signal="pressed" from="Overlay/Center/Panel/Margin/VBox/MenuButton" to="." method="_on_menu_button_pressed"]

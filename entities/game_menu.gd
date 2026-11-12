@@ -7,7 +7,7 @@ static var open_level_select := false
 static var phase_start_score := 0
 static var phase_start_rescues: Dictionary = {}
 
-const FIRST_SCENE := "res://PrimeiraCena.tscn"
+const FIRST_SCENE := "res://scene/phase_1.tscn"
 const MAIN_MENU_SCENE := "res://entities/main_menu.tscn"
 
 

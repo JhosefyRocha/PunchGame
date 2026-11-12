@@ -141,7 +141,6 @@ PunchGame/
 ├── sprites/           # Sprites, cenários, HUD e pixel art
 ├── systems/           # Gerenciadores de vida, pontuação, resgates e jogo salvo
 ├── tiles/             # TileSets de terreno e decoração
-├── PrimeiraCena.tscn  # Cena inicial e Fase 1
 └── project.godot      # Configuração principal do projeto
 ```
 
@@ -192,7 +191,7 @@ Jogador, lenhadores, gaiolas, frutas, espinhos, cipós, plataformas, checkpoints
 
 ### Executar uma fase específica
 
-- Abra `PrimeiraCena.tscn` e pressione `F6` para testar a Fase 1.
+- Abra `scene/phase_1.tscn` e pressione `F6` para testar a Fase 1.
 - Abra `scene/phase_2.tscn` e pressione `F6` para testar a Fase 2.
 
 ### Exportar para Web / HTML5

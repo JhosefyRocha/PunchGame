@@ -7,7 +7,7 @@ const UNLOCKED_KEY := "unlocked_levels"
 const LEVELS: Array[Dictionary] = [
 	{
 		"title": "Fase 1",
-		"scene": "res://PrimeiraCena.tscn",
+		"scene": "res://scene/phase_1.tscn",
 		"thumbnail": "res://sprites/environment/forest_canopy_phase_1.png",
 	},
 	{

@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3]
+
+[sub_resource type="Gradient" id="Gradient_ember"]
+offsets = PackedFloat32Array(0, 0.1, 0.6, 1)
+colors = PackedColorArray(1, 0.85, 0.4, 0, 1, 0.7, 0.25, 1, 0.92, 0.3, 0.08, 0.85, 0.5, 0.1, 0.05, 0)
+
+[node name="Embers" type="CPUParticles2D"]
+amount = 36
+lifetime = 4.0
+preprocess = 4.0
+local_coords = true
+emission_shape = 3
+emission_rect_extents = Vector2(200, 4)
+direction = Vector2(0, -1)
+spread = 25.0
+gravity = Vector2(4, -6)
+initial_velocity_min = 14.0
+initial_velocity_max = 30.0
+scale_amount_min = 1.0
+scale_amount_max = 2.0
+color_ramp = SubResource("Gradient_ember")

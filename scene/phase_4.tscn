@@ -1,8 +1,8 @@
 [gd_scene format=3]
 
-[ext_resource type="Texture2D" uid="uid://rixkhue0femf" path="res://sprites/Seasonal Tilesets/Seasonal Tilesets/3 - Tropics/Background parts/_Complete_static_BG_(288 x 208).png" id="1_bg"]
-[ext_resource type="Texture2D" uid="uid://4jb0dv0slvbq" path="res://sprites/Seasonal Tilesets/Seasonal Tilesets/3 - Tropics/Terrain (16 x 16).png" id="2_terrain"]
-[ext_resource type="Texture2D" uid="uid://gfy5lp2665k1" path="res://sprites/Seasonal Tilesets/Seasonal Tilesets/3 - Tropics/Tropics_entities (16 x 16).png" id="3_decor"]
+[ext_resource type="Texture2D" uid="uid://dd10dm66fqxn6" path="res://sprites/environment/forest_canopy_dead_green.png" id="1_bg"]
+[ext_resource type="Texture2D" uid="uid://c8c20a12g6p23" path="res://sprites/environment/terrain_dead_green.png" id="2_terrain"]
+[ext_resource type="Texture2D" uid="uid://ch38445ucwiu3" path="res://sprites/environment/trees_dead_green.png" id="3_decor"]
 [ext_resource type="AudioStream" uid="uid://bphase02mp3" path="res://sounds/phase_02.mp3" id="4_music"]
 [ext_resource type="PackedScene" uid="uid://dn6xlrm3ydrhe" path="res://entities/player.tscn" id="5_player"]
 [ext_resource type="PackedScene" path="res://entities/tile_platform.tscn" id="6_platform"]
@@ -28,10 +28,12 @@
 scroll_ignore_camera_zoom = true
 
 [node name="Sky" type="ParallaxLayer" parent="Background"]
-motion_scale = Vector2(0.1, 0)
-motion_mirroring = Vector2(288, 0)
+motion_scale = Vector2(0.06, 0.03)
+motion_mirroring = Vector2(400, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="Background/Sky"]
+texture_repeat = 2
+scale = Vector2(0.23, 0.23)
 texture = ExtResource("1_bg")
 centered = false
 
@@ -39,62 +41,62 @@ centered = false
 z_index = -1
 
 [node name="Sea" type="Polygon2D" parent="WaterVisuals"]
-color = Color(0.05, 0.5, 0.78, 1)
+color = Color(0.1, 0.32, 0.36, 1)
 polygon = PackedVector2Array(0, 182, 1920, 182, 1920, 208, 0, 208)
 
 [node name="Decorations" type="Node2D" parent="."]
 
-[node name="PalmA" type="Sprite2D" parent="Decorations"]
-position = Vector2(24, 153)
+[node name="TreeA" type="Sprite2D" parent="Decorations"]
+position = Vector2(26, 150)
 scale = Vector2(1.35, 1.35)
 texture = ExtResource("3_decor")
 region_enabled = true
-region_rect = Rect2(24, 24, 32, 40)
+region_rect = Rect2(16, 16, 48, 48)
 
 [node name="FenceA" type="Sprite2D" parent="Decorations"]
 position = Vector2(96, 170)
 texture = ExtResource("3_decor")
 region_enabled = true
-region_rect = Rect2(80, 48, 48, 16)
+region_rect = Rect2(80, 80, 48, 16)
 
-[node name="PalmB" type="Sprite2D" parent="Decorations"]
-position = Vector2(214, 153)
+[node name="TreeB" type="Sprite2D" parent="Decorations"]
+position = Vector2(212, 150)
 scale = Vector2(1.35, 1.35)
 texture = ExtResource("3_decor")
 region_enabled = true
-region_rect = Rect2(24, 24, 32, 40)
+region_rect = Rect2(144, 16, 48, 48)
 
-[node name="RockA" type="Sprite2D" parent="Decorations"]
+[node name="BushA" type="Sprite2D" parent="Decorations"]
 position = Vector2(360, 170)
 texture = ExtResource("3_decor")
 region_enabled = true
-region_rect = Rect2(144, 48, 16, 16)
+region_rect = Rect2(16, 80, 16, 16)
 
-[node name="RockB" type="Sprite2D" parent="Decorations"]
+[node name="BushB" type="Sprite2D" parent="Decorations"]
 position = Vector2(944, 170)
 texture = ExtResource("3_decor")
 region_enabled = true
-region_rect = Rect2(144, 48, 16, 16)
+region_rect = Rect2(16, 80, 16, 16)
 
-[node name="PalmC" type="Sprite2D" parent="Decorations"]
-position = Vector2(1240, 153)
+[node name="TreeC" type="Sprite2D" parent="Decorations"]
+position = Vector2(1240, 150)
 scale = Vector2(1.35, 1.35)
 texture = ExtResource("3_decor")
 region_enabled = true
-region_rect = Rect2(24, 24, 32, 40)
+region_rect = Rect2(16, 16, 48, 48)
 
-[node name="PalmD" type="Sprite2D" parent="Decorations"]
-position = Vector2(1620, 153)
+[node name="TreeD" type="Sprite2D" parent="Decorations"]
+position = Vector2(1620, 150)
 scale = Vector2(1.35, 1.35)
 texture = ExtResource("3_decor")
 region_enabled = true
-region_rect = Rect2(24, 24, 32, 40)
+region_rect = Rect2(144, 16, 48, 48)
 
 [node name="FenceB" type="Sprite2D" parent="Decorations"]
 position = Vector2(1840, 170)
 texture = ExtResource("3_decor")
 region_enabled = true
-region_rect = Rect2(80, 48, 48, 16)
+region_rect = Rect2(80, 80, 48, 16)
 
 [node name="Player" parent="." instance=ExtResource("5_player")]
 position = Vector2(40, 150)
@@ -322,4 +324,4 @@ visible = false
 bounds = Rect2(0, 0, 1920, 208)
 
 [node name="PhaseTransition" parent="." instance=ExtResource("21_transition")]
-fade_color = Color(0.02, 0.12, 0.2, 1)
+fade_color = Color(0.05, 0.09, 0.04, 1)

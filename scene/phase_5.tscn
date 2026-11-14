@@ -1,8 +1,8 @@
 [gd_scene format=3]
 
-[ext_resource type="Texture2D" uid="uid://do0j63642kwk8" path="res://sprites/Seasonal Tilesets/Seasonal Tilesets/4 - Winter World/Background parts/_Complete_static_BG_(288 x 208).png" id="1_bg"]
-[ext_resource type="Texture2D" uid="uid://csqesspnr2ybb" path="res://sprites/Seasonal Tilesets/Seasonal Tilesets/4 - Winter World/Terrain (16 x 16).png" id="2_terrain"]
-[ext_resource type="Texture2D" uid="uid://qw1573rxdd8c" path="res://sprites/Seasonal Tilesets/Seasonal Tilesets/4 - Winter World/Winter_entities (16 x 16).png" id="3_decor"]
+[ext_resource type="Texture2D" uid="uid://burr4viit44gh" path="res://sprites/environment/forest_canopy_phase_2.png" id="1_bg"]
+[ext_resource type="Texture2D" uid="uid://b88mxi66wu7bs" path="res://sprites/Seasonal Tilesets/Seasonal Tilesets/1 - Grassland/Terrain (16 x 16).png" id="2_terrain"]
+[ext_resource type="Texture2D" uid="uid://dqdtuvtsnj2re" path="res://sprites/Seasonal Tilesets/Seasonal Tilesets/1 - Grassland/Grassland_entities (16 x 16).png" id="3_decor"]
 [ext_resource type="AudioStream" uid="uid://bphase01ogg" path="res://sounds/phase_01.ogg" id="4_music"]
 [ext_resource type="PackedScene" uid="uid://dn6xlrm3ydrhe" path="res://entities/player.tscn" id="5_player"]
 [ext_resource type="PackedScene" path="res://entities/tile_platform.tscn" id="6_platform"]
@@ -28,10 +28,12 @@
 scroll_ignore_camera_zoom = true
 
 [node name="Sky" type="ParallaxLayer" parent="Background"]
-motion_scale = Vector2(0.1, 0)
-motion_mirroring = Vector2(288, 0)
+motion_scale = Vector2(0.06, 0.03)
+motion_mirroring = Vector2(400, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="Background/Sky"]
+texture_repeat = 2
+scale = Vector2(0.23, 0.23)
 texture = ExtResource("1_bg")
 centered = false
 
@@ -39,19 +41,19 @@ centered = false
 z_index = -1
 
 [node name="PoolA" type="Polygon2D" parent="WaterVisuals"]
-color = Color(0.3, 0.58, 0.82, 1)
+color = Color(0.08, 0.42, 0.72, 1)
 polygon = PackedVector2Array(224, 182, 384, 182, 384, 208, 224, 208)
 
 [node name="PoolB" type="Polygon2D" parent="WaterVisuals"]
-color = Color(0.3, 0.58, 0.82, 1)
+color = Color(0.08, 0.42, 0.72, 1)
 polygon = PackedVector2Array(640, 182, 896, 182, 896, 208, 640, 208)
 
 [node name="PoolC" type="Polygon2D" parent="WaterVisuals"]
-color = Color(0.3, 0.58, 0.82, 1)
+color = Color(0.08, 0.42, 0.72, 1)
 polygon = PackedVector2Array(1152, 182, 1408, 182, 1408, 208, 1152, 208)
 
 [node name="PoolD" type="Polygon2D" parent="WaterVisuals"]
-color = Color(0.3, 0.58, 0.82, 1)
+color = Color(0.08, 0.42, 0.72, 1)
 polygon = PackedVector2Array(1664, 182, 1856, 182, 1856, 208, 1664, 208)
 
 [node name="Decorations" type="Node2D" parent="."]
@@ -74,7 +76,7 @@ position = Vector2(400, 150)
 scale = Vector2(1.35, 1.35)
 texture = ExtResource("3_decor")
 region_enabled = true
-region_rect = Rect2(80, 16, 48, 48)
+region_rect = Rect2(144, 16, 48, 48)
 
 [node name="TreeC" type="Sprite2D" parent="Decorations"]
 position = Vector2(922, 102)
@@ -88,7 +90,7 @@ position = Vector2(1460, 150)
 scale = Vector2(1.35, 1.35)
 texture = ExtResource("3_decor")
 region_enabled = true
-region_rect = Rect2(80, 16, 48, 48)
+region_rect = Rect2(144, 16, 48, 48)
 
 [node name="BushB" type="Sprite2D" parent="Decorations"]
 position = Vector2(1880, 170)
@@ -359,4 +361,4 @@ tutorial_text = "LIBERTE TODOS OS ANIMAIS!"
 bounds = Rect2(0, 0, 2240, 208)
 
 [node name="PhaseTransition" parent="." instance=ExtResource("21_transition")]
-fade_color = Color(0.1, 0.12, 0.18, 1)
+fade_color = Color(0.015, 0.12, 0.105, 1)

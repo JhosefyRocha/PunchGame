@@ -6,8 +6,8 @@
 [ext_resource type="PackedScene" path="res://entities/spike.tscn" id="4_spike"]
 [ext_resource type="PackedScene" path="res://entities/vine.tscn" id="5_vine"]
 [ext_resource type="PackedScene" path="res://entities/water_hazard.tscn" id="6_water"]
-[ext_resource type="Texture2D" uid="uid://burr4viit44gh" path="res://sprites/environment/forest_canopy_phase_2.png" id="7_bg"]
-[ext_resource type="Texture2D" uid="uid://dqdtuvtsnj2re" path="res://sprites/Seasonal Tilesets/Seasonal Tilesets/1 - Grassland/Grassland_entities (16 x 16).png" id="8_decor"]
+[ext_resource type="Texture2D" uid="uid://vwb8bajswngl" path="res://sprites/environment/forest_canopy_orange.png" id="7_bg"]
+[ext_resource type="Texture2D" uid="uid://b65d83bdwljqv" path="res://sprites/Seasonal Tilesets/Seasonal Tilesets/2 - Autumn Forest/Autumn_entities (16 x 16).png" id="8_decor"]
 [ext_resource type="PackedScene" path="res://entities/phase_transition.tscn" id="9_transition"]
 [ext_resource type="PackedScene" path="res://entities/rescue_cage.tscn" id="10_cage"]
 [ext_resource type="PackedScene" path="res://entities/gameplay_hud.tscn" id="11_hud"]
@@ -19,6 +19,7 @@
 [ext_resource type="AudioStream" uid="uid://bphase02mp3" path="res://sounds/phase_02.mp3" id="18_music"]
 [ext_resource type="Script" uid="uid://4bkm6q1n4uaj" path="res://entities/level_music.gd" id="19_music_script"]
 [ext_resource type="PackedScene" path="res://entities/level_bounds.tscn" id="20_bounds"]
+[ext_resource type="PackedScene" path="res://entities/smoke_plume.tscn" id="21_smoke"]
 
 [node name="Phase2" type="Node2D" unique_id=1082971088]
 
@@ -35,61 +36,84 @@ scale = Vector2(0.23, 0.23)
 texture = ExtResource("7_bg")
 centered = false
 
+[node name="Smoke" type="ParallaxLayer" parent="Background"]
+modulate = Color(1, 1, 1, 0.5)
+motion_scale = Vector2(0.12, 0.03)
+motion_mirroring = Vector2(400, 0)
+
+[node name="PlumeA" parent="Background/Smoke" instance=ExtResource("21_smoke")]
+position = Vector2(110, 206)
+amount = 14
+
+[node name="PlumeB" parent="Background/Smoke" instance=ExtResource("21_smoke")]
+position = Vector2(300, 208)
+amount = 12
+
 [node name="WaterVisuals" type="Node2D" parent="." unique_id=1887011084]
 z_index = -1
 
 [node name="FirstPool" type="Polygon2D" parent="WaterVisuals" unique_id=974690273]
-color = Color(0.08, 0.42, 0.72, 1)
+color = Color(0.14, 0.24, 0.34, 1)
 polygon = PackedVector2Array(224, 176, 272, 176, 272, 208, 224, 208)
 
 [node name="SecondPool" type="Polygon2D" parent="WaterVisuals" unique_id=1269648619]
-color = Color(0.08, 0.42, 0.72, 1)
+color = Color(0.14, 0.24, 0.34, 1)
 polygon = PackedVector2Array(480, 176, 528, 176, 528, 208, 480, 208)
 
 [node name="VinePool" type="Polygon2D" parent="WaterVisuals" unique_id=691632112]
-color = Color(0.08, 0.42, 0.72, 1)
+color = Color(0.14, 0.24, 0.34, 1)
 polygon = PackedVector2Array(704, 176, 800, 176, 800, 208, 704, 208)
 
 [node name="Player" parent="." unique_id=909789665 instance=ExtResource("1_player")]
 position = Vector2(42, 150)
 
 [node name="GroundStart" parent="." unique_id=121126096 instance=ExtResource("3_platform")]
+use_autumn_tiles = true
 position = Vector2(0, 176)
 platform_size = Vector2(224, 32)
 
 [node name="GroundChallenges" parent="." unique_id=994183795 instance=ExtResource("3_platform")]
+use_autumn_tiles = true
 position = Vector2(272, 176)
 platform_size = Vector2(208, 32)
 
 [node name="GroundClimb" parent="." unique_id=420234315 instance=ExtResource("3_platform")]
+use_autumn_tiles = true
 position = Vector2(528, 176)
 platform_size = Vector2(176, 32)
 
 [node name="GroundFinish" parent="." unique_id=646696910 instance=ExtResource("3_platform")]
+use_autumn_tiles = true
 position = Vector2(800, 176)
 platform_size = Vector2(480, 32)
 
 [node name="TrainingPlatform" parent="." unique_id=804914491 instance=ExtResource("3_platform")]
+use_autumn_tiles = true
 position = Vector2(96, 132)
 platform_size = Vector2(64, 16)
 
 [node name="SpikePlatform" parent="." unique_id=930310031 instance=ExtResource("3_platform")]
+use_autumn_tiles = true
 position = Vector2(304, 132)
 platform_size = Vector2(64, 16)
 
 [node name="HighSpikePlatform" parent="." unique_id=1844182581 instance=ExtResource("3_platform")]
+use_autumn_tiles = true
 position = Vector2(394, 100)
 platform_size = Vector2(64, 16)
 
 [node name="ClimbApproach" parent="." unique_id=553677441 instance=ExtResource("3_platform")]
+use_autumn_tiles = true
 position = Vector2(592, 128)
 platform_size = Vector2(64, 16)
 
 [node name="VineLanding" parent="." unique_id=802926947 instance=ExtResource("3_platform")]
+use_autumn_tiles = true
 position = Vector2(816, 112)
 platform_size = Vector2(72, 16)
 
 [node name="FinalStep" parent="." unique_id=1461556097 instance=ExtResource("3_platform")]
+use_autumn_tiles = true
 position = Vector2(936, 144)
 platform_size = Vector2(80, 16)
 
@@ -212,4 +236,4 @@ visible = false
 [node name="LevelBounds" parent="." unique_id=550044478 instance=ExtResource("20_bounds")]
 
 [node name="PhaseTransition" parent="." unique_id=969874533 instance=ExtResource("9_transition")]
-fade_color = Color(0.015, 0.12, 0.105, 1)
+fade_color = Color(0.12, 0.06, 0.02, 1)

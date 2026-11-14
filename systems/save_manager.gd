@@ -8,27 +8,27 @@ const LEVELS: Array[Dictionary] = [
 	{
 		"title": "Fase 1",
 		"scene": "res://scene/phase_1.tscn",
-		"thumbnail": "res://sprites/environment/forest_canopy_phase_1.png",
+		"thumbnail": "res://sprites/environment/forest_canopy_fire.png",
 	},
 	{
 		"title": "Fase 2",
 		"scene": "res://scene/phase_2.tscn",
-		"thumbnail": "res://sprites/environment/forest_canopy_phase_2.png",
+		"thumbnail": "res://sprites/environment/forest_canopy_orange.png",
 	},
 	{
 		"title": "Fase 3",
 		"scene": "res://scene/phase_3.tscn",
-		"thumbnail": "res://sprites/Seasonal Tilesets/Seasonal Tilesets/2 - Autumn Forest/Background parts/_Complete_static_BG_(288 x 208).png",
+		"thumbnail": "res://sprites/environment/forest_canopy_phase_1.png",
 	},
 	{
 		"title": "Fase 4",
 		"scene": "res://scene/phase_4.tscn",
-		"thumbnail": "res://sprites/Seasonal Tilesets/Seasonal Tilesets/3 - Tropics/Background parts/_Complete_static_BG_(288 x 208).png",
+		"thumbnail": "res://sprites/environment/forest_canopy_dead_green.png",
 	},
 	{
 		"title": "Fase 5",
 		"scene": "res://scene/phase_5.tscn",
-		"thumbnail": "res://sprites/Seasonal Tilesets/Seasonal Tilesets/4 - Winter World/Background parts/_Complete_static_BG_(288 x 208).png",
+		"thumbnail": "res://sprites/environment/forest_canopy_phase_2.png",
 	},
 ]
 

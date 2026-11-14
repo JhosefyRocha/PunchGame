@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3]
+
+[sub_resource type="Gradient" id="Gradient_puff"]
+offsets = PackedFloat32Array(0, 0.55, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.65, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_puff"]
+gradient = SubResource("Gradient_puff")
+width = 16
+height = 16
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="Curve" id="Curve_grow"]
+_data = [Vector2(0, 0.35), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_smoke"]
+offsets = PackedFloat32Array(0, 0.12, 0.65, 1)
+colors = PackedColorArray(0.16, 0.11, 0.1, 0, 0.2, 0.15, 0.14, 0.75, 0.34, 0.3, 0.29, 0.45, 0.46, 0.42, 0.41, 0)
+
+[node name="SmokePlume" type="CPUParticles2D"]
+amount = 22
+lifetime = 9.0
+preprocess = 9.0
+local_coords = true
+texture = SubResource("GradientTexture2D_puff")
+emission_shape = 1
+emission_sphere_radius = 5.0
+direction = Vector2(0, -1)
+spread = 10.0
+gravity = Vector2(4, -2)
+initial_velocity_min = 14.0
+initial_velocity_max = 22.0
+scale_amount_min = 1.4
+scale_amount_max = 2.2
+scale_amount_curve = SubResource("Curve_grow")
+color_ramp = SubResource("Gradient_smoke")

@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dn6xlrm3ydrhe" path="res://entities/player.tscn" id="1_yjf0y"]
 [ext_resource type="TileSet" uid="uid://cjt3v8su0g6k" path="res://tiles/Terrain.tres" id="2_pw7wf"]
 [ext_resource type="TileSet" uid="uid://ddrhor0n7wld6" path="res://tiles/Decoration.tres" id="3_0q2ab"]
-[ext_resource type="Texture2D" uid="uid://big5fb1fs5mhp" path="res://sprites/environment/forest_canopy_phase_1.png" id="4_0q2ab"]
+[ext_resource type="Texture2D" uid="uid://h18508fdvl2o" path="res://sprites/environment/forest_canopy_fire.png" id="4_0q2ab"]
 [ext_resource type="PackedScene" path="res://entities/game_menu.tscn" id="5_menu"]
 [ext_resource type="PackedScene" path="res://entities/water_hazard.tscn" id="6_water"]
 [ext_resource type="PackedScene" path="res://entities/finish_flag.tscn" id="7_flag"]
@@ -22,6 +22,8 @@
 [ext_resource type="PackedScene" path="res://entities/level_bounds.tscn" id="21_bounds"]
 [ext_resource type="AudioStream" uid="uid://bphase01ogg" path="res://sounds/phase_01.ogg" id="22_music"]
 [ext_resource type="Script" uid="uid://4bkm6q1n4uaj" path="res://entities/level_music.gd" id="22_music_script"]
+[ext_resource type="PackedScene" path="res://entities/smoke_plume.tscn" id="23_smoke"]
+[ext_resource type="PackedScene" path="res://entities/embers.tscn" id="24_embers"]
 
 [node name="Game" type="Node2D" unique_id=2002910798]
 
@@ -31,16 +33,19 @@ position = Vector2(56, 163)
 [node name="tiles" type="Node2D" parent="." unique_id=1014451101]
 
 [node name="terrain" type="TileMapLayer" parent="tiles" unique_id=438976028]
+modulate = Color(0.55, 0.3, 0.26, 1)
 position = Vector2(0, 112)
 tile_map_data = PackedByteArray("AAAAAAUAAAABAAMAAAABAAUAAAACAAMAAAACAAUAAAACAAMAAAADAAUAAAACAAMAAAAEAAUAAAACAAMAAAAFAAUAAAACAAMAAAAGAAUAAAACAAMAAAAHAAUAAAACAAMAAAAIAAUAAAACAAMAAAAJAAUAAAACAAMAAAAKAAUAAAACAAMAAAALAAUAAAACAAMAAAAMAAUAAAACAAMAAAANAAUAAAACAAMAAAAOAAQAAAADAAUAAAAOAAMAAAABAAMAAAAPAAMAAAACAAMAAAAQAAMAAAACAAMAAAARAAMAAAACAAMAAAASAAMAAAAGAAMAAAASAAQAAAAEAAMAAAASAAUAAAAEAAMAAAAOAAUAAAAEAAQAAAAPAAUAAAAEAAQAAAAPAAQAAAAEAAQAAAAQAAQAAAAEAAQAAAAQAAUAAAAEAAQAAAARAAUAAAAEAAQAAAARAAQAAAAEAAQAAAAHAAMAAAADAAEAAAAHAAQAAAADAAIAAAAIAAMAAAAEAAEAAAAIAAQAAAAEAAIAAAAJAAMAAAAFAAEAAAAJAAQAAAAFAAIAAAATAAMAAAACAAMAAAAUAAMAAAACAAMAAAAVAAMAAAACAAMAAAAWAAMAAAACAAMAAAAXAAMAAAACAAMAAAAYAAMAAAACAAMAAAAZAAMAAAACAAMAAAAdAAMAAAACAAMAAAAeAAMAAAACAAMAAAAfAAMAAAACAAMAAAAgAAMAAAAHAAMAAAAgAAQAAAAFAAMAAAAgAAUAAAAEAAMAAAAXAAUAAAAEAAMAAAAXAAQAAAAEAAMAAAAWAAQAAAAEAAMAAAAVAAQAAAAEAAMAAAAUAAQAAAAEAAMAAAATAAQAAAAEAAMAAAATAAUAAAAEAAMAAAAUAAUAAAAEAAMAAAAVAAUAAAAEAAMAAAAWAAUAAAAEAAMAAAAYAAUAAAAEAAMAAAAYAAQAAAAEAAMAAAAZAAQAAAAEAAMAAAAZAAUAAAAEAAMAAAAdAAQAAAAEAAMAAAAdAAUAAAAEAAMAAAAeAAUAAAAEAAMAAAAeAAQAAAAEAAMAAAAfAAQAAAAEAAMAAAAfAAUAAAAEAAMAAAAhAAQAAAACAAMAAAAiAAQAAAACAAMAAAAjAAQAAAACAAMAAAAkAAQAAAACAAMAAAAlAAQAAAACAAMAAAAmAAQAAAACAAMAAAAnAAQAAAACAAMAAAAoAAQAAAACAAMAAAApAAQAAAACAAMAAAAqAAQAAAACAAMAAAArAAQAAAACAAMAAAAsAAQAAAACAAMAAAAtAAQAAAACAAMAAAAuAAQAAAACAAMAAAAvAAQAAAACAAMAAAAwAAQAAAACAAMAAAAxAAQAAAACAAMAAAAyAAQAAAACAAMAAAAzAAQAAAACAAMAAAA0AAQAAAACAAMAAAA1AAQAAAACAAMAAAA2AAQAAAACAAMAAAA3AAQAAAACAAMAAAA4AAQAAAACAAMAAAA5AAQAAAACAAMAAAA6AAQAAAACAAMAAAA7AAQAAAACAAMAAAA8AAQAAAACAAMAAAA9AAQAAAACAAMAAAA+AAQAAAACAAMAAAA/AAQAAAACAAMAAABAAAQAAAACAAMAAABBAAQAAAACAAMAAABCAAQAAAACAAMAAABDAAQAAAACAAMAAABEAAQAAAACAAMAAABFAAQAAAACAAMAAABGAAQAAAACAAMAAABHAAQAAAACAAMAAABIAAQAAAACAAMAAABJAAQAAAACAAMAAABKAAQAAAACAAMAAABLAAQAAAACAAMAAABMAAQAAAACAAMAAABNAAQAAAACAAMAAAAlAAUAAAAEAAMAAAAkAAUAAAAEAAMAAAAjAAUAAAAEAAMAAAAiAAUAAAAEAAMAAAAhAAUAAAAEAAMAAAAmAAUAAAAEAAMAAAAnAAUAAAAEAAMAAAAoAAUAAAAEAAMAAAApAAUAAAAEAAMAAAAqAAUAAAAEAAMAAAArAAUAAAAEAAMAAAAsAAUAAAAEAAMAAAAtAAUAAAAEAAMAAAAuAAUAAAAEAAMAAAAvAAUAAAAEAAMAAAAwAAUAAAAEAAMAAAAxAAUAAAAEAAMAAAAyAAUAAAAEAAMAAAAzAAUAAAAEAAMAAAA0AAUAAAAEAAMAAAA1AAUAAAAEAAMAAAA2AAUAAAAEAAMAAAA3AAUAAAAEAAMAAAA4AAUAAAAEAAMAAAA5AAUAAAAEAAMAAAA6AAUAAAAEAAMAAAA7AAUAAAAEAAMAAAA8AAUAAAAEAAMAAAA9AAUAAAAEAAMAAAA+AAUAAAAEAAMAAAA/AAUAAAAEAAMAAABAAAUAAAAEAAMAAABBAAUAAAAEAAMAAABCAAUAAAAEAAMAAABDAAUAAAAEAAMAAABEAAUAAAAEAAMAAABFAAUAAAAEAAMAAABGAAUAAAAEAAMAAABHAAUAAAAEAAMAAABIAAUAAAAEAAMAAABJAAUAAAAEAAMAAABKAAUAAAAEAAMAAABLAAUAAAAEAAMAAABMAAUAAAAEAAMAAABNAAUAAAAEAAMAAAA=")
 tile_set = ExtResource("2_pw7wf")
 
 [node name="decoration" type="TileMapLayer" parent="tiles" unique_id=1234332684]
+modulate = Color(0.55, 0.3, 0.26, 1)
 position = Vector2(0, 112)
 tile_map_data = PackedByteArray("AAAPAAEAAAABAAEAAAAWAAAAAQAAAAAAAAAFAAQAAAABAAUAAAABAAMAAAABAAEAAAAaAAMAAgAMAAUAAAAbAAMAAgAMAAUAAAAcAAMAAgAMAAUAAAAaAAQAAgAMAAYAAAAbAAQAAgAMAAYAAAAcAAQAAgAMAAYAAAAcAAUAAgAMAAYAAAAbAAUAAgAMAAYAAAAaAAUAAgAMAAYAAAA=")
 tile_set = ExtResource("3_0q2ab")
 
 [node name="ExtendedTerrain" type="TileMapLayer" parent="tiles" unique_id=1230722105]
+modulate = Color(0.55, 0.3, 0.26, 1)
 position = Vector2(0, 112)
 tile_map_data = PackedByteArray("AABOAAQAAQAEAAEAAABOAAUAAQAEAAMAAABPAAQAAQAEAAEAAABPAAUAAQAEAAMAAABQAAQAAQAEAAEAAABQAAUAAQAEAAMAAABRAAQAAQAEAAEAAABRAAUAAQAEAAMAAABSAAQAAQAEAAEAAABSAAUAAQAEAAMAAABTAAQAAQAEAAEAAABTAAUAAQAEAAMAAABUAAQAAQAEAAEAAABUAAUAAQAEAAMAAABVAAQAAQAEAAEAAABVAAUAAQAEAAMAAABWAAQAAQAEAAEAAABWAAUAAQAEAAMAAABXAAQAAQAEAAEAAABXAAUAAQAEAAMAAABYAAQAAQAEAAEAAABYAAUAAQAEAAMAAABZAAQAAQAEAAEAAABZAAUAAQAEAAMAAABaAAQAAQAEAAEAAABaAAUAAQAEAAMAAABbAAQAAQAEAAEAAABbAAUAAQAEAAMAAABcAAQAAQAEAAEAAABcAAUAAQAEAAMAAABdAAQAAQAEAAEAAABdAAUAAQAEAAMAAABeAAQAAQAEAAEAAABeAAUAAQAEAAMAAABfAAQAAQAEAAEAAABfAAUAAQAEAAMAAABgAAQAAQAEAAEAAABgAAUAAQAEAAMAAABhAAQAAQAEAAEAAABhAAUAAQAEAAMAAABiAAQAAQAEAAEAAABiAAUAAQAEAAMAAABjAAQAAQAEAAEAAABjAAUAAQAEAAMAAABkAAQAAQAEAAEAAABkAAUAAQAEAAMAAABlAAQAAQAEAAEAAABlAAUAAQAEAAMAAABmAAQAAQAEAAEAAABmAAUAAQAEAAMAAABnAAQAAQAEAAEAAABnAAUAAQAEAAMAAABoAAQAAQAEAAEAAABoAAUAAQAEAAMAAABpAAQAAQAEAAEAAABpAAUAAQAEAAMAAABqAAQAAQAEAAEAAABqAAUAAQAEAAMAAABrAAQAAQAEAAEAAABrAAUAAQAEAAMAAABsAAQAAQAEAAEAAABsAAUAAQAEAAMAAABtAAQAAQAEAAEAAABtAAUAAQAEAAMAAABuAAQAAQAEAAEAAABuAAUAAQAEAAMAAABvAAQAAQAEAAEAAABvAAUAAQAEAAMAAABwAAQAAQAEAAEAAABwAAUAAQAEAAMAAABxAAQAAQAEAAEAAABxAAUAAQAEAAMAAAByAAQAAQAEAAEAAAByAAUAAQAEAAMAAABzAAQAAQAEAAEAAABzAAUAAQAEAAMAAAB0AAQAAQAEAAEAAAB0AAUAAQAEAAMAAAB1AAQAAQAEAAEAAAB1AAUAAQAEAAMAAAB2AAQAAQAEAAEAAAB2AAUAAQAEAAMAAAB3AAQAAQAEAAEAAAB3AAUAAQAEAAMAAAB4AAQAAQAEAAEAAAB4AAUAAQAEAAMAAAB5AAQAAQAEAAEAAAB5AAUAAQAEAAMAAAB6AAQAAQAEAAEAAAB6AAUAAQAEAAMAAAB7AAQAAQAEAAEAAAB7AAUAAQAEAAMAAAB8AAQAAQAEAAEAAAB8AAUAAQAEAAMAAAB9AAQAAQAEAAEAAAB9AAUAAQAEAAMAAAB+AAQAAQAEAAEAAAB+AAUAAQAEAAMAAAB/AAQAAQAEAAEAAAB/AAUAAQAEAAMAAACAAAQAAQAEAAEAAACAAAUAAQAEAAMAAACBAAQAAQAEAAEAAACBAAUAAQAEAAMAAACCAAQAAQAEAAEAAACCAAUAAQAEAAMAAACDAAQAAQAEAAEAAACDAAUAAQAEAAMAAACEAAQAAQAEAAEAAACEAAUAAQAEAAMAAACFAAQAAQAEAAEAAACFAAUAAQAEAAMAAACGAAQAAQAEAAEAAACGAAUAAQAEAAMAAACHAAQAAQAEAAEAAACHAAUAAQAEAAMAAACIAAQAAQAEAAEAAACIAAUAAQAEAAMAAACJAAQAAQAEAAEAAACJAAUAAQAEAAMAAACKAAQAAQAEAAEAAACKAAUAAQAEAAMAAACLAAQAAQAEAAEAAACLAAUAAQAEAAMAAACMAAQAAQAEAAEAAACMAAUAAQAEAAMAAACNAAQAAQAEAAEAAACNAAUAAQAEAAMAAACOAAQAAQAEAAEAAACOAAUAAQAEAAMAAACPAAQAAQAEAAEAAACPAAUAAQAEAAMAAACQAAQAAQAEAAEAAACQAAUAAQAEAAMAAACRAAQAAQAEAAEAAACRAAUAAQAEAAMAAACSAAQAAQAEAAEAAACSAAUAAQAEAAMAAACTAAQAAQAEAAEAAACTAAUAAQAEAAMAAACUAAQAAQAEAAEAAACUAAUAAQAEAAMAAACVAAQAAQAEAAEAAACVAAUAAQAEAAMAAACWAAQAAQAEAAEAAACWAAUAAQAEAAMAAACXAAQAAQAEAAEAAACXAAUAAQAEAAMAAACYAAQAAQAEAAEAAACYAAUAAQAEAAMAAACZAAQAAQAEAAEAAACZAAUAAQAEAAMAAACaAAQAAQAEAAEAAACaAAUAAQAEAAMAAACbAAQAAQAEAAEAAACbAAUAAQAEAAMAAACcAAQAAQAEAAEAAACcAAUAAQAEAAMAAACdAAQAAQAEAAEAAACdAAUAAQAEAAMAAACeAAQAAQAEAAEAAACeAAUAAQAEAAMAAACfAAQAAQAEAAEAAACfAAUAAQAEAAMAAACgAAQAAQAEAAEAAACgAAUAAQAEAAMAAAChAAQAAQAEAAEAAAChAAUAAQAEAAMAAACiAAQAAQAEAAEAAACiAAUAAQAEAAMAAACjAAQAAQAEAAEAAACjAAUAAQAEAAMAAACkAAQAAQAEAAEAAACkAAUAAQAEAAMAAAClAAQAAQAEAAEAAAClAAUAAQAEAAMAAACmAAQAAQAEAAEAAACmAAUAAQAEAAMAAACnAAQAAQAEAAEAAACnAAUAAQAEAAMAAACoAAQAAQAEAAEAAACoAAUAAQAEAAMAAACpAAQAAQAEAAEAAACpAAUAAQAEAAMAAACqAAQAAQAEAAEAAACqAAUAAQAEAAMAAACrAAQAAQAEAAEAAACrAAUAAQAEAAMAAACsAAQAAQAEAAEAAACsAAUAAQAEAAMAAACtAAQAAQAEAAEAAACtAAUAAQAEAAMAAACuAAQAAQAEAAEAAACuAAUAAQAEAAMAAACvAAQAAQAEAAEAAACvAAUAAQAEAAMAAACwAAQAAQAEAAEAAACwAAUAAQAEAAMAAACxAAQAAQAEAAEAAACxAAUAAQAEAAMAAACyAAQAAQAEAAEAAACyAAUAAQAEAAMAAACzAAQAAQAEAAEAAACzAAUAAQAEAAMAAAC0AAQAAQAEAAEAAAC0AAUAAQAEAAMAAAC1AAQAAQAEAAEAAAC1AAUAAQAEAAMAAAC2AAQAAQAEAAEAAAC2AAUAAQAEAAMAAAC3AAQAAQAEAAEAAAC3AAUAAQAEAAMAAAC4AAQAAQAEAAEAAAC4AAUAAQAEAAMAAAC5AAQAAQAEAAEAAAC5AAUAAQAEAAMAAAC6AAQAAQAEAAEAAAC6AAUAAQAEAAMAAAC7AAQAAQAEAAEAAAC7AAUAAQAEAAMAAAC8AAQAAQAEAAEAAAC8AAUAAQAEAAMAAAC9AAQAAQAEAAEAAAC9AAUAAQAEAAMAAAC+AAQAAQAEAAEAAAC+AAUAAQAEAAMAAAC/AAQAAQAEAAEAAAC/AAUAAQAEAAMAAADAAAQAAQAEAAEAAADAAAUAAQAEAAMAAADBAAQAAQAEAAEAAADBAAUAAQAEAAMAAADCAAQAAQAEAAEAAADCAAUAAQAEAAMAAADDAAQAAQAEAAEAAADDAAUAAQAEAAMAAADEAAQAAQAEAAEAAADEAAUAAQAEAAMAAADFAAQAAQAEAAEAAADFAAUAAQAEAAMAAADGAAQAAQAEAAEAAADGAAUAAQAEAAMAAADHAAQAAQAEAAEAAADHAAUAAQAEAAMAAADIAAQAAQAEAAEAAADIAAUAAQAEAAMAAADJAAQAAQAEAAEAAADJAAUAAQAEAAMAAADKAAQAAQAEAAEAAADKAAUAAQAEAAMAAADLAAQAAQAEAAEAAADLAAUAAQAEAAMAAADMAAQAAQAEAAEAAADMAAUAAQAEAAMAAADNAAQAAQAEAAEAAADNAAUAAQAEAAMAAADOAAQAAQAEAAEAAADOAAUAAQAEAAMAAADPAAQAAQAEAAEAAADPAAUAAQAEAAMAAADQAAQAAQAEAAEAAADQAAUAAQAEAAMAAADRAAQAAQAEAAEAAADRAAUAAQAEAAMAAADSAAQAAQAEAAEAAADSAAUAAQAEAAMAAADTAAQAAQAEAAEAAADTAAUAAQAEAAMAAADUAAQAAQAEAAEAAADUAAUAAQAEAAMAAADVAAQAAQAEAAEAAADVAAUAAQAEAAMAAADWAAQAAQAEAAEAAADWAAUAAQAEAAMAAADXAAQAAQAEAAEAAADXAAUAAQAEAAMAAADYAAQAAQAEAAEAAADYAAUAAQAEAAMAAADZAAQAAQAEAAEAAADZAAUAAQAEAAMAAADaAAQAAQAEAAEAAADaAAUAAQAEAAMAAADbAAQAAQAEAAEAAADbAAUAAQAEAAMAAAA=")
 tile_set = ExtResource("2_pw7wf")
@@ -57,6 +62,22 @@ texture_repeat = 2
 scale = Vector2(0.23, 0.23)
 texture = ExtResource("4_0q2ab")
 centered = false
+
+[node name="Smoke" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.12, 0.03)
+motion_mirroring = Vector2(400, 0)
+
+[node name="PlumeA" parent="ParallaxBackground/Smoke" instance=ExtResource("23_smoke")]
+position = Vector2(70, 204)
+
+[node name="PlumeB" parent="ParallaxBackground/Smoke" instance=ExtResource("23_smoke")]
+position = Vector2(215, 198)
+
+[node name="PlumeC" parent="ParallaxBackground/Smoke" instance=ExtResource("23_smoke")]
+position = Vector2(340, 206)
+
+[node name="Embers" parent="ParallaxBackground/Smoke" instance=ExtResource("24_embers")]
+position = Vector2(200, 214)
 
 [node name="GameMenu" parent="." unique_id=726246469 instance=ExtResource("5_menu")]
 visible = false
@@ -96,26 +117,31 @@ position = Vector2(1345, 207)
 [node name="RooftopRoute" type="Node2D" parent="." unique_id=442553227]
 
 [node name="FirstClimb" parent="RooftopRoute" unique_id=17362001 instance=ExtResource("12_platform")]
+self_modulate = Color(0.55, 0.3, 0.26, 1)
 position = Vector2(78, 114)
 platform_size = Vector2(40, 16)
 use_autumn_tiles = true
 
 [node name="HighStep" parent="RooftopRoute" unique_id=710582005 instance=ExtResource("12_platform")]
+self_modulate = Color(0.55, 0.3, 0.26, 1)
 position = Vector2(160, 96)
 platform_size = Vector2(36, 16)
 use_autumn_tiles = true
 
 [node name="RecoveryStep" parent="RooftopRoute" unique_id=610763336 instance=ExtResource("12_platform")]
+self_modulate = Color(0.55, 0.3, 0.26, 1)
 position = Vector2(212, 120)
 platform_size = Vector2(40, 16)
 use_autumn_tiles = true
 
 [node name="RoofApproach" parent="RooftopRoute" unique_id=431769424 instance=ExtResource("12_platform")]
+self_modulate = Color(0.55, 0.3, 0.26, 1)
 position = Vector2(264, 104)
 platform_size = Vector2(36, 16)
 use_autumn_tiles = true
 
 [node name="RightStep" parent="RooftopRoute" unique_id=795615744 instance=ExtResource("12_platform")]
+self_modulate = Color(0.55, 0.3, 0.26, 1)
 position = Vector2(408, 112)
 platform_size = Vector2(48, 16)
 use_autumn_tiles = true
@@ -136,31 +162,34 @@ position = Vector2(411, 69)
 
 [node name="GapVisualA" type="Polygon2D" parent="ExpandedRoute" unique_id=1144330804]
 z_index = -1
-color = Color(0.08, 0.3, 0.5, 1)
+color = Color(0.2, 0.1, 0.12, 1)
 polygon = PackedVector2Array(584, 170, 712, 170, 712, 208, 584, 208)
 
 [node name="GapVisualB" type="Polygon2D" parent="ExpandedRoute" unique_id=744885815]
 z_index = -1
-color = Color(0.08, 0.3, 0.5, 1)
+color = Color(0.2, 0.1, 0.12, 1)
 polygon = PackedVector2Array(920, 170, 1024, 170, 1024, 208, 920, 208)
 
 [node name="GapVisualC" type="Polygon2D" parent="ExpandedRoute" unique_id=621445632]
 z_index = -1
-color = Color(0.08, 0.3, 0.5, 1)
+color = Color(0.2, 0.1, 0.12, 1)
 polygon = PackedVector2Array(1264, 170, 1392, 170, 1392, 208, 1264, 208)
 
 [node name="PostHouseStep" parent="ExpandedRoute" unique_id=1227784106 instance=ExtResource("12_platform")]
+self_modulate = Color(0.55, 0.3, 0.26, 1)
 position = Vector2(520, 132)
 platform_size = Vector2(56, 16)
 use_autumn_tiles = true
 
 [node name="GapAPlatform" parent="ExpandedRoute" unique_id=255295464 instance=ExtResource("19_moving")]
+self_modulate = Color(0.55, 0.3, 0.26, 1)
 position = Vector2(612, 144)
 platform_size = Vector2(48, 16)
 movement = Vector2(0, -48)
 travel_time = 1.8
 
 [node name="GapALanding" parent="ExpandedRoute" unique_id=1456177677 instance=ExtResource("12_platform")]
+self_modulate = Color(0.55, 0.3, 0.26, 1)
 position = Vector2(704, 128)
 platform_size = Vector2(112, 16)
 use_autumn_tiles = true
@@ -169,39 +198,46 @@ use_autumn_tiles = true
 position = Vector2(1808, 131)
 
 [node name="CombatPlatform" parent="ExpandedRoute" unique_id=2081892678 instance=ExtResource("12_platform")]
+self_modulate = Color(0.55, 0.3, 0.26, 1)
 position = Vector2(824, 144)
 platform_size = Vector2(88, 16)
 use_autumn_tiles = true
 
 [node name="GapBPlatformLeft" parent="ExpandedRoute" unique_id=1076109062 instance=ExtResource("19_moving")]
+self_modulate = Color(0.55, 0.3, 0.26, 1)
 position = Vector2(928, 142)
 platform_size = Vector2(40, 16)
 movement = Vector2(36, -34)
 travel_time = 2.1
 
 [node name="GapBPlatformRight" parent="ExpandedRoute" unique_id=1346286323 instance=ExtResource("19_moving")]
+self_modulate = Color(0.55, 0.3, 0.26, 1)
 position = Vector2(992, 105)
 platform_size = Vector2(40, 16)
 movement = Vector2(0, 48)
 travel_time = 1.6
 
 [node name="HighRoute" parent="ExpandedRoute" unique_id=1031510886 instance=ExtResource("12_platform")]
+self_modulate = Color(0.55, 0.3, 0.26, 1)
 position = Vector2(1060, 116)
 platform_size = Vector2(72, 16)
 use_autumn_tiles = true
 
 [node name="EnemyArena" parent="ExpandedRoute" unique_id=726803385 instance=ExtResource("12_platform")]
+self_modulate = Color(0.55, 0.3, 0.26, 1)
 position = Vector2(1148, 152)
 platform_size = Vector2(112, 16)
 use_autumn_tiles = true
 
 [node name="GapCPlatform" parent="ExpandedRoute" unique_id=996179926 instance=ExtResource("19_moving")]
+self_modulate = Color(0.55, 0.3, 0.26, 1)
 position = Vector2(1292, 140)
 platform_size = Vector2(48, 16)
 movement = Vector2(40, -26)
 travel_time = 2.3
 
 [node name="FinalApproach" parent="ExpandedRoute" unique_id=1767406395 instance=ExtResource("12_platform")]
+self_modulate = Color(0.55, 0.3, 0.26, 1)
 position = Vector2(1400, 128)
 platform_size = Vector2(104, 16)
 use_autumn_tiles = true
@@ -259,45 +295,51 @@ patrol_distance = 54.0
 [node name="LongRoute" type="Node2D" parent="." unique_id=1875064842]
 
 [node name="BridgeToMid" parent="LongRoute" unique_id=1786711593 instance=ExtResource("12_platform")]
+self_modulate = Color(0.55, 0.3, 0.26, 1)
 position = Vector2(1512, 148)
 platform_size = Vector2(88, 16)
 use_autumn_tiles = true
 
 [node name="GapDVisual" type="Polygon2D" parent="LongRoute" unique_id=21017579]
 z_index = -1
-color = Color(0.065, 0.27, 0.47, 1)
+color = Color(0.2, 0.1, 0.12, 1)
 polygon = PackedVector2Array(1600, 170, 1760, 170, 1760, 208, 1600, 208)
 
 [node name="GapDMovingLeft" parent="LongRoute" unique_id=694221448 instance=ExtResource("19_moving")]
+self_modulate = Color(0.55, 0.3, 0.26, 1)
 position = Vector2(1616, 142)
 platform_size = Vector2(48, 16)
 movement = Vector2(28, -42)
 travel_time = 2.2
 
 [node name="GapDMovingRight" parent="LongRoute" unique_id=840553099 instance=ExtResource("19_moving")]
+self_modulate = Color(0.55, 0.3, 0.26, 1)
 position = Vector2(1696, 104)
 platform_size = Vector2(48, 16)
 movement = Vector2(0, 52)
 travel_time = 1.9
 
 [node name="CheckpointIsland" parent="LongRoute" unique_id=1466614344 instance=ExtResource("12_platform")]
+self_modulate = Color(0.55, 0.3, 0.26, 1)
 position = Vector2(1760, 144)
 platform_size = Vector2(112, 16)
 use_autumn_tiles = true
 
 [node name="MidHighStep" parent="LongRoute" unique_id=32790979 instance=ExtResource("12_platform")]
+self_modulate = Color(0.55, 0.3, 0.26, 1)
 position = Vector2(1904, 112)
 platform_size = Vector2(72, 16)
 use_autumn_tiles = true
 
 [node name="MidDrop" parent="LongRoute" unique_id=133663693 instance=ExtResource("12_platform")]
+self_modulate = Color(0.55, 0.3, 0.26, 1)
 position = Vector2(1992, 148)
 platform_size = Vector2(64, 16)
 use_autumn_tiles = true
 
 [node name="GapEVisual" type="Polygon2D" parent="LongRoute" unique_id=1319287814]
 z_index = -1
-color = Color(0.065, 0.27, 0.47, 1)
+color = Color(0.2, 0.1, 0.12, 1)
 polygon = PackedVector2Array(2064, 170, 2256, 170, 2256, 208, 2064, 208)
 
 [node name="GapEVineLeft" parent="LongRoute" unique_id=1334244841 instance=ExtResource("14_vine")]
@@ -307,38 +349,44 @@ position = Vector2(2104, 78)
 position = Vector2(2216, 78)
 
 [node name="GapEMoving" parent="LongRoute" unique_id=1767033212 instance=ExtResource("19_moving")]
+self_modulate = Color(0.55, 0.3, 0.26, 1)
 position = Vector2(2140, 136)
 platform_size = Vector2(48, 16)
 movement = Vector2(40, -30)
 travel_time = 2.5
 
 [node name="UpperRunA" parent="LongRoute" unique_id=1473578909 instance=ExtResource("12_platform")]
+self_modulate = Color(0.55, 0.3, 0.26, 1)
 position = Vector2(2272, 128)
 platform_size = Vector2(96, 16)
 use_autumn_tiles = true
 
 [node name="UpperRunB" parent="LongRoute" unique_id=847139370 instance=ExtResource("12_platform")]
+self_modulate = Color(0.55, 0.3, 0.26, 1)
 position = Vector2(2400, 96)
 platform_size = Vector2(88, 16)
 use_autumn_tiles = true
 
 [node name="UpperRunC" parent="LongRoute" unique_id=350548838 instance=ExtResource("12_platform")]
+self_modulate = Color(0.55, 0.3, 0.26, 1)
 position = Vector2(2520, 132)
 platform_size = Vector2(96, 16)
 use_autumn_tiles = true
 
 [node name="GapFVisual" type="Polygon2D" parent="LongRoute" unique_id=616271201]
 z_index = -1
-color = Color(0.065, 0.27, 0.47, 1)
+color = Color(0.2, 0.1, 0.12, 1)
 polygon = PackedVector2Array(2640, 170, 2832, 170, 2832, 208, 2640, 208)
 
 [node name="GapFMovingA" parent="LongRoute" unique_id=282048824 instance=ExtResource("19_moving")]
+self_modulate = Color(0.55, 0.3, 0.26, 1)
 position = Vector2(2656, 140)
 platform_size = Vector2(48, 16)
 movement = Vector2(0, -50)
 travel_time = 1.7
 
 [node name="GapFMovingB" parent="LongRoute" unique_id=1125003545 instance=ExtResource("19_moving")]
+self_modulate = Color(0.55, 0.3, 0.26, 1)
 position = Vector2(2744, 100)
 platform_size = Vector2(48, 16)
 movement = Vector2(32, 42)
@@ -348,16 +396,19 @@ travel_time = 2.1
 position = Vector2(2800, 78)
 
 [node name="FinalArena" parent="LongRoute" unique_id=875616743 instance=ExtResource("12_platform")]
+self_modulate = Color(0.55, 0.3, 0.26, 1)
 position = Vector2(2848, 152)
 platform_size = Vector2(416, 16)
 use_autumn_tiles = true
 
 [node name="FinalTower" parent="LongRoute" unique_id=1588176265 instance=ExtResource("12_platform")]
+self_modulate = Color(0.55, 0.3, 0.26, 1)
 position = Vector2(3016, 108)
 platform_size = Vector2(80, 16)
 use_autumn_tiles = true
 
 [node name="FlagApproach" parent="LongRoute" unique_id=27054812 instance=ExtResource("12_platform")]
+self_modulate = Color(0.55, 0.3, 0.26, 1)
 position = Vector2(3296, 128)
 platform_size = Vector2(112, 16)
 use_autumn_tiles = true
@@ -443,4 +494,4 @@ bounds = Rect2(0, 0, 3520, 208)
 
 [node name="PhaseTransition" parent="." unique_id=1806634267 instance=ExtResource("9_transition")]
 visible = false
-fade_color = Color(0.075, 0.09, 0.035, 1)
+fade_color = Color(0.12, 0.03, 0.02, 1)

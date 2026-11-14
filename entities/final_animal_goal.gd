@@ -23,6 +23,6 @@ func _on_body_entered(body: Node2D) -> void:
 		return
 
 	completed = true
-	monitoring = false
+	set_deferred(&"monitoring", false)
 	body.set_physics_process(false)
 	get_tree().call_group(&"game_complete_menu", &"show_victory")

@@ -9,5 +9,5 @@ func _on_body_entered(body: Node2D) -> void:
 		return
 
 	was_reached = true
-	monitoring = false
+	set_deferred(&"monitoring", false)
 	get_tree().call_group(&"level_complete_menu", &"show_level_complete", next_scene)

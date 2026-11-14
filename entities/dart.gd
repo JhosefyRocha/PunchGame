@@ -1,20 +1,19 @@
 extends Area2D
 
-@export var speed := 120.0
 @export var damage := 1
 @export var lifetime := 2.5
 
 @onready var art: Node2D = $Art
 
-var direction := -1.0
+var velocity := Vector2(-120.0, 0.0)
 
 
 func _ready() -> void:
-	art.scale.x = direction
+	art.rotation = velocity.angle()
 
 
 func _physics_process(delta: float) -> void:
-	position.x += direction * speed * delta
+	position += velocity * delta
 	lifetime -= delta
 	if lifetime <= 0.0:
 		queue_free()

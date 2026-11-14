@@ -15,13 +15,15 @@
 [ext_resource type="PackedScene" path="res://entities/checkpoint.tscn" id="13_checkpoint"]
 [ext_resource type="PackedScene" path="res://entities/rescue_cage.tscn" id="14_cage"]
 [ext_resource type="PackedScene" path="res://entities/vine.tscn" id="15_vine"]
-[ext_resource type="PackedScene" path="res://entities/final_animal_goal.tscn" id="16_goal"]
-[ext_resource type="PackedScene" path="res://entities/game_menu.tscn" id="17_menu"]
-[ext_resource type="Script" uid="uid://4bkm6q1n4uaj" path="res://entities/level_music.gd" id="18_music_script"]
-[ext_resource type="PackedScene" path="res://entities/gameplay_hud.tscn" id="19_hud"]
-[ext_resource type="PackedScene" path="res://entities/game_complete_menu.tscn" id="20_game_complete"]
-[ext_resource type="PackedScene" path="res://entities/level_bounds.tscn" id="21_bounds"]
-[ext_resource type="PackedScene" path="res://entities/phase_transition.tscn" id="22_transition"]
+[ext_resource type="PackedScene" path="res://entities/hunter_truck.tscn" id="16_truck"]
+[ext_resource type="PackedScene" path="res://entities/boss_hunter.tscn" id="17_boss_hunter"]
+[ext_resource type="PackedScene" path="res://entities/final_animal_goal.tscn" id="18_goal"]
+[ext_resource type="PackedScene" path="res://entities/game_menu.tscn" id="19_menu"]
+[ext_resource type="Script" uid="uid://4bkm6q1n4uaj" path="res://entities/level_music.gd" id="20_music_script"]
+[ext_resource type="PackedScene" path="res://entities/gameplay_hud.tscn" id="21_hud"]
+[ext_resource type="PackedScene" path="res://entities/game_complete_menu.tscn" id="22_game_complete"]
+[ext_resource type="PackedScene" path="res://entities/level_bounds.tscn" id="23_bounds"]
+[ext_resource type="PackedScene" path="res://entities/phase_transition.tscn" id="24_transition"]
 
 [node name="Phase5" type="Node2D"]
 
@@ -106,6 +108,19 @@ texture = ExtResource("3_decor")
 region_enabled = true
 region_rect = Rect2(16, 16, 48, 48)
 
+[node name="BushC" type="Sprite2D" parent="Decorations"]
+position = Vector2(2470, 170)
+texture = ExtResource("3_decor")
+region_enabled = true
+region_rect = Rect2(16, 80, 16, 16)
+
+[node name="TreeF" type="Sprite2D" parent="Decorations"]
+position = Vector2(2620, 150)
+scale = Vector2(1.35, 1.35)
+texture = ExtResource("3_decor")
+region_enabled = true
+region_rect = Rect2(144, 16, 48, 48)
+
 [node name="Player" parent="." instance=ExtResource("5_player")]
 position = Vector2(40, 150)
 
@@ -133,7 +148,7 @@ tile_texture = ExtResource("2_terrain")
 
 [node name="GroundFinal" parent="Terrain" instance=ExtResource("6_platform")]
 position = Vector2(1856, 176)
-platform_size = Vector2(384, 32)
+platform_size = Vector2(784, 32)
 tile_texture = ExtResource("2_terrain")
 
 [node name="StepLow" parent="Terrain" instance=ExtResource("6_platform")]
@@ -301,6 +316,9 @@ position = Vector2(1132, 120)
 [node name="Fruit2" parent="Pickups" instance=ExtResource("12_fruit")]
 position = Vector2(1912, 168)
 
+[node name="Fruit3" parent="Pickups" instance=ExtResource("12_fruit")]
+position = Vector2(2230, 168)
+
 [node name="Checkpoint1" parent="Pickups" instance=ExtResource("13_checkpoint")]
 position = Vector2(616, 165)
 
@@ -309,6 +327,9 @@ position = Vector2(1432, 165)
 
 [node name="Checkpoint3" parent="Pickups" instance=ExtResource("13_checkpoint")]
 position = Vector2(1880, 165)
+
+[node name="Checkpoint4" parent="Pickups" instance=ExtResource("13_checkpoint")]
+position = Vector2(2200, 165)
 
 [node name="RescueCages" type="Node2D" parent="."]
 
@@ -341,25 +362,34 @@ position = Vector2(1704, 84)
 [node name="Vine4" parent="Vines" instance=ExtResource("15_vine")]
 position = Vector2(1816, 84)
 
-[node name="FinalAnimalGoal" parent="." instance=ExtResource("16_goal")]
-position = Vector2(2190, 151)
-scale = Vector2(0.88, 0.88)
+[node name="HunterTruck" parent="." instance=ExtResource("16_truck")]
+position = Vector2(2330, 176)
+boss_path = NodePath("../Guardian")
 
-[node name="GameMenu" parent="." instance=ExtResource("17_menu")]
+[node name="Guardian" parent="." instance=ExtResource("17_boss_hunter")]
+position = Vector2(2360, 132)
+patrol_distance = 12
+
+[node name="FinalAnimalGoal" parent="." instance=ExtResource("18_goal")]
+position = Vector2(2570, 151)
+scale = Vector2(0.88, 0.88)
+guardian_path = NodePath("../Guardian")
+
+[node name="GameMenu" parent="." instance=ExtResource("19_menu")]
 visible = false
 
 [node name="LevelMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_music")
 volume_db = -9.0
-script = ExtResource("18_music_script")
+script = ExtResource("20_music_script")
 
-[node name="GameplayHUD" parent="." instance=ExtResource("19_hud")]
+[node name="GameplayHUD" parent="." instance=ExtResource("21_hud")]
 tutorial_text = "LIBERTE TODOS OS ANIMAIS!"
 
-[node name="GameCompleteMenu" parent="." instance=ExtResource("20_game_complete")]
+[node name="GameCompleteMenu" parent="." instance=ExtResource("22_game_complete")]
 
-[node name="LevelBounds" parent="." instance=ExtResource("21_bounds")]
-bounds = Rect2(0, 0, 2240, 208)
+[node name="LevelBounds" parent="." instance=ExtResource("23_bounds")]
+bounds = Rect2(0, 0, 2640, 208)
 
-[node name="PhaseTransition" parent="." instance=ExtResource("22_transition")]
+[node name="PhaseTransition" parent="." instance=ExtResource("24_transition")]
 fade_color = Color(0.015, 0.12, 0.105, 1)

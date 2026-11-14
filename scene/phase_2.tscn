@@ -21,6 +21,7 @@
 [ext_resource type="PackedScene" path="res://entities/level_bounds.tscn" id="20_bounds"]
 [ext_resource type="PackedScene" path="res://entities/smoke_plume.tscn" id="21_smoke"]
 [ext_resource type="PackedScene" path="res://entities/henchman.tscn" id="22_henchman"]
+[ext_resource type="PackedScene" path="res://entities/guardian_lumberjack.tscn" id="23_guardian"]
 
 [node name="Phase2" type="Node2D" unique_id=1082971088]
 
@@ -220,9 +221,14 @@ texture = ExtResource("8_decor")
 region_enabled = true
 region_rect = Rect2(16, 16, 48, 48)
 
+[node name="Guardian" parent="." instance=ExtResource("23_guardian")]
+position = Vector2(1170, 158)
+patrol_distance = 30.0
+
 [node name="FinishFlag" parent="." unique_id=1894291092 instance=ExtResource("12_flag")]
 position = Vector2(1240, 166)
 next_scene = "res://scene/phase_3.tscn"
+guardian_path = NodePath("../Guardian")
 
 [node name="GameMenu" parent="." unique_id=44998665 instance=ExtResource("2_menu")]
 visible = false

@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="PackedScene" path="res://entities/hunter.tscn" id="1_base"]
+[ext_resource type="Script" path="res://entities/boss_health_bar.gd" id="2_bar"]
+
+[node name="CacadorChefe" instance=ExtResource("1_base")]
+scale = Vector2(1.5, 1.5)
+max_health = 6
+score_reward = 300
+knockback_force = 50.0
+attack_cooldown = 1.2
+dart_speed = 130.0
+muzzle_offset = Vector2(18, 3)
+aim_at_player = true
+
+[node name="HealthBar" type="Node2D" parent="."]
+position = Vector2(0, -16)
+script = ExtResource("2_bar")

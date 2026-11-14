@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="PackedScene" path="res://entities/lumberjack.tscn" id="1_base"]
+[ext_resource type="Script" path="res://entities/boss_health_bar.gd" id="2_bar"]
+
+[node name="LenhadorChefe" instance=ExtResource("1_base")]
+scale = Vector2(1.5, 1.5)
+chase_speed = 46.0
+max_health = 6
+score_reward = 300
+knockback_force = 50.0
+attack_cooldown = 0.7
+
+[node name="HealthBar" type="Node2D" parent="."]
+position = Vector2(0, -16)
+script = ExtResource("2_bar")

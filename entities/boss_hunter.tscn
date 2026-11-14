@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="PackedScene" path="res://entities/hunter.tscn" id="1_base"]
+[ext_resource type="Script" path="res://entities/boss_health_bar.gd" id="2_bar"]
+
+[sub_resource type="RectangleShape2D" id="DetectionShape_boss"]
+size = Vector2(220, 100)
+
+[node name="CacadorChefao" instance=ExtResource("1_base")]
+scale = Vector2(1.6, 1.6)
+max_health = 10
+score_reward = 500
+knockback_force = 25.0
+attack_range = 170.0
+attack_windup = 0.3
+attack_cooldown = 0.9
+dart_speed = 135.0
+muzzle_offset = Vector2(19, 3)
+aim_at_player = true
+
+[node name="CollisionShape2D" parent="DetectionArea"]
+shape = SubResource("DetectionShape_boss")
+
+[node name="HealthBar" type="Node2D" parent="."]
+position = Vector2(0, -16)
+script = ExtResource("2_bar")

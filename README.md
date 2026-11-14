@@ -19,7 +19,7 @@ Plataforma • Conscientização ambiental • Pixel Art 2D • Aproximadamente 
 
 ## Sobre o jogo
 
-**Punch** é um jogo de plataforma 2D desenvolvido na Godot Engine 4. O jogador controla um pequeno macaco que atravessa uma floresta ameaçada pelo desmatamento e pelo tráfico ilegal de animais, enfrentando lenhadores, superando obstáculos naturais e libertando animais mantidos em cativeiro.
+**Punch** é um jogo de plataforma 2D desenvolvido na Godot Engine 4. O jogador controla um pequeno macaco que atravessa uma floresta ameaçada pelo desmatamento e pelo tráfico ilegal de animais, enfrentando lenhadores, capangas e caçadores, superando obstáculos naturais e libertando animais mantidos em cativeiro.
 
 A experiência combina plataforma, combate simples, exploração e resgates em ciclos curtos de aproximadamente dois minutos por fase. Cada ação positiva também provoca uma recompensa visual: conforme os animais são libertados, a floresta recupera cores mais vivas e tons de verde.
 
@@ -74,7 +74,7 @@ No fim da jornada, a verdadeira motivação de Punch é revelada: ele estava ten
 | Subir no cipó | `W` ou `↑` | Move Punch para cima enquanto está no cipó. |
 | Descer no cipó | `S` ou `↓` | Move Punch para baixo enquanto está no cipó. |
 | Soltar o cipó | `Espaço` | Desprende Punch do cipó e inicia um salto. |
-| Atacar | `E` | Executa um soco direcional contra os lenhadores. |
+| Atacar | `E` | Executa um soco direcional contra os inimigos. |
 | Interagir / resgatar | `J` | Abre gaiolas próximas e liberta os animais. |
 | Abrir ou fechar o menu | `Esc` | Pausa a partida ou retorna ao jogo. |
 
@@ -98,15 +98,29 @@ Os dois caminhos levam à **seleção de fases**. Só é possível entrar nas fa
 O ataque exclusivo de Punch é um soco direcional ativado pela tecla `E`. O golpe:
 
 - Atinge inimigos na direção para a qual Punch está olhando.
-- Causa dano aos lenhadores.
+- Causa dano aos lenhadores, capangas e caçadores.
 - Aplica knockback para afastar o inimigo.
 - Impede múltiplos acertos no mesmo inimigo durante uma única animação.
+
+### Inimigos
+
+| Inimigo | Fases | Comportamento |
+|---|---|---|
+| Lenhador | 1 a 4 | Patrulha, persegue Punch e ataca com o machado. Aguenta 3 socos. |
+| Capanga | 1 a 5 | Mais rápido que o lenhador, ataca com um porrete. Aguenta 2 socos. |
+| Caçador | 3 a 5 | Mantém distância e atira dardos tranquilizantes, que podem ser pulados. Aguenta 3 socos. |
+| Retroescavadeira | 1 | Chefe da fase 1, em duas etapas. A máquina avança, levanta a pá e bate no chão; depois da pancada a pá fica presa e a máquina fica vulnerável. Aguenta 8 socos. Quando quebra, o operador (um lenhador chefe) pula para fora e luta; ao derrotá-lo, a bandeira é liberada. |
+| Guardião | 2 a 4 | Versão maior de um inimigo, com barra de vida, que protege a bandeira: lenhador na fase 2, capanga na fase 3 e caçador com dardos mirados na fase 4. A bandeira só funciona depois que ele cai. Aguenta 6 socos. |
+| Caçador da caminhonete | 5 | Chefe final, em cima da caminhonete ligada e cheia de gaiolas. Atira dardos mirados no jogador. Aguenta 10 socos; ao vencer, as gaiolas abrem e o grupo de animais libertados fica disponível. |
 
 ### Pontuação e coletáveis
 
 | Evento | Recompensa | Efeito adicional |
 |---|---:|---|
-| Derrotar um lenhador | `+100` pontos | Remove uma ameaça da fase. |
+| Derrotar um lenhador, capanga ou caçador | `+100` pontos | Remove uma ameaça da fase. |
+| Derrotar um guardião | `+300` pontos | Libera a bandeira da fase. |
+| Quebrar a retroescavadeira | `+300` pontos | Faz o operador sair da máquina. |
+| Derrotar o caçador da caminhonete | `+500` pontos | Abre as gaiolas e libera o final do jogo. |
 | Resgatar um animal | `+250` pontos | Contribui para a recuperação visual da floresta. |
 | Coletar uma fruta | `+25` pontos | Recupera um coração, respeitando o máximo de três. |
 
@@ -157,7 +171,7 @@ A interface observa os sinais desses sistemas e atualiza automaticamente os indi
 
 ### Composição de cenas
 
-Jogador, lenhadores, gaiolas, frutas, espinhos, cipós, plataformas, checkpoints e bandeiras são mantidos como cenas reutilizáveis. Cada instância pode ser posicionada e configurada pelo Inspector da Godot, facilitando a ampliação das fases sem duplicar as mecânicas centrais.
+Jogador, inimigos, gaiolas, frutas, espinhos, cipós, plataformas, checkpoints e bandeiras são mantidos como cenas reutilizáveis. Cada instância pode ser posicionada e configurada pelo Inspector da Godot, facilitando a ampliação das fases sem duplicar as mecânicas centrais.
 
 ---
 

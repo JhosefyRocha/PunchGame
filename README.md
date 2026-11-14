@@ -193,6 +193,9 @@ Jogador, lenhadores, gaiolas, frutas, espinhos, cipós, plataformas, checkpoints
 
 - Abra `scene/phase_1.tscn` e pressione `F6` para testar a Fase 1.
 - Abra `scene/phase_2.tscn` e pressione `F6` para testar a Fase 2.
+- Abra `scene/phase_3.tscn` e pressione `F6` para testar a Fase 3.
+- Abra `scene/phase_4.tscn` e pressione `F6` para testar a Fase 4.
+- Abra `scene/phase_5.tscn` e pressione `F6` para testar a Fase 5.
 
 ### Exportar para Web / HTML5
 

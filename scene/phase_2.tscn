@@ -11,8 +11,8 @@
 [ext_resource type="PackedScene" path="res://entities/phase_transition.tscn" id="9_transition"]
 [ext_resource type="PackedScene" path="res://entities/rescue_cage.tscn" id="10_cage"]
 [ext_resource type="PackedScene" path="res://entities/gameplay_hud.tscn" id="11_hud"]
-[ext_resource type="PackedScene" path="res://entities/final_animal_goal.tscn" id="12_goal"]
-[ext_resource type="PackedScene" path="res://entities/game_complete_menu.tscn" id="13_complete"]
+[ext_resource type="PackedScene" path="res://entities/finish_flag.tscn" id="12_flag"]
+[ext_resource type="PackedScene" path="res://entities/level_complete_menu.tscn" id="13_complete"]
 [ext_resource type="PackedScene" path="res://entities/lumberjack.tscn" id="15_logger"]
 [ext_resource type="PackedScene" path="res://entities/fruit.tscn" id="16_fruit"]
 [ext_resource type="PackedScene" path="res://entities/checkpoint.tscn" id="17_checkpoint"]
@@ -191,9 +191,9 @@ texture = ExtResource("8_decor")
 region_enabled = true
 region_rect = Rect2(16, 16, 48, 48)
 
-[node name="FinalAnimalGoal" parent="." unique_id=1894291092 instance=ExtResource("12_goal")]
-position = Vector2(1211, 151)
-scale = Vector2(0.88, 0.88)
+[node name="FinishFlag" parent="." unique_id=1894291092 instance=ExtResource("12_flag")]
+position = Vector2(1240, 166)
+next_scene = "res://scene/phase_3.tscn"
 
 [node name="GameMenu" parent="." unique_id=44998665 instance=ExtResource("2_menu")]
 visible = false
@@ -206,7 +206,8 @@ script = ExtResource("19_music_script")
 [node name="GameplayHUD" parent="." unique_id=675142284 instance=ExtResource("11_hud")]
 tutorial_text = "CIPÓ W/S OU ↑/↓  •  ESPAÇO SOLTA"
 
-[node name="GameCompleteMenu" parent="." unique_id=1770381865 instance=ExtResource("13_complete")]
+[node name="LevelCompleteMenu" parent="." unique_id=1770381865 instance=ExtResource("13_complete")]
+visible = false
 
 [node name="LevelBounds" parent="." unique_id=550044478 instance=ExtResource("20_bounds")]
 

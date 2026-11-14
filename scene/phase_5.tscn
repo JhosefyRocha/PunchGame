@@ -1,0 +1,362 @@
+[gd_scene format=3]
+
+[ext_resource type="Texture2D" uid="uid://do0j63642kwk8" path="res://sprites/Seasonal Tilesets/Seasonal Tilesets/4 - Winter World/Background parts/_Complete_static_BG_(288 x 208).png" id="1_bg"]
+[ext_resource type="Texture2D" uid="uid://csqesspnr2ybb" path="res://sprites/Seasonal Tilesets/Seasonal Tilesets/4 - Winter World/Terrain (16 x 16).png" id="2_terrain"]
+[ext_resource type="Texture2D" uid="uid://qw1573rxdd8c" path="res://sprites/Seasonal Tilesets/Seasonal Tilesets/4 - Winter World/Winter_entities (16 x 16).png" id="3_decor"]
+[ext_resource type="AudioStream" uid="uid://bphase01ogg" path="res://sounds/phase_01.ogg" id="4_music"]
+[ext_resource type="PackedScene" uid="uid://dn6xlrm3ydrhe" path="res://entities/player.tscn" id="5_player"]
+[ext_resource type="PackedScene" path="res://entities/tile_platform.tscn" id="6_platform"]
+[ext_resource type="PackedScene" path="res://entities/moving_platform.tscn" id="7_moving"]
+[ext_resource type="PackedScene" path="res://entities/spike.tscn" id="8_spike"]
+[ext_resource type="PackedScene" path="res://entities/lumberjack.tscn" id="9_logger"]
+[ext_resource type="PackedScene" path="res://entities/water_hazard.tscn" id="10_water"]
+[ext_resource type="PackedScene" path="res://entities/fruit.tscn" id="11_fruit"]
+[ext_resource type="PackedScene" path="res://entities/checkpoint.tscn" id="12_checkpoint"]
+[ext_resource type="PackedScene" path="res://entities/rescue_cage.tscn" id="13_cage"]
+[ext_resource type="PackedScene" path="res://entities/vine.tscn" id="14_vine"]
+[ext_resource type="PackedScene" path="res://entities/final_animal_goal.tscn" id="15_goal"]
+[ext_resource type="PackedScene" path="res://entities/game_menu.tscn" id="16_menu"]
+[ext_resource type="Script" uid="uid://4bkm6q1n4uaj" path="res://entities/level_music.gd" id="17_music_script"]
+[ext_resource type="PackedScene" path="res://entities/gameplay_hud.tscn" id="18_hud"]
+[ext_resource type="PackedScene" path="res://entities/game_complete_menu.tscn" id="19_game_complete"]
+[ext_resource type="PackedScene" path="res://entities/level_bounds.tscn" id="20_bounds"]
+[ext_resource type="PackedScene" path="res://entities/phase_transition.tscn" id="21_transition"]
+
+[node name="Phase5" type="Node2D"]
+
+[node name="Background" type="ParallaxBackground" parent="."]
+scroll_ignore_camera_zoom = true
+
+[node name="Sky" type="ParallaxLayer" parent="Background"]
+motion_scale = Vector2(0.1, 0)
+motion_mirroring = Vector2(288, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Sky"]
+texture = ExtResource("1_bg")
+centered = false
+
+[node name="WaterVisuals" type="Node2D" parent="."]
+z_index = -1
+
+[node name="PoolA" type="Polygon2D" parent="WaterVisuals"]
+color = Color(0.3, 0.58, 0.82, 1)
+polygon = PackedVector2Array(224, 182, 384, 182, 384, 208, 224, 208)
+
+[node name="PoolB" type="Polygon2D" parent="WaterVisuals"]
+color = Color(0.3, 0.58, 0.82, 1)
+polygon = PackedVector2Array(640, 182, 896, 182, 896, 208, 640, 208)
+
+[node name="PoolC" type="Polygon2D" parent="WaterVisuals"]
+color = Color(0.3, 0.58, 0.82, 1)
+polygon = PackedVector2Array(1152, 182, 1408, 182, 1408, 208, 1152, 208)
+
+[node name="PoolD" type="Polygon2D" parent="WaterVisuals"]
+color = Color(0.3, 0.58, 0.82, 1)
+polygon = PackedVector2Array(1664, 182, 1856, 182, 1856, 208, 1664, 208)
+
+[node name="Decorations" type="Node2D" parent="."]
+
+[node name="TreeA" type="Sprite2D" parent="Decorations"]
+position = Vector2(24, 150)
+scale = Vector2(1.35, 1.35)
+texture = ExtResource("3_decor")
+region_enabled = true
+region_rect = Rect2(16, 16, 48, 48)
+
+[node name="BushA" type="Sprite2D" parent="Decorations"]
+position = Vector2(200, 170)
+texture = ExtResource("3_decor")
+region_enabled = true
+region_rect = Rect2(16, 80, 16, 16)
+
+[node name="TreeB" type="Sprite2D" parent="Decorations"]
+position = Vector2(400, 150)
+scale = Vector2(1.35, 1.35)
+texture = ExtResource("3_decor")
+region_enabled = true
+region_rect = Rect2(80, 16, 48, 48)
+
+[node name="TreeC" type="Sprite2D" parent="Decorations"]
+position = Vector2(922, 102)
+scale = Vector2(1.35, 1.35)
+texture = ExtResource("3_decor")
+region_enabled = true
+region_rect = Rect2(16, 16, 48, 48)
+
+[node name="TreeD" type="Sprite2D" parent="Decorations"]
+position = Vector2(1460, 150)
+scale = Vector2(1.35, 1.35)
+texture = ExtResource("3_decor")
+region_enabled = true
+region_rect = Rect2(80, 16, 48, 48)
+
+[node name="BushB" type="Sprite2D" parent="Decorations"]
+position = Vector2(1880, 170)
+texture = ExtResource("3_decor")
+region_enabled = true
+region_rect = Rect2(16, 80, 16, 16)
+
+[node name="TreeE" type="Sprite2D" parent="Decorations"]
+position = Vector2(2040, 150)
+scale = Vector2(1.35, 1.35)
+texture = ExtResource("3_decor")
+region_enabled = true
+region_rect = Rect2(16, 16, 48, 48)
+
+[node name="Player" parent="." instance=ExtResource("5_player")]
+position = Vector2(40, 150)
+
+[node name="Terrain" type="Node2D" parent="."]
+
+[node name="GroundStart" parent="Terrain" instance=ExtResource("6_platform")]
+position = Vector2(0, 176)
+platform_size = Vector2(224, 32)
+tile_texture = ExtResource("2_terrain")
+
+[node name="GroundSlope" parent="Terrain" instance=ExtResource("6_platform")]
+position = Vector2(384, 176)
+platform_size = Vector2(256, 32)
+tile_texture = ExtResource("2_terrain")
+
+[node name="Cliff" parent="Terrain" instance=ExtResource("6_platform")]
+position = Vector2(896, 128)
+platform_size = Vector2(256, 80)
+tile_texture = ExtResource("2_terrain")
+
+[node name="GroundSpikes" parent="Terrain" instance=ExtResource("6_platform")]
+position = Vector2(1408, 176)
+platform_size = Vector2(256, 32)
+tile_texture = ExtResource("2_terrain")
+
+[node name="GroundFinal" parent="Terrain" instance=ExtResource("6_platform")]
+position = Vector2(1856, 176)
+platform_size = Vector2(384, 32)
+tile_texture = ExtResource("2_terrain")
+
+[node name="StepLow" parent="Terrain" instance=ExtResource("6_platform")]
+position = Vector2(104, 144)
+platform_size = Vector2(40, 16)
+tile_texture = ExtResource("2_terrain")
+
+[node name="StepHigh" parent="Terrain" instance=ExtResource("6_platform")]
+position = Vector2(160, 112)
+platform_size = Vector2(40, 16)
+tile_texture = ExtResource("2_terrain")
+
+[node name="IceA" parent="Terrain" instance=ExtResource("6_platform")]
+position = Vector2(256, 148)
+platform_size = Vector2(40, 16)
+tile_texture = ExtResource("2_terrain")
+
+[node name="IceB" parent="Terrain" instance=ExtResource("6_platform")]
+position = Vector2(320, 120)
+platform_size = Vector2(32, 16)
+tile_texture = ExtResource("2_terrain")
+
+[node name="CliffTop" parent="Terrain" instance=ExtResource("6_platform")]
+position = Vector2(1072, 88)
+platform_size = Vector2(40, 16)
+tile_texture = ExtResource("2_terrain")
+
+[node name="IceC" parent="Terrain" instance=ExtResource("6_platform")]
+position = Vector2(1248, 112)
+platform_size = Vector2(32, 16)
+tile_texture = ExtResource("2_terrain")
+
+[node name="SpikeStep" parent="Terrain" instance=ExtResource("6_platform")]
+position = Vector2(1552, 136)
+platform_size = Vector2(40, 16)
+tile_texture = ExtResource("2_terrain")
+
+[node name="SpikeTop" parent="Terrain" instance=ExtResource("6_platform")]
+position = Vector2(1600, 100)
+platform_size = Vector2(40, 16)
+tile_texture = ExtResource("2_terrain")
+
+[node name="IceD" parent="Terrain" instance=ExtResource("6_platform")]
+position = Vector2(1752, 128)
+platform_size = Vector2(40, 16)
+tile_texture = ExtResource("2_terrain")
+
+[node name="FerryA" parent="Terrain" instance=ExtResource("7_moving")]
+position = Vector2(712, 112)
+platform_size = Vector2(40, 16)
+movement = Vector2(64, 0)
+travel_time = 2.2
+tile_texture = ExtResource("2_terrain")
+
+[node name="LiftB" parent="Terrain" instance=ExtResource("7_moving")]
+position = Vector2(1176, 140)
+platform_size = Vector2(40, 16)
+movement = Vector2(0, -40)
+travel_time = 1.6
+tile_texture = ExtResource("2_terrain")
+
+[node name="FerryB" parent="Terrain" instance=ExtResource("7_moving")]
+position = Vector2(1296, 128)
+platform_size = Vector2(40, 16)
+movement = Vector2(40, 0)
+travel_time = 1.8
+tile_texture = ExtResource("2_terrain")
+
+[node name="Hazards" type="Node2D" parent="."]
+
+[node name="Spike1" parent="Hazards" instance=ExtResource("8_spike")]
+position = Vector2(452, 169)
+
+[node name="Spike2" parent="Hazards" instance=ExtResource("8_spike")]
+position = Vector2(952, 121)
+
+[node name="Spike3" parent="Hazards" instance=ExtResource("8_spike")]
+position = Vector2(1500, 169)
+
+[node name="Lenhador1" parent="Hazards" instance=ExtResource("9_logger")]
+position = Vector2(540, 165)
+patrol_distance = 36
+
+[node name="Lenhador2" parent="Hazards" instance=ExtResource("9_logger")]
+position = Vector2(1012, 117)
+patrol_distance = 28
+
+[node name="Lenhador3" parent="Hazards" instance=ExtResource("9_logger")]
+position = Vector2(1628, 165)
+patrol_distance = 20
+
+[node name="Lenhador4" parent="Hazards" instance=ExtResource("9_logger")]
+position = Vector2(1980, 165)
+patrol_distance = 40
+
+[node name="Lenhador5" parent="Hazards" instance=ExtResource("9_logger")]
+position = Vector2(2090, 165)
+patrol_distance = 40
+
+[node name="Water1" parent="Hazards" instance=ExtResource("10_water")]
+position = Vector2(248, 210)
+
+[node name="Water2" parent="Hazards" instance=ExtResource("10_water")]
+position = Vector2(296, 210)
+
+[node name="Water3" parent="Hazards" instance=ExtResource("10_water")]
+position = Vector2(344, 210)
+
+[node name="Water4" parent="Hazards" instance=ExtResource("10_water")]
+position = Vector2(368, 210)
+
+[node name="Water5" parent="Hazards" instance=ExtResource("10_water")]
+position = Vector2(664, 210)
+
+[node name="Water6" parent="Hazards" instance=ExtResource("10_water")]
+position = Vector2(712, 210)
+
+[node name="Water7" parent="Hazards" instance=ExtResource("10_water")]
+position = Vector2(760, 210)
+
+[node name="Water8" parent="Hazards" instance=ExtResource("10_water")]
+position = Vector2(808, 210)
+
+[node name="Water9" parent="Hazards" instance=ExtResource("10_water")]
+position = Vector2(856, 210)
+
+[node name="Water10" parent="Hazards" instance=ExtResource("10_water")]
+position = Vector2(872, 210)
+
+[node name="Water11" parent="Hazards" instance=ExtResource("10_water")]
+position = Vector2(1176, 210)
+
+[node name="Water12" parent="Hazards" instance=ExtResource("10_water")]
+position = Vector2(1224, 210)
+
+[node name="Water13" parent="Hazards" instance=ExtResource("10_water")]
+position = Vector2(1272, 210)
+
+[node name="Water14" parent="Hazards" instance=ExtResource("10_water")]
+position = Vector2(1320, 210)
+
+[node name="Water15" parent="Hazards" instance=ExtResource("10_water")]
+position = Vector2(1368, 210)
+
+[node name="Water16" parent="Hazards" instance=ExtResource("10_water")]
+position = Vector2(1384, 210)
+
+[node name="Water17" parent="Hazards" instance=ExtResource("10_water")]
+position = Vector2(1688, 210)
+
+[node name="Water18" parent="Hazards" instance=ExtResource("10_water")]
+position = Vector2(1736, 210)
+
+[node name="Water19" parent="Hazards" instance=ExtResource("10_water")]
+position = Vector2(1784, 210)
+
+[node name="Water20" parent="Hazards" instance=ExtResource("10_water")]
+position = Vector2(1832, 210)
+
+[node name="Pickups" type="Node2D" parent="."]
+
+[node name="Fruit1" parent="Pickups" instance=ExtResource("11_fruit")]
+position = Vector2(1132, 120)
+
+[node name="Fruit2" parent="Pickups" instance=ExtResource("11_fruit")]
+position = Vector2(1912, 168)
+
+[node name="Checkpoint1" parent="Pickups" instance=ExtResource("12_checkpoint")]
+position = Vector2(616, 165)
+
+[node name="Checkpoint2" parent="Pickups" instance=ExtResource("12_checkpoint")]
+position = Vector2(1432, 165)
+
+[node name="Checkpoint3" parent="Pickups" instance=ExtResource("12_checkpoint")]
+position = Vector2(1880, 165)
+
+[node name="RescueCages" type="Node2D" parent="."]
+
+[node name="CageA" parent="RescueCages" instance=ExtResource("13_cage")]
+position = Vector2(180, 87)
+rescue_id = &"phase_5_cage_a"
+animal_kind = &"wolf"
+
+[node name="CageB" parent="RescueCages" instance=ExtResource("13_cage")]
+position = Vector2(1092, 63)
+rescue_id = &"phase_5_cage_b"
+animal_kind = &"lynx"
+
+[node name="CageC" parent="RescueCages" instance=ExtResource("13_cage")]
+position = Vector2(1620, 75)
+rescue_id = &"phase_5_cage_c"
+animal_kind = &"elk"
+
+[node name="Vines" type="Node2D" parent="."]
+
+[node name="Vine1" parent="Vines" instance=ExtResource("14_vine")]
+position = Vector2(680, 90)
+
+[node name="Vine2" parent="Vines" instance=ExtResource("14_vine")]
+position = Vector2(848, 80)
+
+[node name="Vine3" parent="Vines" instance=ExtResource("14_vine")]
+position = Vector2(1704, 84)
+
+[node name="Vine4" parent="Vines" instance=ExtResource("14_vine")]
+position = Vector2(1816, 84)
+
+[node name="FinalAnimalGoal" parent="." instance=ExtResource("15_goal")]
+position = Vector2(2190, 151)
+scale = Vector2(0.88, 0.88)
+
+[node name="GameMenu" parent="." instance=ExtResource("16_menu")]
+visible = false
+
+[node name="LevelMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_music")
+volume_db = -9.0
+script = ExtResource("17_music_script")
+
+[node name="GameplayHUD" parent="." instance=ExtResource("18_hud")]
+tutorial_text = "LIBERTE TODOS OS ANIMAIS!"
+
+[node name="GameCompleteMenu" parent="." instance=ExtResource("19_game_complete")]
+
+[node name="LevelBounds" parent="." instance=ExtResource("20_bounds")]
+bounds = Rect2(0, 0, 2240, 208)
+
+[node name="PhaseTransition" parent="." instance=ExtResource("21_transition")]
+fade_color = Color(0.1, 0.12, 0.18, 1)

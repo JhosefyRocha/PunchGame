@@ -3,6 +3,7 @@ extends StaticBody2D
 
 @export var platform_size := Vector2(128, 32)
 @export var use_autumn_tiles := false
+@export var tile_texture: Texture2D
 
 const GRASS_TEXTURE := preload("res://sprites/Seasonal Tilesets/Seasonal Tilesets/1 - Grassland/Terrain (16 x 16).png")
 const AUTUMN_TEXTURE := preload("res://sprites/Seasonal Tilesets/Seasonal Tilesets/2 - Autumn Forest/Terrain (16 x 16).png")
@@ -18,6 +19,8 @@ func _ready() -> void:
 
 func _draw() -> void:
 	var texture: Texture2D = AUTUMN_TEXTURE if use_autumn_tiles else GRASS_TEXTURE
+	if tile_texture != null:
+		texture = tile_texture
 	var columns := ceili(platform_size.x / 16.0)
 	var rows := ceili(platform_size.y / 16.0)
 

@@ -1,6 +1,6 @@
 extends Button
 
-const THUMBNAIL_SIZE := Vector2i(80, 38)
+const THUMBNAIL_SIZE := Vector2i(62, 30)
 const THUMBNAIL_DENSITY := 6
 const THUMBNAIL_CROP := 0.5
 

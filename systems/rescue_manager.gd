@@ -2,7 +2,7 @@ extends Node
 
 signal rescue_count_changed(current: int, total: int)
 
-const TOTAL_ANIMALS := 6
+const TOTAL_ANIMALS := 15
 
 var rescued_animals: Dictionary = {}
 

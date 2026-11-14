@@ -71,7 +71,7 @@ corner_radius_bottom_left = 1
 anti_aliasing = false
 
 [node name="LevelCard" type="Button"]
-custom_minimum_size = Vector2(86, 68)
+custom_minimum_size = Vector2(68, 60)
 theme_override_styles/normal = SubResource("StyleCard")
 theme_override_styles/hover = SubResource("StyleCardHover")
 theme_override_styles/pressed = SubResource("StyleCardPressed")
@@ -84,8 +84,8 @@ texture_filter = 2
 layout_mode = 0
 offset_left = 3.0
 offset_top = 3.0
-offset_right = 83.0
-offset_bottom = 41.0
+offset_right = 65.0
+offset_bottom = 33.0
 mouse_filter = 2
 expand_mode = 1
 
@@ -142,9 +142,9 @@ color = Color(0.2, 0.11, 0.03, 1)
 [node name="Title" type="Label" parent="."]
 layout_mode = 0
 offset_left = 3.0
-offset_top = 42.0
-offset_right = 83.0
-offset_bottom = 55.0
+offset_top = 34.0
+offset_right = 65.0
+offset_bottom = 47.0
 theme_override_colors/font_color = Color(1, 0.79, 0.34, 1)
 theme_override_colors/font_shadow_color = Color(0.08, 0.04, 0.01, 1)
 theme_override_constants/shadow_offset_x = 1
@@ -157,9 +157,9 @@ vertical_alignment = 1
 [node name="Status" type="Label" parent="."]
 layout_mode = 0
 offset_left = 3.0
-offset_top = 54.0
-offset_right = 83.0
-offset_bottom = 65.0
+offset_top = 46.0
+offset_right = 65.0
+offset_bottom = 57.0
 theme_override_font_sizes/font_size = 7
 text = "DISPONÍVEL"
 horizontal_alignment = 1

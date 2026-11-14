@@ -15,6 +15,21 @@ const LEVELS: Array[Dictionary] = [
 		"scene": "res://scene/phase_2.tscn",
 		"thumbnail": "res://sprites/environment/forest_canopy_phase_2.png",
 	},
+	{
+		"title": "Fase 3",
+		"scene": "res://scene/phase_3.tscn",
+		"thumbnail": "res://sprites/Seasonal Tilesets/Seasonal Tilesets/2 - Autumn Forest/Background parts/_Complete_static_BG_(288 x 208).png",
+	},
+	{
+		"title": "Fase 4",
+		"scene": "res://scene/phase_4.tscn",
+		"thumbnail": "res://sprites/Seasonal Tilesets/Seasonal Tilesets/3 - Tropics/Background parts/_Complete_static_BG_(288 x 208).png",
+	},
+	{
+		"title": "Fase 5",
+		"scene": "res://scene/phase_5.tscn",
+		"thumbnail": "res://sprites/Seasonal Tilesets/Seasonal Tilesets/4 - Winter World/Background parts/_Complete_static_BG_(288 x 208).png",
+	},
 ]
 
 var has_save := false

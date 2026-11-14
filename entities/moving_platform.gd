@@ -7,6 +7,7 @@ extends AnimatableBody2D
 		refresh_shape()
 @export var movement := Vector2(0, -44)
 @export_range(0.5, 10.0, 0.1) var travel_time := 2.0
+@export var tile_texture: Texture2D
 
 const AUTUMN_TEXTURE := preload("res://sprites/Seasonal Tilesets/Seasonal Tilesets/2 - Autumn Forest/Terrain (16 x 16).png")
 
@@ -33,6 +34,7 @@ func refresh_shape() -> void:
 
 
 func _draw() -> void:
+	var texture: Texture2D = tile_texture if tile_texture != null else AUTUMN_TEXTURE
 	var columns := ceili(platform_size.x / 16.0)
 	for column in range(columns):
 		var atlas_column := 4
@@ -41,7 +43,7 @@ func _draw() -> void:
 		elif column == columns - 1:
 			atlas_column = 5
 		draw_texture_rect_region(
-			AUTUMN_TEXTURE,
+			texture,
 			Rect2(column * 16, 0, 16, 16),
 			Rect2(atlas_column * 16, 16, 16, 16)
 		)

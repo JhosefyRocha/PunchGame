@@ -1,0 +1,114 @@
+[gd_scene load_steps=14 format=3]
+
+[ext_resource type="Script" path="res://entities/backhoe_boss.gd" id="1_boss"]
+[ext_resource type="Script" path="res://entities/backhoe.gd" id="2_machine"]
+[ext_resource type="Texture2D" path="res://sprites/enemies/backhoe_body.png" id="3_body"]
+[ext_resource type="Texture2D" path="res://sprites/enemies/backhoe_arm.png" id="4_arm"]
+[ext_resource type="Script" path="res://entities/boss_health_bar.gd" id="5_bar"]
+[ext_resource type="PackedScene" path="res://entities/smoke_plume.tscn" id="6_smoke"]
+
+[sub_resource type="Gradient" id="Gradient_puff"]
+offsets = PackedFloat32Array(0, 0.55, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.65, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_puff"]
+gradient = SubResource("Gradient_puff")
+width = 16
+height = 16
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="Curve" id="Curve_grow"]
+_data = [Vector2(0, 0.4), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_dust"]
+offsets = PackedFloat32Array(0, 0.15, 1)
+colors = PackedColorArray(0.45, 0.34, 0.24, 0, 0.5, 0.4, 0.3, 0.85, 0.62, 0.55, 0.48, 0)
+
+[sub_resource type="RectangleShape2D" id="BodyShape"]
+size = Vector2(76, 40)
+
+[sub_resource type="RectangleShape2D" id="CrushShape"]
+size = Vector2(84, 16)
+
+[sub_resource type="RectangleShape2D" id="SlamShape"]
+size = Vector2(74, 24)
+
+[node name="BackhoeBoss" type="Node2D"]
+script = ExtResource("1_boss")
+
+[node name="Machine" type="CharacterBody2D" parent="."]
+collision_layer = 2
+collision_mask = 1
+script = ExtResource("2_machine")
+
+[node name="Visual" type="Node2D" parent="Machine"]
+
+[node name="Body" type="Sprite2D" parent="Machine/Visual"]
+texture = ExtResource("3_body")
+centered = false
+offset = Vector2(-47, -53)
+
+[node name="Arm" type="Node2D" parent="Machine/Visual"]
+position = Vector2(-13, -27)
+
+[node name="Sprite" type="Sprite2D" parent="Machine/Visual/Arm"]
+texture = ExtResource("4_arm")
+centered = false
+offset = Vector2(-46, -8)
+
+[node name="Dust" type="CPUParticles2D" parent="Machine/Visual/Arm"]
+position = Vector2(-38, 21)
+emitting = false
+amount = 14
+lifetime = 0.7
+one_shot = true
+explosiveness = 1.0
+texture = SubResource("GradientTexture2D_puff")
+emission_shape = 3
+emission_rect_extents = Vector2(8, 2)
+direction = Vector2(0, -1)
+spread = 70.0
+gravity = Vector2(0, 50)
+initial_velocity_min = 25.0
+initial_velocity_max = 55.0
+scale_amount_min = 0.4
+scale_amount_max = 0.8
+scale_amount_curve = SubResource("Curve_grow")
+color_ramp = SubResource("Gradient_dust")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Machine"]
+position = Vector2(0, -20)
+shape = SubResource("BodyShape")
+
+[node name="CrushArea" type="Area2D" parent="Machine"]
+collision_layer = 0
+collision_mask = 4
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Machine/CrushArea"]
+position = Vector2(0, -8)
+shape = SubResource("CrushShape")
+
+[node name="SlamArea" type="Area2D" parent="Machine"]
+position = Vector2(-33, 0)
+collision_layer = 0
+collision_mask = 4
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Machine/SlamArea"]
+position = Vector2(0, -12)
+shape = SubResource("SlamShape")
+
+[node name="HealthBar" type="Node2D" parent="Machine"]
+position = Vector2(0, -62)
+script = ExtResource("5_bar")
+bar_width = 36.0
+bar_height = 3.0
+
+[node name="Smoke" parent="Machine" instance=ExtResource("6_smoke")]
+position = Vector2(10, -48)
+emitting = false
+amount = 14

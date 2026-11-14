@@ -20,6 +20,7 @@
 [ext_resource type="Script" uid="uid://4bkm6q1n4uaj" path="res://entities/level_music.gd" id="19_music_script"]
 [ext_resource type="PackedScene" path="res://entities/level_bounds.tscn" id="20_bounds"]
 [ext_resource type="PackedScene" path="res://entities/smoke_plume.tscn" id="21_smoke"]
+[ext_resource type="PackedScene" path="res://entities/henchman.tscn" id="22_henchman"]
 
 [node name="Phase2" type="Node2D" unique_id=1082971088]
 
@@ -149,6 +150,10 @@ position = Vector2(1051, 169)
 [node name="Lenhador" parent="Hazards" unique_id=429131712 instance=ExtResource("15_logger")]
 position = Vector2(870, 165)
 patrol_distance = 44.0
+
+[node name="Capanga" parent="Hazards" instance=ExtResource("22_henchman")]
+position = Vector2(660, 165)
+patrol_distance = 28.0
 
 [node name="Fruit" parent="Hazards" unique_id=820628081 instance=ExtResource("16_fruit")]
 position = Vector2(614, 110)

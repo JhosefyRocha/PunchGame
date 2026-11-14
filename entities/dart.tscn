@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://entities/dart.gd" id="1_dart"]
+
+[sub_resource type="RectangleShape2D" id="DartShape"]
+size = Vector2(10, 4)
+
+[node name="Dart" type="Area2D"]
+collision_layer = 0
+collision_mask = 5
+monitorable = false
+script = ExtResource("1_dart")
+
+[node name="Art" type="Node2D" parent="."]
+
+[node name="Tuft" type="Polygon2D" parent="Art"]
+color = Color(0.86, 0.18, 0.14, 1)
+polygon = PackedVector2Array(-7, -2, -4, -0.7, -4, 0.7, -7, 2)
+
+[node name="Shaft" type="Polygon2D" parent="Art"]
+color = Color(0.8, 0.82, 0.84, 1)
+polygon = PackedVector2Array(-4, -0.7, 3, -0.7, 3, 0.7, -4, 0.7)
+
+[node name="Tip" type="Polygon2D" parent="Art"]
+color = Color(0.32, 0.33, 0.36, 1)
+polygon = PackedVector2Array(3, -1.2, 6.5, 0, 3, 1.2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("DartShape")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

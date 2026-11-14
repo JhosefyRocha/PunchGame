@@ -1,0 +1,57 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="PackedScene" path="res://entities/lumberjack.tscn" id="1_base"]
+[ext_resource type="Texture2D" path="res://sprites/enemies/henchman.png" id="2_sprite"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_henchman"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_sprite")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_sprite")
+}],
+"loop": false,
+"name": &"die",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_sprite")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_sprite")
+}],
+"loop": false,
+"name": &"hurt",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_sprite")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 6.0
+}]
+
+[node name="Capanga" instance=ExtResource("1_base")]
+patrol_speed = 34.0
+chase_speed = 56.0
+max_health = 2
+attack_windup = 0.1
+attack_cooldown = 0.6
+
+[node name="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_henchman")

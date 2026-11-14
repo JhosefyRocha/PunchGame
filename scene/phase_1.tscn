@@ -24,6 +24,7 @@
 [ext_resource type="Script" uid="uid://4bkm6q1n4uaj" path="res://entities/level_music.gd" id="22_music_script"]
 [ext_resource type="PackedScene" path="res://entities/smoke_plume.tscn" id="23_smoke"]
 [ext_resource type="PackedScene" path="res://entities/embers.tscn" id="24_embers"]
+[ext_resource type="PackedScene" path="res://entities/henchman.tscn" id="25_henchman"]
 
 [node name="Game" type="Node2D" unique_id=2002910798]
 
@@ -291,6 +292,10 @@ patrol_distance = 30.0
 [node name="LenhadorFinal" parent="ExpandedRoute" unique_id=1360207140 instance=ExtResource("16_logger")]
 position = Vector2(3144, 140)
 patrol_distance = 54.0
+
+[node name="CapangaArena" parent="ExpandedRoute" instance=ExtResource("25_henchman")]
+position = Vector2(2900, 140)
+patrol_distance = 30.0
 
 [node name="LongRoute" type="Node2D" parent="." unique_id=1875064842]
 

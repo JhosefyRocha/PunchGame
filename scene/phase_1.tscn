@@ -30,6 +30,8 @@
 [ext_resource type="PackedScene" path="res://entities/seed.tscn" id="new_1"]
 [ext_resource type="PackedScene" path="res://entities/fruit_pitaia.tscn" id="new_2"]
 
+[ext_resource type="Script" path="res://entities/scenery_reaction.gd" id="scenery_script"]
+
 [node name="Game" type="Node2D" unique_id=2002910798]
 
 [node name="CharacterBody2D" parent="." unique_id=381482022 instance=ExtResource("1_yjf0y")]
@@ -524,3 +526,12 @@ position = Vector2(323, 83)
 
 [node name="FruitPitaiaP1" parent="ChallengeObstacles" instance=ExtResource("new_2")]
 position = Vector2(605, 170)
+
+[node name="SceneryReaction" type="Node2D" parent="."]
+script = ExtResource("scenery_script")
+canopy_path = NodePath("../ParallaxBackground/ParallaxLayer/Sprite2D")
+rescue_prefix = "phase_1_cage_"
+total_cages = 3
+
+[node name="FireA" parent="ChallengeObstacles" instance=ExtResource("new_fire")]
+position = Vector2(280, 153)

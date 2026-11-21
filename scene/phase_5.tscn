@@ -28,6 +28,8 @@
 [ext_resource type="PackedScene" path="res://entities/seed.tscn" id="new_1"]
 [ext_resource type="PackedScene" path="res://entities/fruit_mamao.tscn" id="new_2"]
 
+[ext_resource type="Script" path="res://entities/scenery_reaction.gd" id="scenery_script"]
+
 [node name="Phase5" type="Node2D"]
 
 [node name="Background" type="ParallaxBackground" parent="."]
@@ -403,3 +405,12 @@ position = Vector2(1172, 120)
 
 [node name="FruitMamaoP5" parent="Pickups" instance=ExtResource("new_2")]
 position = Vector2(1952, 168)
+
+[node name="SceneryReaction" type="Node2D" parent="."]
+script = ExtResource("scenery_script")
+canopy_path = NodePath("../Background/Sky/Sprite2D")
+rescue_prefix = "phase_5_cage_"
+total_cages = 3
+
+[node name="FireA" parent="Hazards" instance=ExtResource("new_fire")]
+position = Vector2(560, 169)

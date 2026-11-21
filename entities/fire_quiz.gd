@@ -86,6 +86,8 @@ func _ready() -> void:
 
 func _on_option_pressed(index: int) -> void:
 	answered_correct = index == question["correct"]
+	if answered_correct:
+		SaveManager.unlock(&"quiz_acertado")
 	for button in option_buttons:
 		button.disabled = true
 	var prefix := "Acertou! " if answered_correct else "Não foi dessa vez. "

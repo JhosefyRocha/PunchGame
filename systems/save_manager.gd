@@ -32,6 +32,24 @@ const LEVELS: Array[Dictionary] = [
 	},
 ]
 
+const ACHIEVEMENTS := {
+	&"primeiro_resgate": "Primeiro resgate",
+	&"primeiro_incendio": "Incêndio apagado",
+	&"quiz_acertado": "Resposta certa",
+	&"inimigos_10": "Dez inimigos derrotados",
+	&"fase_1": "Fase 1 concluída",
+	&"fase_2": "Fase 2 concluída",
+	&"fase_3": "Fase 3 concluída",
+	&"fase_4": "Fase 4 concluída",
+	&"fase_5": "Fase 5 concluída",
+	&"todos_animais": "Os 15 animais libertados",
+	&"jogo_concluido": "Jogo concluído",
+}
+
+signal achievement_unlocked(title: String)
+
+var achievements: Dictionary = {}
+
 const ECO_MESSAGES: Array[String] = [
 	"Cada animal resgatado ajuda a manter o equilíbrio da floresta. (ODS 15)",
 	"Incêndios destroem em minutos o que a natureza leva anos para recuperar. (ODS 15)",
@@ -89,6 +107,9 @@ func complete_level(index: int) -> int:
 	has_save = true
 	unlocked_levels = maxi(unlocked_levels, index + 2)
 	save_progress()
+	unlock(StringName("fase_%d" % (index + 1)))
+	if index == LEVELS.size() - 1:
+		unlock(&"jogo_concluido")
 
 	var next_index := index + 1
 	if unlocked_levels > was_unlocked and next_index < LEVELS.size():
@@ -110,6 +131,9 @@ func load_progress() -> void:
 	var config := ConfigFile.new()
 	if config.load(SAVE_PATH) != OK:
 		return
+	for achievement_id in ACHIEVEMENTS:
+		if config.get_value("achievements", achievement_id, false):
+			achievements[achievement_id] = true
 	if not config.has_section_key(SAVE_SECTION, UNLOCKED_KEY):
 		return
 
@@ -119,9 +143,19 @@ func load_progress() -> void:
 		unlocked_levels = maxi(1, int(stored))
 
 
+func unlock(achievement_id: StringName) -> void:
+	if not ACHIEVEMENTS.has(achievement_id) or achievements.has(achievement_id):
+		return
+	achievements[achievement_id] = true
+	save_progress()
+	achievement_unlocked.emit(ACHIEVEMENTS[achievement_id])
+
+
 func save_progress() -> void:
 	var config := ConfigFile.new()
 	config.set_value(SAVE_SECTION, UNLOCKED_KEY, unlocked_levels)
+	for achievement_id in achievements:
+		config.set_value("achievements", achievement_id, true)
 	var error := config.save(SAVE_PATH)
 	if error != OK:
 		push_warning("SaveManager: nao foi possivel gravar %s (erro %d)." % [SAVE_PATH, error])

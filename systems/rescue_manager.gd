@@ -5,6 +5,11 @@ signal rescue_count_changed(current: int, total: int)
 const TOTAL_ANIMALS := 15
 
 var rescued_animals: Dictionary = {}
+var plush_recovered := false
+
+
+func recover_plush() -> void:
+	plush_recovered = true
 
 
 func rescue_animal(rescue_id: StringName, animal_kind: StringName) -> bool:
@@ -13,6 +18,9 @@ func rescue_animal(rescue_id: StringName, animal_kind: StringName) -> bool:
 
 	rescued_animals[rescue_id] = animal_kind
 	rescue_count_changed.emit(get_rescue_count(), TOTAL_ANIMALS)
+	SaveManager.unlock(&"primeiro_resgate")
+	if get_rescue_count() == TOTAL_ANIMALS:
+		SaveManager.unlock(&"todos_animais")
 	return true
 
 
@@ -41,5 +49,6 @@ func set_rescued_animals(animals: Dictionary) -> void:
 ## seguinte. Veja `GameMenu.reset_run_state()`.
 func reset_game_state() -> void:
 	rescued_animals.clear()
+	plush_recovered = false
 	rescue_count_changed.emit(0, TOTAL_ANIMALS)
 

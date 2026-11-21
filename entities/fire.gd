@@ -60,6 +60,7 @@ func _extinguish() -> void:
 	is_out = true
 	ScoreManager.add_points(EXTINGUISH_SCORE)
 	ScoreManager.register_fire_put_out()
+	SaveManager.unlock(&"primeiro_incendio")
 	remove_from_group(&"fires")
 	set_deferred(&"monitoring", false)
 	quiz_zone.set_deferred(&"monitoring", false)

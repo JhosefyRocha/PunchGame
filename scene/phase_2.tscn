@@ -23,6 +23,9 @@
 [ext_resource type="PackedScene" path="res://entities/henchman.tscn" id="22_henchman"]
 [ext_resource type="PackedScene" path="res://entities/guardian_lumberjack.tscn" id="23_guardian"]
 
+[ext_resource type="PackedScene" path="res://entities/seed.tscn" id="new_1"]
+[ext_resource type="PackedScene" path="res://entities/fruit_mamao.tscn" id="new_2"]
+
 [node name="Phase2" type="Node2D" unique_id=1082971088]
 
 [node name="Background" type="ParallaxBackground" parent="." unique_id=572367135]
@@ -193,6 +196,7 @@ animal_kind = &"deer"
 position = Vector2(913, 156)
 rescue_id = &"phase_2_cage_c"
 animal_kind = &"squirrel"
+reward_points = 500
 
 [node name="Vines" type="Node2D" parent="." unique_id=748273072]
 
@@ -248,3 +252,9 @@ visible = false
 
 [node name="PhaseTransition" parent="." unique_id=969874533 instance=ExtResource("9_transition")]
 fade_color = Color(0.12, 0.06, 0.02, 1)
+
+[node name="SeedP2" parent="Hazards" instance=ExtResource("new_1")]
+position = Vector2(654, 110)
+
+[node name="FruitMamaoP2" parent="Hazards" instance=ExtResource("new_2")]
+position = Vector2(850, 168)

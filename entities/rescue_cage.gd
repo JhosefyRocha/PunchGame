@@ -2,6 +2,7 @@ extends Area2D
 
 @export var rescue_id: StringName
 @export var animal_kind: StringName = &"animal"
+@export var reward_points := 0
 
 @onready var visual: Node2D = $Visual
 @onready var interaction_hint: Label = $InteractionHint
@@ -12,6 +13,7 @@ var is_opening := false
 
 
 func _ready() -> void:
+	add_to_group(&"rescue_cage")
 	interaction_hint.hide()
 	if RescueManager.is_rescued(rescue_id):
 		queue_free()
@@ -26,6 +28,7 @@ func free_animal() -> void:
 	if not RescueManager.rescue_animal(rescue_id, animal_kind):
 		return
 
+	ScoreManager.add_points(reward_points)
 	is_opening = true
 	player_nearby = false
 	monitoring = false

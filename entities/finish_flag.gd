@@ -11,10 +11,12 @@ const LOCKED_TINT := Color(0.45, 0.45, 0.45, 1.0)
 
 var was_reached := false
 var guardian: Node
+var guardian_text := ""
 
 
 func _ready() -> void:
 	guardian_hint.hide()
+	guardian_text = guardian_hint.text
 	guardian = get_node_or_null(guardian_path)
 	if guardian != null:
 		banner.modulate = LOCKED_TINT
@@ -25,10 +27,15 @@ func _ready() -> void:
 func _on_body_entered(body: Node2D) -> void:
 	if was_reached or not body.is_in_group(&"player"):
 		return
-	if guardian != null:
-		guardian_hint.show()
+	if guardian != null or RescueManager.has_pending_cages():
+		_show_hint()
 		return
 	reach()
+
+
+func _show_hint() -> void:
+	guardian_hint.text = guardian_text if guardian != null else "LIBERTE OS ANIMAIS!"
+	guardian_hint.show()
 
 
 func _on_body_exited(body: Node2D) -> void:
@@ -50,5 +57,8 @@ func _on_guardian_defeated(_points: int) -> void:
 	tween.tween_property(mark, "modulate", Color.WHITE, 0.4)
 	for body in get_overlapping_bodies():
 		if body.is_in_group(&"player"):
-			reach()
+			if RescueManager.has_pending_cages():
+				_show_hint()
+			else:
+				reach()
 			return

@@ -1,6 +1,7 @@
 extends CanvasLayer
 
 @onready var message: Label = $Overlay/Center/Panel/Margin/VBox/Message
+@onready var eco_message: Label = $Overlay/Center/Panel/Margin/VBox/EcoMessage
 
 var next_scene_path := "res://scene/phase_2.tscn"
 
@@ -12,6 +13,9 @@ func _ready() -> void:
 
 func show_level_complete(scene_path: String) -> void:
 	next_scene_path = scene_path
+	var completed_index := SaveManager.get_level_index(get_tree().current_scene.scene_file_path)
+	if completed_index >= 0:
+		eco_message.text = SaveManager.ECO_MESSAGES[completed_index]
 	var unlocked_index := SaveManager.complete_current_level()
 	if unlocked_index >= 0:
 		message.text = "%s liberada!" % SaveManager.LEVELS[unlocked_index]["title"]

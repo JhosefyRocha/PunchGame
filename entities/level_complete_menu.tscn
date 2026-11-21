@@ -73,6 +73,14 @@ theme_override_font_sizes/font_size = 10
 text = "A bandeira foi alcançada."
 horizontal_alignment = 1
 
+[node name="EcoMessage" type="Label" parent="Overlay/Center/Panel/Margin/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.67, 0.9, 0.52, 1)
+theme_override_font_sizes/font_size = 9
+text = "Mensagem ecológica"
+autowrap_mode = 3
+horizontal_alignment = 1
+
 [node name="NextButton" type="Button" parent="Overlay/Center/Panel/Margin/VBox"]
 custom_minimum_size = Vector2(0, 24)
 layout_mode = 2

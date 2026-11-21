@@ -27,6 +27,9 @@
 [ext_resource type="PackedScene" path="res://entities/henchman.tscn" id="25_henchman"]
 [ext_resource type="PackedScene" path="res://entities/backhoe_boss.tscn" id="26_boss"]
 
+[ext_resource type="PackedScene" path="res://entities/seed.tscn" id="new_1"]
+[ext_resource type="PackedScene" path="res://entities/fruit_pitaia.tscn" id="new_2"]
+
 [node name="Game" type="Node2D" unique_id=2002910798]
 
 [node name="CharacterBody2D" parent="." unique_id=381482022 instance=ExtResource("1_yjf0y")]
@@ -493,6 +496,7 @@ animal_kind = &"rabbit"
 position = Vector2(350, 65)
 rescue_id = &"phase_1_cage_c"
 animal_kind = &"fox"
+reward_points = 500
 
 [node name="BackhoeBoss" parent="." instance=ExtResource("26_boss")]
 position = Vector2(3650, 176)
@@ -514,3 +518,9 @@ bounds = Rect2(0, 0, 3840, 208)
 [node name="PhaseTransition" parent="." unique_id=1806634267 instance=ExtResource("9_transition")]
 visible = false
 fade_color = Color(0.12, 0.03, 0.02, 1)
+
+[node name="SeedP1" parent="ChallengeObstacles" instance=ExtResource("new_1")]
+position = Vector2(323, 83)
+
+[node name="FruitPitaiaP1" parent="ChallengeObstacles" instance=ExtResource("new_2")]
+position = Vector2(605, 170)

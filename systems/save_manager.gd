@@ -32,6 +32,14 @@ const LEVELS: Array[Dictionary] = [
 	},
 ]
 
+const ECO_MESSAGES: Array[String] = [
+	"Cada animal resgatado ajuda a manter o equilíbrio da floresta. (ODS 15)",
+	"Incêndios destroem em minutos o que a natureza leva anos para recuperar. (ODS 15)",
+	"Plantas nativas abrigam aves, insetos e mamíferos. Restaurar a flora é restaurar vida. (ODS 15)",
+	"Conhecer a natureza é o primeiro passo para cuidar dela. Compartilhe o que aprendeu. (ODS 4)",
+	"Caçar e traficar animais silvestres empobrece florestas inteiras. Respeitar a fauna garante o futuro. (ODS 15)",
+]
+
 var has_save := false
 var unlocked_levels := 1
 

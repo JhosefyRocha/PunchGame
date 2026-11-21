@@ -25,6 +25,9 @@
 [ext_resource type="PackedScene" path="res://entities/level_bounds.tscn" id="23_bounds"]
 [ext_resource type="PackedScene" path="res://entities/phase_transition.tscn" id="24_transition"]
 
+[ext_resource type="PackedScene" path="res://entities/seed.tscn" id="new_1"]
+[ext_resource type="PackedScene" path="res://entities/fruit_pitaia.tscn" id="new_2"]
+
 [node name="Phase4" type="Node2D"]
 
 [node name="Background" type="ParallaxBackground" parent="."]
@@ -293,6 +296,7 @@ animal_kind = &"parrot"
 position = Vector2(1516, 71)
 rescue_id = &"phase_4_cage_c"
 animal_kind = &"monkey"
+reward_points = 500
 
 [node name="Vines" type="Node2D" parent="."]
 
@@ -333,3 +337,9 @@ bounds = Rect2(0, 0, 2080, 208)
 
 [node name="PhaseTransition" parent="." instance=ExtResource("24_transition")]
 fade_color = Color(0.05, 0.09, 0.04, 1)
+
+[node name="SeedP4" parent="Pickups" instance=ExtResource("new_1")]
+position = Vector2(848, 168)
+
+[node name="FruitPitaiaP4" parent="Pickups" instance=ExtResource("new_2")]
+position = Vector2(1280, 168)

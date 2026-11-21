@@ -1,6 +1,7 @@
 extends CanvasLayer
 
 @onready var message: Label = $Overlay/Center/Panel/Margin/VBox/Message
+@onready var eco_message: Label = $Overlay/Center/Panel/Margin/VBox/EcoMessage
 
 
 func _ready() -> void:
@@ -12,6 +13,7 @@ func show_victory() -> void:
 	SaveManager.complete_current_level()
 	get_tree().call_group(&"game_menu", &"lock_for_level_complete")
 	message.text = "%d animais foram libertados!" % RescueManager.get_rescue_count()
+	eco_message.text = SaveManager.ECO_MESSAGES[SaveManager.get_level_count() - 1]
 	get_tree().paused = true
 	show()
 	$Overlay/Center/Panel/Margin/VBox/PlayAgainButton.grab_focus()

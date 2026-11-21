@@ -5,6 +5,7 @@ extends Control
 ## destaque de hover/foco para o mouse e o teclado.
 
 const LevelSelect := preload("res://entities/level_select.gd")
+const INTRO_SCENE := "res://entities/intro.tscn"
 
 @onready var background: TextureRect = $Frame/Background
 @onready var main_buttons: Control = $Frame/Background/Buttons
@@ -151,7 +152,7 @@ func show_play_panel(panel: Control) -> void:
 
 func start_new_game() -> void:
 	SaveManager.start_new_game()
-	show_level_select()
+	get_tree().change_scene_to_file(INTRO_SCENE)
 
 
 func sync_settings_controls() -> void:

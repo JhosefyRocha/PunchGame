@@ -25,6 +25,9 @@
 [ext_resource type="PackedScene" path="res://entities/level_bounds.tscn" id="23_bounds"]
 [ext_resource type="PackedScene" path="res://entities/phase_transition.tscn" id="24_transition"]
 
+[ext_resource type="PackedScene" path="res://entities/seed.tscn" id="new_1"]
+[ext_resource type="PackedScene" path="res://entities/fruit_abacate.tscn" id="new_2"]
+
 [node name="Phase3" type="Node2D"]
 
 [node name="Background" type="ParallaxBackground" parent="."]
@@ -259,6 +262,7 @@ animal_kind = &"hedgehog"
 position = Vector2(1512, 75)
 rescue_id = &"phase_3_cage_c"
 animal_kind = &"badger"
+reward_points = 500
 
 [node name="Vines" type="Node2D" parent="."]
 
@@ -293,3 +297,9 @@ bounds = Rect2(0, 0, 1760, 208)
 
 [node name="PhaseTransition" parent="." instance=ExtResource("24_transition")]
 fade_color = Color(0.075, 0.09, 0.035, 1)
+
+[node name="SeedP3" parent="Pickups" instance=ExtResource("new_1")]
+position = Vector2(504, 118)
+
+[node name="FruitAbacateP3" parent="Pickups" instance=ExtResource("new_2")]
+position = Vector2(1056, 168)

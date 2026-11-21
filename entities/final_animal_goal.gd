@@ -8,10 +8,12 @@ extends Area2D
 
 var completed := false
 var guardian: Node
+var guardian_text := ""
 
 
 func _ready() -> void:
 	guardian_hint.hide()
+	guardian_text = guardian_hint.text
 	RescueManager.rescue_count_changed.connect(_update_rescued_group)
 	_update_rescued_group(RescueManager.get_rescue_count(), RescueManager.TOTAL_ANIMALS)
 	guardian = get_node_or_null(guardian_path)
@@ -29,10 +31,15 @@ func _update_rescued_group(current: int, _total: int) -> void:
 func _on_body_entered(body: Node2D) -> void:
 	if completed or not body.has_method(&"die"):
 		return
-	if guardian != null:
-		guardian_hint.show()
+	if guardian != null or RescueManager.has_pending_cages():
+		_show_hint()
 		return
 	complete(body)
+
+
+func _show_hint() -> void:
+	guardian_hint.text = guardian_text if guardian != null else "LIBERTE OS ANIMAIS!"
+	guardian_hint.show()
 
 
 func _on_body_exited(body: Node2D) -> void:
@@ -52,5 +59,8 @@ func _on_guardian_defeated(_points: int) -> void:
 	guardian_hint.hide()
 	for body in get_overlapping_bodies():
 		if body.has_method(&"die"):
-			complete(body)
+			if RescueManager.has_pending_cages():
+				_show_hint()
+			else:
+				complete(body)
 			return

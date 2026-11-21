@@ -19,9 +19,11 @@ layer = 6
 script = ExtResource("1_score")
 
 [node name="Margin" type="MarginContainer" parent="."]
-offset_left = 70.0
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -84.0
 offset_top = 8.0
-offset_right = 146.0
+offset_right = -8.0
 offset_bottom = 38.0
 
 [node name="Panel" type="PanelContainer" parent="Margin"]

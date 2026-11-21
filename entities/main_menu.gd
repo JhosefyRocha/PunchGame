@@ -6,6 +6,16 @@ extends Control
 
 const LevelSelect := preload("res://entities/level_select.gd")
 const INTRO_SCENE := "res://entities/intro.tscn"
+const KEY_LABELS := {
+	&"left": "Mover esquerda",
+	&"right": "Mover direita",
+	&"jump": "Pular",
+	&"attack": "Atacar",
+	&"interact": "Resgatar",
+}
+
+var key_buttons: Dictionary = {}
+var rebinding_action: StringName = &""
 
 @onready var background: TextureRect = $Frame/Background
 @onready var main_buttons: Control = $Frame/Background/Buttons
@@ -50,6 +60,7 @@ func _ready() -> void:
 	get_tree().root.size_changed.connect(queue_background_refresh)
 	queue_background_refresh()
 	sync_settings_controls()
+	_build_key_buttons()
 	if GameMenu.open_level_select:
 		GameMenu.open_level_select = false
 		show_level_select()
@@ -105,6 +116,43 @@ func show_main() -> void:
 	play_overlay.hide()
 	main_buttons.show()
 	play_button.grab_focus()
+
+
+func _build_key_buttons() -> void:
+	var vbox: VBoxContainer = $SettingsOverlay/Center/Panel/Margin/VBox
+	var keys_box := VBoxContainer.new()
+	keys_box.add_theme_constant_override("separation", 2)
+	vbox.add_child(keys_box)
+	vbox.move_child(keys_box, $SettingsOverlay/Center/Panel/Margin/VBox/ControlsTitle.get_index() + 1)
+	for action in SettingsManager.KEY_ACTIONS:
+		var button := Button.new()
+		button.add_theme_font_size_override("font_size", 9)
+		button.pressed.connect(_on_key_button_pressed.bind(action))
+		keys_box.add_child(button)
+		key_buttons[action] = button
+	$SettingsOverlay/Center/Panel/Margin/VBox/Controls.hide()
+	_refresh_key_buttons()
+
+
+func _refresh_key_buttons() -> void:
+	for action in key_buttons:
+		key_buttons[action].text = "%s: %s" % [KEY_LABELS[action], OS.get_keycode_string(SettingsManager.get_key(action))]
+
+
+func _on_key_button_pressed(action: StringName) -> void:
+	rebinding_action = action
+	key_buttons[action].text = "%s: pressione uma tecla" % KEY_LABELS[action]
+
+
+func _input(event: InputEvent) -> void:
+	var key_event := event as InputEventKey
+	if rebinding_action == &"" or key_event == null or not key_event.pressed or key_event.echo:
+		return
+	get_viewport().set_input_as_handled()
+	if key_event.physical_keycode != KEY_ESCAPE:
+		SettingsManager.set_key(rebinding_action, key_event.physical_keycode)
+	rebinding_action = &""
+	_refresh_key_buttons()
 
 
 func show_settings() -> void:

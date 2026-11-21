@@ -9,13 +9,58 @@ signal settings_changed
 const SETTINGS_PATH := "user://settings.cfg"
 const MASTER_BUS := &"Master"
 
+const KEY_ACTIONS: Array[StringName] = [&"left", &"right", &"jump", &"attack", &"interact"]
+const DEFAULT_KEYS := {
+	&"left": KEY_A,
+	&"right": KEY_D,
+	&"jump": KEY_SPACE,
+	&"attack": KEY_E,
+	&"interact": KEY_J,
+}
+const ALT_KEYS := {
+	&"left": [KEY_LEFT],
+	&"right": [KEY_RIGHT],
+	&"jump": [KEY_UP, KEY_W],
+	&"attack": [],
+	&"interact": [],
+}
+
 var master_volume := 0.8
 var fullscreen := false
+var key_bindings: Dictionary = {}
 
 
 func _ready() -> void:
 	load_settings()
 	apply_settings()
+	for action in KEY_ACTIONS:
+		_apply_key(action)
+
+
+func get_key(action: StringName) -> int:
+	return key_bindings.get(action, DEFAULT_KEYS[action])
+
+
+func set_key(action: StringName, keycode: int) -> void:
+	var previous := get_key(action)
+	for other in KEY_ACTIONS:
+		if other != action and get_key(other) == keycode:
+			key_bindings[other] = previous
+			_apply_key(other)
+	key_bindings[action] = keycode
+	_apply_key(action)
+	save_settings()
+
+
+func _apply_key(action: StringName) -> void:
+	InputMap.action_erase_events(action)
+	var primary := InputEventKey.new()
+	primary.physical_keycode = get_key(action)
+	InputMap.action_add_event(action, primary)
+	for alt in ALT_KEYS[action]:
+		var event := InputEventKey.new()
+		event.physical_keycode = alt
+		InputMap.action_add_event(action, event)
 
 
 func set_master_volume(value: float) -> void:
@@ -51,10 +96,15 @@ func load_settings() -> void:
 		return
 	master_volume = clampf(float(config.get_value("audio", "master_volume", master_volume)), 0.0, 1.0)
 	fullscreen = bool(config.get_value("video", "fullscreen", fullscreen))
+	for action in KEY_ACTIONS:
+		if config.has_section_key("controls", action):
+			key_bindings[action] = int(config.get_value("controls", action))
 
 
 func save_settings() -> void:
 	var config := ConfigFile.new()
 	config.set_value("audio", "master_volume", master_volume)
 	config.set_value("video", "fullscreen", fullscreen)
+	for action in key_bindings:
+		config.set_value("controls", action, key_bindings[action])
 	config.save(SETTINGS_PATH)

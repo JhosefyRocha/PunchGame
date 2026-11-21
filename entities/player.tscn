@@ -29,6 +29,15 @@
 [ext_resource type="AudioStream" uid="uid://bx728he6qafu8" path="res://sounds/player_punch_03.wav" id="26_punch3"]
 [ext_resource type="AudioStream" uid="uid://qehgremwu6sf" path="res://sounds/player_solid_punch.wav" id="27_solid"]
 [ext_resource type="AudioStream" uid="uid://dpkuh4p3i22gv" path="res://sounds/player_missed_punch.wav" id="28_missed"]
+[ext_resource type="Texture2D" uid="uid://ckwfjkem5tfok" path="res://sprites/PunchRoll/sprite_0.png" id="29_roll0"]
+[ext_resource type="Texture2D" uid="uid://ckxvoikkfn631" path="res://sprites/PunchRoll/sprite_1.png" id="30_roll1"]
+[ext_resource type="Texture2D" uid="uid://sfgkn4mhvc3v" path="res://sprites/PunchRoll/sprite_2.png" id="31_roll2"]
+[ext_resource type="Texture2D" uid="uid://d2cc6dbrgjqvt" path="res://sprites/PunchRoll/sprite_3.png" id="32_roll3"]
+[ext_resource type="Texture2D" uid="uid://cjqr4ub77t4k6" path="res://sprites/PunchRoll/sprite_4.png" id="33_roll4"]
+[ext_resource type="Texture2D" uid="uid://0cmvkcouss4m" path="res://sprites/PunchRoll/sprite_5.png" id="34_roll5"]
+[ext_resource type="Texture2D" uid="uid://ca8jfvok6qmk" path="res://sprites/PunchRoll/sprite_6.png" id="35_roll6"]
+[ext_resource type="Texture2D" uid="uid://stq07vdx7opy" path="res://sprites/PunchRoll/sprite_7.png" id="36_roll7"]
+[ext_resource type="Texture2D" uid="uid://c35x5hschg78j" path="res://sprites/PunchRoll/sprite_8.png" id="37_roll8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qly61"]
 atlas = ExtResource("2_rfe5m")
@@ -160,6 +169,38 @@ animations = [{
 "loop": 1,
 "name": &"jump",
 "speed": 11.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("29_roll0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_roll1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_roll2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_roll3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("33_roll4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("34_roll5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("35_roll6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("36_roll7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("37_roll8")
+}],
+"loop": 0,
+"name": &"roll",
+"speed": 13.0
 }, {
 "frames": [{
 "duration": 1.0,

@@ -7,6 +7,9 @@ const MAX_AIR_JUMPS := 1
 const HIT_SCALE_FACTOR := 0.25
 const VINE_CLIMB_SPEED := 65.0
 const DAMAGE_INVULNERABILITY_TIME := 1.0
+const ROLL_SPEED := 120.0
+const ROLL_INVULNERABLE_FIRST_FRAME := 1
+const ROLL_INVULNERABLE_LAST_FRAME := 6
 
 @export_category("Combat")
 @export var attack_damage := 1
@@ -23,6 +26,8 @@ const DAMAGE_INVULNERABILITY_TIME := 1.0
 var is_hitting := false
 var is_dead := false
 var is_invulnerable := false
+var is_rolling := false
+var roll_direction := 1.0
 var default_sprite_scale: Vector2
 var vines_in_reach := 0
 var respawn_position: Vector2
@@ -39,7 +44,7 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	var is_on_vine := vines_in_reach > 0
+	var is_on_vine := vines_in_reach > 0 and not is_rolling
 	var vertical_direction := Input.get_axis(&"climb_up", &"climb_down")
 
 	if is_on_vine and not is_hitting:
@@ -50,6 +55,14 @@ func _physics_process(delta: float) -> void:
 	# O pulo extra no ar recarrega ao tocar o chao ou segurar numa vinha.
 	if is_on_floor() or is_on_vine:
 		air_jumps_left = MAX_AIR_JUMPS
+
+	if Input.is_action_just_pressed(&"roll") and is_on_floor() and not is_hitting and not is_rolling:
+		start_roll()
+
+	if is_rolling:
+		velocity.x = roll_direction * ROLL_SPEED if anim.frame <= ROLL_INVULNERABLE_LAST_FRAME else 0.0
+		move_and_slide()
+		return
 
 	if is_on_vine and Input.is_action_just_pressed(&"vine_release"):
 		velocity.y = JUMP_VELOCITY
@@ -81,6 +94,21 @@ func _physics_process(delta: float) -> void:
 		update_movement_animation(direction, is_on_vine)
 
 	move_and_slide()
+
+
+func start_roll() -> void:
+	var direction := Input.get_axis(&"left", &"right")
+	if not is_zero_approx(direction):
+		anim.flip_h = direction < 0.0
+	roll_direction = -1.0 if anim.flip_h else 1.0
+	is_rolling = true
+	anim.play(&"roll")
+
+
+func is_roll_invulnerable() -> bool:
+	return is_rolling \
+		and anim.frame >= ROLL_INVULNERABLE_FIRST_FRAME \
+		and anim.frame <= ROLL_INVULNERABLE_LAST_FRAME
 
 
 func start_attack() -> void:
@@ -157,11 +185,14 @@ func set_checkpoint(checkpoint_position: Vector2) -> void:
 	respawn_position = checkpoint_position
 
 
-func take_damage(amount: int = 1, _source_position: Vector2 = Vector2.INF) -> void:
+func take_damage(amount: int = 1, source_position: Vector2 = Vector2.INF) -> void:
 	if is_dead or is_invulnerable or amount <= 0:
+		return
+	if source_position != Vector2.INF and is_roll_invulnerable():
 		return
 
 	cancel_attack()
+	is_rolling = false
 	if HealthManager.lose_life(amount) <= 0:
 		die()
 		return
@@ -211,9 +242,12 @@ func exit_vine() -> void:
 
 
 func _on_animated_sprite_2d_animation_finished() -> void:
-	if anim.animation != &"hit":
+	if anim.animation == &"roll":
+		is_rolling = false
+	elif anim.animation == &"hit":
+		cancel_attack()
+	else:
 		return
 
-	cancel_attack()
 	var direction := Input.get_axis(&"left", &"right")
 	update_movement_animation(direction, vines_in_reach > 0)

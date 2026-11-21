@@ -76,6 +76,7 @@ No fim da jornada, a verdadeira motivação de Punch é revelada: ele estava ten
 | Soltar o cipó | `Espaço` | Desprende Punch do cipó e inicia um salto. |
 | Atacar | `E` | Executa um soco direcional contra os inimigos. |
 | Interagir / resgatar | `J` | Desamarra sacos próximos e liberta os animais. |
+| Rolar | `K` | Rola no chão para a frente, invencível a ataques inimigos durante parte do rolamento. |
 | Abrir ou fechar o menu | `Esc` | Pausa a partida ou retorna ao jogo. |
 
 ### Vida e dano
@@ -101,6 +102,8 @@ O ataque exclusivo de Punch é um soco direcional ativado pela tecla `E`. O golp
 - Causa dano aos lenhadores, capangas e caçadores.
 - Aplica knockback para afastar o inimigo.
 - Impede múltiplos acertos no mesmo inimigo durante uma única animação.
+
+Para desviar, Punch rola no chão com a tecla `K`. Enquanto está encolhido (do 2º ao 7º quadro da animação), golpes de machado, porrete, pá e dardos não causam dano. Espinhos, fogo, água e quedas continuam machucando.
 
 ### Inimigos
 

@@ -9,13 +9,14 @@ signal settings_changed
 const SETTINGS_PATH := "user://settings.cfg"
 const MASTER_BUS := &"Master"
 
-const KEY_ACTIONS: Array[StringName] = [&"left", &"right", &"jump", &"attack", &"interact"]
+const KEY_ACTIONS: Array[StringName] = [&"left", &"right", &"jump", &"attack", &"interact", &"roll"]
 const DEFAULT_KEYS := {
 	&"left": KEY_A,
 	&"right": KEY_D,
 	&"jump": KEY_SPACE,
 	&"attack": KEY_E,
 	&"interact": KEY_J,
+	&"roll": KEY_K,
 }
 const ALT_KEYS := {
 	&"left": [KEY_LEFT],
@@ -23,6 +24,7 @@ const ALT_KEYS := {
 	&"jump": [KEY_UP, KEY_W],
 	&"attack": [],
 	&"interact": [],
+	&"roll": [],
 }
 
 var master_volume := 0.8

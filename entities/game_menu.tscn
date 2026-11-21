@@ -212,30 +212,30 @@ theme_override_styles/panel = SubResource("StylePanel")
 [node name="Margin" type="MarginContainer" parent="Overlay/Center/ControlsPanel"]
 layout_mode = 2
 theme_override_constants/margin_left = 22
-theme_override_constants/margin_top = 14
+theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 22
-theme_override_constants/margin_bottom = 14
+theme_override_constants/margin_bottom = 8
 
 [node name="VBox" type="VBoxContainer" parent="Overlay/Center/ControlsPanel/Margin"]
 layout_mode = 2
-theme_override_constants/separation = 7
+theme_override_constants/separation = 4
 
 [node name="Title" type="Label" parent="Overlay/Center/ControlsPanel/Margin/VBox"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.76, 0.25, 1)
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 16
 text = "CONTROLES"
 horizontal_alignment = 1
 
 [node name="Text" type="Label" parent="Overlay/Center/ControlsPanel/Margin/VBox"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.88, 0.92, 0.85, 1)
-theme_override_font_sizes/font_size = 11
-text = "A / Seta esq.   Mover para esquerda\nD / Seta dir.   Mover para direita\nW / Seta cima / Espaço   Pular\nW/S ou setas cima/baixo   Escalar cipó\nEspaço   Soltar cipó\nE   Atacar\nJ   Interagir / resgatar\nEsc   Abrir ou fechar menu"
+theme_override_font_sizes/font_size = 8
+text = "A / Seta esq.   Mover para esquerda\nD / Seta dir.   Mover para direita\nW / Seta cima / Espaço   Pular\nW/S ou setas cima/baixo   Escalar cipó\nEspaço   Soltar cipó\nE   Atacar\nJ   Interagir / resgatar\nK   Rolar\nEsc   Abrir ou fechar menu"
 horizontal_alignment = 1
 
 [node name="BackButton" type="Button" parent="Overlay/Center/ControlsPanel/Margin/VBox"]
-custom_minimum_size = Vector2(0, 24)
+custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleButton")
 theme_override_styles/hover = SubResource("StyleButtonHover")

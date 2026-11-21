@@ -34,6 +34,8 @@
 
 [ext_resource type="PackedScene" path="res://entities/fire.tscn" id="new_fire"]
 
+[ext_resource type="PackedScene" path="res://entities/tutorial_trigger.tscn" id="new_tut"]
+
 [node name="Game" type="Node2D" unique_id=2002910798]
 
 [node name="CharacterBody2D" parent="." unique_id=381482022 instance=ExtResource("1_yjf0y")]
@@ -537,3 +539,23 @@ total_cages = 3
 
 [node name="FireA" parent="ChallengeObstacles" instance=ExtResource("new_fire")]
 position = Vector2(280, 153)
+
+[node name="TipMover" parent="." instance=ExtResource("new_tut")]
+position = Vector2(60, 120)
+tip = "A / D andam, W ou Espaço pulam e E ataca"
+
+[node name="TipSpikes" parent="." instance=ExtResource("new_tut")]
+position = Vector2(200, 150)
+tip = "Espinhos tiram 1 vida. Pule por cima deles"
+
+[node name="TipFire" parent="." instance=ExtResource("new_tut")]
+position = Vector2(236, 150)
+tip = "Fogo tira 1 vida. Ataque com E para apagar (+150)"
+
+[node name="TipCage" parent="." instance=ExtResource("new_tut")]
+position = Vector2(95, 100)
+tip = "Chegue perto de uma gaiola e aperte J para libertar o animal"
+
+[node name="TipFruit" parent="." instance=ExtResource("new_tut")]
+position = Vector2(283, 83)
+tip = "Bananas recuperam 1 vida e dão pontos"

@@ -66,15 +66,15 @@ z_index = -1
 
 [node name="FirstPool" type="Polygon2D" parent="WaterVisuals" unique_id=974690273]
 color = Color(0.14, 0.24, 0.34, 1)
-polygon = PackedVector2Array(224, 176, 272, 176, 272, 208, 224, 208)
+polygon = PackedVector2Array(240, 182, 280, 182, 280, 208, 240, 208)
 
 [node name="SecondPool" type="Polygon2D" parent="WaterVisuals" unique_id=1269648619]
 color = Color(0.14, 0.24, 0.34, 1)
-polygon = PackedVector2Array(480, 176, 528, 176, 528, 208, 480, 208)
+polygon = PackedVector2Array(520, 182, 616, 182, 616, 208, 520, 208)
 
 [node name="VinePool" type="Polygon2D" parent="WaterVisuals" unique_id=691632112]
 color = Color(0.14, 0.24, 0.34, 1)
-polygon = PackedVector2Array(704, 176, 800, 176, 800, 208, 704, 208)
+polygon = PackedVector2Array(896, 182, 1040, 182, 1040, 208, 896, 208)
 
 [node name="Player" parent="." unique_id=909789665 instance=ExtResource("1_player")]
 position = Vector2(42, 150)
@@ -82,132 +82,105 @@ position = Vector2(42, 150)
 [node name="GroundStart" parent="." unique_id=121126096 instance=ExtResource("3_platform")]
 use_autumn_tiles = true
 position = Vector2(0, 176)
-platform_size = Vector2(224, 32)
+platform_size = Vector2(240, 32)
 
 [node name="GroundChallenges" parent="." unique_id=994183795 instance=ExtResource("3_platform")]
 use_autumn_tiles = true
-position = Vector2(272, 176)
-platform_size = Vector2(208, 32)
+position = Vector2(280, 176)
+platform_size = Vector2(240, 32)
 
 [node name="GroundClimb" parent="." unique_id=420234315 instance=ExtResource("3_platform")]
 use_autumn_tiles = true
-position = Vector2(528, 176)
-platform_size = Vector2(176, 32)
+position = Vector2(616, 176)
+platform_size = Vector2(280, 32)
 
 [node name="GroundFinish" parent="." unique_id=646696910 instance=ExtResource("3_platform")]
 use_autumn_tiles = true
-position = Vector2(800, 176)
-platform_size = Vector2(480, 32)
+position = Vector2(1040, 176)
+platform_size = Vector2(560, 32)
 
 [node name="TrainingPlatform" parent="." unique_id=804914491 instance=ExtResource("3_platform")]
 use_autumn_tiles = true
-position = Vector2(96, 132)
-platform_size = Vector2(64, 16)
-
-[node name="SpikePlatform" parent="." unique_id=930310031 instance=ExtResource("3_platform")]
-use_autumn_tiles = true
-position = Vector2(304, 132)
-platform_size = Vector2(64, 16)
-
-[node name="HighSpikePlatform" parent="." unique_id=1844182581 instance=ExtResource("3_platform")]
-use_autumn_tiles = true
-position = Vector2(394, 100)
+position = Vector2(136, 88)
 platform_size = Vector2(64, 16)
 
 [node name="ClimbApproach" parent="." unique_id=553677441 instance=ExtResource("3_platform")]
 use_autumn_tiles = true
-position = Vector2(592, 128)
+position = Vector2(840, 88)
 platform_size = Vector2(64, 16)
 
 [node name="VineLanding" parent="." unique_id=802926947 instance=ExtResource("3_platform")]
 use_autumn_tiles = true
-position = Vector2(816, 112)
-platform_size = Vector2(72, 16)
-
-[node name="FinalStep" parent="." unique_id=1461556097 instance=ExtResource("3_platform")]
-use_autumn_tiles = true
-position = Vector2(936, 144)
-platform_size = Vector2(80, 16)
+position = Vector2(1308, 72)
+platform_size = Vector2(64, 16)
 
 [node name="Hazards" type="Node2D" parent="." unique_id=1923090288]
 
-[node name="SpikeGroundA" parent="Hazards" unique_id=1840256018 instance=ExtResource("4_spike")]
-art_texture = ExtResource("spike_tangle")
-position = Vector2(160, 169)
-
-[node name="SpikeGroundB" parent="Hazards" unique_id=1691124065 instance=ExtResource("4_spike")]
-art_texture = ExtResource("spike_arch")
-position = Vector2(185, 169)
-
 [node name="SpikeRunA" parent="Hazards" unique_id=1823998476 instance=ExtResource("4_spike")]
 art_texture = ExtResource("spike_thicket")
-position = Vector2(307, 169)
+position = Vector2(344, 169)
 
-[node name="SpikeRunB" parent="Hazards" unique_id=1451550636 instance=ExtResource("4_spike")]
-position = Vector2(377, 169)
-
-[node name="SpikeOnPlatform" parent="Hazards" unique_id=1275701021 instance=ExtResource("4_spike")]
-art_texture = ExtResource("spike_tangle")
-position = Vector2(336, 125)
-
-[node name="SpikeHigh" parent="Hazards" unique_id=914768723 instance=ExtResource("4_spike")]
-art_texture = ExtResource("spike_arch")
-position = Vector2(426, 93)
-
-[node name="SpikeClimb" parent="Hazards" unique_id=770764431 instance=ExtResource("4_spike")]
-art_texture = ExtResource("spike_thicket")
-position = Vector2(624, 121)
+[node name="FireA" parent="Hazards" instance=ExtResource("new_fire")]
+position = Vector2(456, 169)
 
 [node name="SpikeFinishA" parent="Hazards" unique_id=406954190 instance=ExtResource("4_spike")]
-position = Vector2(1028, 169)
-
-[node name="SpikeFinishB" parent="Hazards" unique_id=124723213 instance=ExtResource("4_spike")]
-art_texture = ExtResource("spike_tangle")
-position = Vector2(1051, 169)
-
-[node name="Lenhador" parent="Hazards" unique_id=429131712 instance=ExtResource("15_logger")]
-position = Vector2(870, 165)
-patrol_distance = 44.0
+position = Vector2(1232, 169)
 
 [node name="Capanga" parent="Hazards" instance=ExtResource("22_henchman")]
-position = Vector2(660, 165)
-patrol_distance = 28.0
+position = Vector2(760, 165)
+patrol_distance = 40.0
+
+[node name="Lenhador" parent="Hazards" unique_id=429131712 instance=ExtResource("15_logger")]
+position = Vector2(1150, 165)
+patrol_distance = 44.0
 
 [node name="Fruit" parent="Hazards" unique_id=820628081 instance=ExtResource("16_fruit")]
-position = Vector2(614, 110)
+position = Vector2(400, 168)
+
+[node name="FruitMamaoP2" parent="Hazards" instance=ExtResource("new_2")]
+position = Vector2(1072, 168)
 
 [node name="Fruit2" parent="Hazards" unique_id=2129713360 instance=ExtResource("16_fruit")]
-position = Vector2(810, 168)
+position = Vector2(1432, 168)
+
+[node name="SeedP2" parent="Hazards" instance=ExtResource("new_1")]
+position = Vector2(892, 80)
 
 [node name="Checkpoint" parent="Hazards" unique_id=1711567775 instance=ExtResource("17_checkpoint")]
-position = Vector2(552, 165)
+position = Vector2(640, 165)
 
 [node name="WaterA" parent="Hazards" unique_id=1725929464 instance=ExtResource("6_water")]
-position = Vector2(248, 211)
+position = Vector2(260, 210)
 
 [node name="WaterB" parent="Hazards" unique_id=756002241 instance=ExtResource("6_water")]
-position = Vector2(504, 210)
+position = Vector2(544, 210)
+
+[node name="WaterB2" parent="Hazards" instance=ExtResource("6_water")]
+position = Vector2(592, 210)
 
 [node name="WaterC1" parent="Hazards" unique_id=1925341198 instance=ExtResource("6_water")]
-position = Vector2(728, 210)
+position = Vector2(920, 210)
 
 [node name="WaterC2" parent="Hazards" unique_id=396561691 instance=ExtResource("6_water")]
-position = Vector2(775, 210)
+position = Vector2(968, 210)
+
+[node name="WaterC3" parent="Hazards" instance=ExtResource("6_water")]
+position = Vector2(1016, 210)
 
 [node name="RescueCages" type="Node2D" parent="." unique_id=1437660342]
 
 [node name="CageA" parent="RescueCages" unique_id=325917472 instance=ExtResource("10_cage")]
-position = Vector2(128, 107)
+position = Vector2(168, 73)
 rescue_id = &"phase_2_cage_a"
 animal_kind = &"mouse"
 
 [node name="CageB" parent="RescueCages" unique_id=928620062 instance=ExtResource("10_cage")]
-position = Vector2(426, 75)
+position = Vector2(872, 73)
 rescue_id = &"phase_2_cage_b"
 animal_kind = &"deer"
 
 [node name="CageC" parent="RescueCages" unique_id=710437204 instance=ExtResource("10_cage")]
-position = Vector2(913, 156)
+position = Vector2(1340, 57)
 rescue_id = &"phase_2_cage_c"
 animal_kind = &"squirrel"
 reward_points = 500
@@ -215,13 +188,22 @@ reward_points = 500
 [node name="Vines" type="Node2D" parent="." unique_id=748273072]
 
 [node name="TrainingVine" parent="Vines" unique_id=1882873031 instance=ExtResource("5_vine")]
-position = Vector2(550, 75)
+position = Vector2(128, 100)
+
+[node name="GapVine" parent="Vines" instance=ExtResource("5_vine")]
+position = Vector2(568, 100)
+
+[node name="ClimbVine" parent="Vines" instance=ExtResource("5_vine")]
+position = Vector2(832, 100)
 
 [node name="GapVineA" parent="Vines" unique_id=1520348875 instance=ExtResource("5_vine")]
-position = Vector2(730, 75)
+position = Vector2(944, 100)
 
 [node name="GapVineB" parent="Vines" unique_id=1316742618 instance=ExtResource("5_vine")]
-position = Vector2(772, 75)
+position = Vector2(992, 100)
+
+[node name="FinalVine" parent="Vines" instance=ExtResource("5_vine")]
+position = Vector2(1300, 88)
 
 [node name="Decorations" type="Node2D" parent="." unique_id=630538438]
 
@@ -233,18 +215,18 @@ region_enabled = true
 region_rect = Rect2(16, 16, 48, 48)
 
 [node name="TreeB" type="Sprite2D" parent="Decorations" unique_id=340841289]
-position = Vector2(1128, 154)
+position = Vector2(1384, 154)
 scale = Vector2(1.35, 1.35)
 texture = ExtResource("8_decor")
 region_enabled = true
 region_rect = Rect2(16, 16, 48, 48)
 
 [node name="Guardian" parent="." instance=ExtResource("23_guardian")]
-position = Vector2(1170, 158)
+position = Vector2(1480, 158)
 patrol_distance = 30.0
 
 [node name="FinishFlag" parent="." unique_id=1894291092 instance=ExtResource("12_flag")]
-position = Vector2(1240, 166)
+position = Vector2(1560, 166)
 next_scene = "res://scene/phase_3.tscn"
 guardian_path = NodePath("../Guardian")
 
@@ -263,21 +245,14 @@ tutorial_text = "CIPÓ W/S OU SETAS  |  ESPAÇO SOLTA"
 visible = false
 
 [node name="LevelBounds" parent="." unique_id=550044478 instance=ExtResource("20_bounds")]
+bounds = Rect2(0, 0, 1600, 208)
 
 [node name="PhaseTransition" parent="." unique_id=969874533 instance=ExtResource("9_transition")]
 fade_color = Color(0.12, 0.06, 0.02, 1)
-
-[node name="SeedP2" parent="Hazards" instance=ExtResource("new_1")]
-position = Vector2(654, 110)
-
-[node name="FruitMamaoP2" parent="Hazards" instance=ExtResource("new_2")]
-position = Vector2(850, 168)
 
 [node name="SceneryReaction" type="Node2D" parent="."]
 script = ExtResource("scenery_script")
 canopy_path = NodePath("../Background/Sky/Sprite2D")
 rescue_prefix = "phase_2_cage_"
 total_cages = 3
-
-[node name="FireA" parent="Hazards" instance=ExtResource("new_fire")]
-position = Vector2(240, 169)
+level_width = 1600.0

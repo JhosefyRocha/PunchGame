@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=3]
+
+[sub_resource type="RectangleShape2D" id="LogShape"]
+size = Vector2(96, 8)
+
+[node name="FallenLog" type="StaticBody2D"]
+collision_layer = 1
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("LogShape")
+
+[node name="Trunk" type="Polygon2D" parent="."]
+color = Color(0.4, 0.26, 0.14, 1)
+polygon = PackedVector2Array(-48, -4, 48, -4, 48, 4, -48, 4)
+
+[node name="Bark" type="Polygon2D" parent="."]
+color = Color(0.28, 0.18, 0.1, 1)
+polygon = PackedVector2Array(-48, 2, 48, 2, 48, 4, -48, 4)
+
+[node name="RingLeft" type="Polygon2D" parent="."]
+color = Color(0.62, 0.45, 0.26, 1)
+polygon = PackedVector2Array(-48, -4, -46, -4, -46, 4, -48, 4)
+
+[node name="RingRight" type="Polygon2D" parent="."]
+color = Color(0.62, 0.45, 0.26, 1)
+polygon = PackedVector2Array(46, -4, 48, -4, 48, 4, 46, 4)

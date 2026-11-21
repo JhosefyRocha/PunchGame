@@ -46,20 +46,20 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Panel" type="PanelContainer" parent="Overlay/Center"]
-custom_minimum_size = Vector2(248, 0)
+custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 theme_override_styles/panel = SubResource("PanelStyle")
 
 [node name="Margin" type="MarginContainer" parent="Overlay/Center/Panel"]
 layout_mode = 2
 theme_override_constants/margin_left = 18
-theme_override_constants/margin_top = 14
+theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 18
-theme_override_constants/margin_bottom = 14
+theme_override_constants/margin_bottom = 8
 
 [node name="VBox" type="VBoxContainer" parent="Overlay/Center/Panel/Margin"]
 layout_mode = 2
-theme_override_constants/separation = 7
+theme_override_constants/separation = 3
 
 [node name="Title" type="Label" parent="Overlay/Center/Panel/Margin/VBox"]
 layout_mode = 2
@@ -67,34 +67,35 @@ theme_override_colors/font_color = Color(0.87, 1, 0.38, 1)
 theme_override_colors/font_shadow_color = Color(0.02, 0.08, 0.03, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_font_sizes/font_size = 21
+theme_override_font_sizes/font_size = 17
 text = "JOGO CONCLUÍDO!"
 horizontal_alignment = 1
 
 [node name="Message" type="Label" parent="Overlay/Center/Panel/Margin/VBox"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.92, 0.97, 0.84, 1)
-theme_override_font_sizes/font_size = 10
+theme_override_font_sizes/font_size = 9
 text = "0 animais foram libertados!"
+autowrap_mode = 3
 horizontal_alignment = 1
 
 [node name="StatsLabel" type="Label" parent="Overlay/Center/Panel/Margin/VBox"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.92, 0.97, 0.84, 1)
-theme_override_font_sizes/font_size = 9
+theme_override_font_sizes/font_size = 8
 autowrap_mode = 3
 horizontal_alignment = 1
 
 [node name="EcoMessage" type="Label" parent="Overlay/Center/Panel/Margin/VBox"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.67, 0.9, 0.52, 1)
-theme_override_font_sizes/font_size = 9
+theme_override_font_sizes/font_size = 8
 text = "Mensagem ecológica"
 autowrap_mode = 3
 horizontal_alignment = 1
 
 [node name="PlayAgainButton" type="Button" parent="Overlay/Center/Panel/Margin/VBox"]
-custom_minimum_size = Vector2(0, 24)
+custom_minimum_size = Vector2(0, 18)
 layout_mode = 2
 theme_override_font_sizes/font_size = 10
 theme_override_styles/normal = SubResource("ButtonStyle")
@@ -103,7 +104,7 @@ theme_override_styles/focus = SubResource("ButtonStyle")
 text = "JOGAR NOVAMENTE"
 
 [node name="LevelsButton" type="Button" parent="Overlay/Center/Panel/Margin/VBox"]
-custom_minimum_size = Vector2(0, 24)
+custom_minimum_size = Vector2(0, 18)
 layout_mode = 2
 theme_override_font_sizes/font_size = 10
 theme_override_styles/normal = SubResource("ButtonStyle")
@@ -112,7 +113,7 @@ theme_override_styles/focus = SubResource("ButtonStyle")
 text = "SELEÇÃO DE FASES"
 
 [node name="MenuButton" type="Button" parent="Overlay/Center/Panel/Margin/VBox"]
-custom_minimum_size = Vector2(0, 24)
+custom_minimum_size = Vector2(0, 18)
 layout_mode = 2
 theme_override_font_sizes/font_size = 10
 theme_override_styles/normal = SubResource("ButtonStyle")

@@ -6,6 +6,7 @@ static var start_after_reload := false
 static var open_level_select := false
 static var phase_start_score := 0
 static var phase_start_rescues: Dictionary = {}
+static var phase_start_plush := false
 
 const FIRST_SCENE := "res://scene/phase_1.tscn"
 const MAIN_MENU_SCENE := "res://entities/main_menu.tscn"
@@ -25,6 +26,7 @@ static func reset_run_state() -> void:
 static func mark_phase_start() -> void:
 	phase_start_score = ScoreManager.current_score
 	phase_start_rescues = RescueManager.rescued_animals.duplicate()
+	phase_start_plush = RescueManager.plush_recovered
 	ScoreManager.mark_phase_counts()
 
 
@@ -32,6 +34,7 @@ static func restore_phase_start() -> void:
 	HealthManager.reset_game_state()
 	ScoreManager.set_score(phase_start_score)
 	RescueManager.set_rescued_animals(phase_start_rescues)
+	RescueManager.plush_recovered = phase_start_plush
 	ScoreManager.restore_phase_counts()
 
 
@@ -40,7 +43,7 @@ static func phase_summary(rescue_prefix: String, total_cages: int) -> String:
 	for rescue_id in RescueManager.rescued_animals:
 		if String(rescue_id).begins_with(rescue_prefix):
 			rescued += 1
-	return "Animais libertados: %d/%d\nIncêndios apagados: %d\nInimigos derrotados: %d\nSementes coletadas: %d\nPontuação total: %06d" % [
+	return "Animais: %d/%d   Incêndios: %d\nInimigos: %d   Sementes: %d\nPontuação: %06d" % [
 		rescued, total_cages, ScoreManager.get_phase_fires(), ScoreManager.get_phase_enemies(), ScoreManager.get_phase_seeds(), ScoreManager.current_score,
 	]
 

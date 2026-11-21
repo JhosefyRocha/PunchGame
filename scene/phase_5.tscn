@@ -32,6 +32,8 @@
 
 [ext_resource type="PackedScene" path="res://entities/fire.tscn" id="new_fire"]
 
+[ext_resource type="PackedScene" path="res://entities/plush.tscn" id="new_plush"]
+
 [node name="Phase5" type="Node2D"]
 
 [node name="Background" type="ParallaxBackground" parent="."]
@@ -416,3 +418,7 @@ total_cages = 3
 
 [node name="FireA" parent="Hazards" instance=ExtResource("new_fire")]
 position = Vector2(560, 169)
+
+[node name="Plush" parent="." instance=ExtResource("new_plush")]
+position = Vector2(2300, 150)
+boss_path = NodePath("../Guardian")

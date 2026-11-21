@@ -10,6 +10,7 @@ extends Area2D
 
 var player_nearby := false
 var is_opening := false
+var struggle: Tween
 
 
 func _ready() -> void:
@@ -17,6 +18,13 @@ func _ready() -> void:
 	interaction_hint.hide()
 	if RescueManager.is_rescued(rescue_id):
 		queue_free()
+		return
+	struggle = create_tween().set_loops()
+	struggle.tween_interval(randf_range(1.2, 2.4))
+	struggle.tween_property(visual, "position:y", -1.0, 0.06)
+	struggle.tween_property(visual, "position:y", 0.0, 0.06)
+	struggle.tween_property(visual, "position:y", -1.0, 0.06)
+	struggle.tween_property(visual, "position:y", 0.0, 0.06)
 
 
 func _process(_delta: float) -> void:
@@ -30,6 +38,8 @@ func free_animal() -> void:
 
 	ScoreManager.add_points(reward_points)
 	_spawn_celebration()
+	struggle.kill()
+	visual.position.y = 0.0
 	is_opening = true
 	player_nearby = false
 	monitoring = false

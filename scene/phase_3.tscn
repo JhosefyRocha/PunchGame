@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" path="res://entities/tile_platform.tscn" id="6_platform"]
 [ext_resource type="PackedScene" path="res://entities/moving_platform.tscn" id="7_moving"]
 [ext_resource type="PackedScene" path="res://entities/spike.tscn" id="8_spike"]
+[ext_resource type="Texture2D" path="res://sprites/hazards/spike_arch.png" id="spike_arch"]
+[ext_resource type="Texture2D" path="res://sprites/hazards/spike_thicket.png" id="spike_thicket"]
 [ext_resource type="PackedScene" path="res://entities/lumberjack.tscn" id="9_logger"]
 [ext_resource type="PackedScene" path="res://entities/henchman.tscn" id="10_henchman"]
 [ext_resource type="PackedScene" path="res://entities/hunter.tscn" id="11_hunter"]
@@ -184,9 +186,11 @@ tile_texture = ExtResource("2_terrain")
 [node name="Hazards" type="Node2D" parent="."]
 
 [node name="Spike1" parent="Hazards" instance=ExtResource("8_spike")]
+art_texture = ExtResource("spike_arch")
 position = Vector2(452, 169)
 
 [node name="Spike2" parent="Hazards" instance=ExtResource("8_spike")]
+art_texture = ExtResource("spike_thicket")
 position = Vector2(476, 169)
 
 [node name="Spike3" parent="Hazards" instance=ExtResource("8_spike")]

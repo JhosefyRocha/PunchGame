@@ -3,6 +3,7 @@ extends Area2D
 const EXTINGUISH_SCORE := 150
 
 @onready var flames: Node2D = $Flames
+@onready var sprite: Sprite2D = $Flames/Sprite
 @onready var collision: CollisionShape2D = $CollisionShape2D
 @onready var interact_zone: Area2D = $InteractZone
 @onready var interaction_hint: Label = $InteractionHint
@@ -15,12 +16,10 @@ func _ready() -> void:
 	interaction_hint.hide()
 	interact_zone.body_entered.connect(_on_interact_zone_body_entered)
 	interact_zone.body_exited.connect(_on_interact_zone_body_exited)
-	var flicker := create_tween().set_loops().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
-	flicker.tween_property(flames, "scale", Vector2(1.08, 0.9), 0.22)
-	flicker.tween_property(flames, "scale", Vector2.ONE, 0.22)
 
 
 func _process(_delta: float) -> void:
+	sprite.frame = int(Time.get_ticks_msec() / 110.0) % sprite.hframes
 	if player_nearby and not is_out and Input.is_action_just_pressed(&"interact"):
 		_extinguish()
 

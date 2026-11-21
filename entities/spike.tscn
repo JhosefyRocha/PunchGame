@@ -1,15 +1,18 @@
 [gd_scene load_steps=3 format=3]
 
 [ext_resource type="Script" path="res://entities/spike.gd" id="1_spike"]
+[ext_resource type="Texture2D" path="res://sprites/hazards/spike.png" id="art_tex"]
 
 [sub_resource type="RectangleShape2D" id="SpikeShape"]
 size = Vector2(18, 10)
+
 
 [node name="Spike" type="Area2D"]
 collision_layer = 0
 collision_mask = 4
 monitorable = false
 script = ExtResource("1_spike")
+art_texture = ExtResource("art_tex")
 
 ; Estacas de madeira afiadas cravadas num monte de terra com musgo -- leitura
 ; de armadilha feita pelos lenhadores, na mesma paleta de casca e folhagem do

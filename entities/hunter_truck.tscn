@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://entities/hunter_truck.gd" id="1_truck"]
 [ext_resource type="Texture2D" path="res://sprites/enemies/hunter_truck.png" id="2_art"]
-[ext_resource type="Texture2D" path="res://sprites/rescue/animal_cage.png" id="3_cage"]
+[ext_resource type="Texture2D" path="res://sprites/rescue/animal_sack_small.png" id="3_sack"]
 
 [sub_resource type="Gradient" id="Gradient_puff"]
 offsets = PackedFloat32Array(0, 0.55, 1)
@@ -35,17 +35,12 @@ script = ExtResource("1_truck")
 
 [node name="CageA" type="Sprite2D" parent="Body/Cages"]
 position = Vector2(17, -33)
-scale = Vector2(0.024, 0.024)
-texture = ExtResource("3_cage")
-region_enabled = true
-region_rect = Rect2(224, 216, 816, 800)
+texture = ExtResource("3_sack")
 
 [node name="CageB" type="Sprite2D" parent="Body/Cages"]
-position = Vector2(41, -33)
-scale = Vector2(0.024, 0.024)
-texture = ExtResource("3_cage")
-region_enabled = true
-region_rect = Rect2(224, 216, 816, 800)
+position = Vector2(40, -33)
+texture = ExtResource("3_sack")
+flip_h = true
 
 [node name="Art" type="Sprite2D" parent="Body"]
 texture = ExtResource("2_art")

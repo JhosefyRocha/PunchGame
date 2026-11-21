@@ -1,14 +1,17 @@
 [gd_scene load_steps=4 format=3]
 
 [ext_resource type="Script" path="res://entities/fruit.gd" id="1_fruit"]
+[ext_resource type="Texture2D" path="res://sprites/items/fruit_pitaia.png" id="art_tex"]
 
 [sub_resource type="CircleShape2D" id="CircleShape_fruit"]
 radius = 6.0
+
 
 [node name="Fruit" type="Area2D"]
 collision_layer = 0
 collision_mask = 4
 script = ExtResource("1_fruit")
+art_texture = ExtResource("art_tex")
 heal_amount = 2
 score_reward = 0
 

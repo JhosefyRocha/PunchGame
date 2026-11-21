@@ -13,6 +13,9 @@
 [ext_resource type="PackedScene" path="res://entities/gameplay_hud.tscn" id="11_hud"]
 [ext_resource type="PackedScene" path="res://entities/tile_platform.tscn" id="12_platform"]
 [ext_resource type="PackedScene" path="res://entities/spike.tscn" id="13_spike"]
+[ext_resource type="Texture2D" path="res://sprites/hazards/spike_tangle.png" id="spike_tangle"]
+[ext_resource type="Texture2D" path="res://sprites/hazards/spike_arch.png" id="spike_arch"]
+[ext_resource type="Texture2D" path="res://sprites/hazards/spike_thicket.png" id="spike_thicket"]
 [ext_resource type="PackedScene" path="res://entities/vine.tscn" id="14_vine"]
 [ext_resource type="PackedScene" path="res://entities/lumberjack.tscn" id="16_logger"]
 [ext_resource type="PackedScene" path="res://entities/fruit.tscn" id="17_fruit"]
@@ -108,6 +111,7 @@ position = Vector2(441, 199)
 position = Vector2(246, 153)
 
 [node name="SpikeC" parent="ChallengeObstacles" unique_id=549479190 instance=ExtResource("13_spike")]
+art_texture = ExtResource("spike_tangle")
 position = Vector2(432, 105)
 
 [node name="Lenhador" parent="ChallengeObstacles" unique_id=1700031174 instance=ExtResource("16_logger")]
@@ -288,9 +292,11 @@ position = Vector2(1336, 198)
 position = Vector2(1368, 198)
 
 [node name="SpikeAfterHouse" parent="ExpandedRoute" unique_id=592615218 instance=ExtResource("13_spike")]
+art_texture = ExtResource("spike_arch")
 position = Vector2(548, 125)
 
 [node name="SpikeHigh" parent="ExpandedRoute" unique_id=701884478 instance=ExtResource("13_spike")]
+art_texture = ExtResource("spike_thicket")
 position = Vector2(1096, 109)
 
 [node name="SpikeFinalA" parent="ExpandedRoute" unique_id=739854558 instance=ExtResource("13_spike")]
@@ -436,21 +442,26 @@ position = Vector2(3432, 165)
 position = Vector2(3452, 168)
 
 [node name="SpikeMidA" parent="LongRoute" unique_id=2058952814 instance=ExtResource("13_spike")]
+art_texture = ExtResource("spike_tangle")
 position = Vector2(1932, 105)
 
 [node name="SpikeMidB" parent="LongRoute" unique_id=1069750523 instance=ExtResource("13_spike")]
+art_texture = ExtResource("spike_arch")
 position = Vector2(2024, 141)
 
 [node name="SpikeUpperA" parent="LongRoute" unique_id=1378741276 instance=ExtResource("13_spike")]
+art_texture = ExtResource("spike_thicket")
 position = Vector2(2310, 121)
 
 [node name="SpikeUpperB" parent="LongRoute" unique_id=1145666231 instance=ExtResource("13_spike")]
 position = Vector2(2438, 89)
 
 [node name="SpikeArenaA" parent="LongRoute" unique_id=889542760 instance=ExtResource("13_spike")]
+art_texture = ExtResource("spike_tangle")
 position = Vector2(2940, 145)
 
 [node name="SpikeArenaB" parent="LongRoute" unique_id=309014932 instance=ExtResource("13_spike")]
+art_texture = ExtResource("spike_arch")
 position = Vector2(3220, 145)
 
 [node name="WaterD1" parent="LongRoute" unique_id=944355547 instance=ExtResource("6_water")]
@@ -554,7 +565,7 @@ tip = "Fogo tira 1 vida. Chegue perto e aperte J para apagar (+150)"
 
 [node name="TipCage" parent="." instance=ExtResource("new_tut")]
 position = Vector2(95, 100)
-tip = "Chegue perto de uma gaiola e aperte J para libertar o animal"
+tip = "Chegue perto de um saco e aperte J para libertar o animal"
 
 [node name="TipFruit" parent="." instance=ExtResource("new_tut")]
 position = Vector2(283, 83)

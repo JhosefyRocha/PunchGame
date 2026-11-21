@@ -4,6 +4,9 @@
 [ext_resource type="PackedScene" path="res://entities/game_menu.tscn" id="2_menu"]
 [ext_resource type="PackedScene" path="res://entities/tile_platform.tscn" id="3_platform"]
 [ext_resource type="PackedScene" path="res://entities/spike.tscn" id="4_spike"]
+[ext_resource type="Texture2D" path="res://sprites/hazards/spike_tangle.png" id="spike_tangle"]
+[ext_resource type="Texture2D" path="res://sprites/hazards/spike_arch.png" id="spike_arch"]
+[ext_resource type="Texture2D" path="res://sprites/hazards/spike_thicket.png" id="spike_thicket"]
 [ext_resource type="PackedScene" path="res://entities/vine.tscn" id="5_vine"]
 [ext_resource type="PackedScene" path="res://entities/water_hazard.tscn" id="6_water"]
 [ext_resource type="Texture2D" uid="uid://vwb8bajswngl" path="res://sprites/environment/forest_canopy_orange.png" id="7_bg"]
@@ -129,30 +132,37 @@ platform_size = Vector2(80, 16)
 [node name="Hazards" type="Node2D" parent="." unique_id=1923090288]
 
 [node name="SpikeGroundA" parent="Hazards" unique_id=1840256018 instance=ExtResource("4_spike")]
+art_texture = ExtResource("spike_tangle")
 position = Vector2(160, 169)
 
 [node name="SpikeGroundB" parent="Hazards" unique_id=1691124065 instance=ExtResource("4_spike")]
+art_texture = ExtResource("spike_arch")
 position = Vector2(185, 169)
 
 [node name="SpikeRunA" parent="Hazards" unique_id=1823998476 instance=ExtResource("4_spike")]
+art_texture = ExtResource("spike_thicket")
 position = Vector2(307, 169)
 
 [node name="SpikeRunB" parent="Hazards" unique_id=1451550636 instance=ExtResource("4_spike")]
 position = Vector2(377, 169)
 
 [node name="SpikeOnPlatform" parent="Hazards" unique_id=1275701021 instance=ExtResource("4_spike")]
+art_texture = ExtResource("spike_tangle")
 position = Vector2(336, 125)
 
 [node name="SpikeHigh" parent="Hazards" unique_id=914768723 instance=ExtResource("4_spike")]
+art_texture = ExtResource("spike_arch")
 position = Vector2(426, 93)
 
 [node name="SpikeClimb" parent="Hazards" unique_id=770764431 instance=ExtResource("4_spike")]
+art_texture = ExtResource("spike_thicket")
 position = Vector2(624, 121)
 
 [node name="SpikeFinishA" parent="Hazards" unique_id=406954190 instance=ExtResource("4_spike")]
 position = Vector2(1028, 169)
 
 [node name="SpikeFinishB" parent="Hazards" unique_id=124723213 instance=ExtResource("4_spike")]
+art_texture = ExtResource("spike_tangle")
 position = Vector2(1051, 169)
 
 [node name="Lenhador" parent="Hazards" unique_id=429131712 instance=ExtResource("15_logger")]

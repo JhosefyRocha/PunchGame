@@ -29,7 +29,7 @@ O projeto dialoga diretamente com o **Objetivo de Desenvolvimento Sustentável 1
 
 - Fases curtas e progressivas com duração aproximada de dois minutos.
 - Combate corpo a corpo com soco direcional e knockback.
-- Resgate de animais presos em gaiolas.
+- Resgate de animais presos em sacos amarrados pelos caçadores.
 - Plataformas fixas e móveis, cipós, espinhos e áreas alagadas.
 - Sistema de vida com três corações e invulnerabilidade temporária.
 - Pontuação por combate, resgates e coleta de frutas.
@@ -75,7 +75,7 @@ No fim da jornada, a verdadeira motivação de Punch é revelada: ele estava ten
 | Descer no cipó | `S` ou `↓` | Move Punch para baixo enquanto está no cipó. |
 | Soltar o cipó | `Espaço` | Desprende Punch do cipó e inicia um salto. |
 | Atacar | `E` | Executa um soco direcional contra os inimigos. |
-| Interagir / resgatar | `J` | Abre gaiolas próximas e liberta os animais. |
+| Interagir / resgatar | `J` | Desamarra sacos próximos e liberta os animais. |
 | Abrir ou fechar o menu | `Esc` | Pausa a partida ou retorna ao jogo. |
 
 ### Vida e dano
@@ -111,7 +111,7 @@ O ataque exclusivo de Punch é um soco direcional ativado pela tecla `E`. O golp
 | Caçador | 3 a 5 | Mantém distância e atira dardos tranquilizantes, que podem ser pulados. Aguenta 3 socos. |
 | Retroescavadeira | 1 | Chefe da fase 1, em duas etapas. A máquina avança, levanta a pá e bate no chão; depois da pancada a pá fica presa e a máquina fica vulnerável. Aguenta 8 socos. Quando quebra, o operador (um lenhador chefe) pula para fora e luta; ao derrotá-lo, a bandeira é liberada. |
 | Guardião | 2 a 4 | Versão maior de um inimigo, com barra de vida, que protege a bandeira: lenhador na fase 2, capanga na fase 3 e caçador com dardos mirados na fase 4. A bandeira só funciona depois que ele cai. Aguenta 6 socos. |
-| Caçador da caminhonete | 5 | Chefe final, em cima da caminhonete ligada e cheia de gaiolas. Atira dardos mirados no jogador. Aguenta 10 socos; ao vencer, as gaiolas abrem e o grupo de animais libertados fica disponível. |
+| Caçador da caminhonete | 5 | Chefe final, em cima da caminhonete ligada e cheia de sacos com animais. Atira dardos mirados no jogador. Aguenta 10 socos; ao vencer, os sacos se abrem e o grupo de animais libertados fica disponível. |
 
 ### Pontuação e coletáveis
 
@@ -120,13 +120,13 @@ O ataque exclusivo de Punch é um soco direcional ativado pela tecla `E`. O golp
 | Derrotar um lenhador, capanga ou caçador | `+100` pontos | Remove uma ameaça da fase. |
 | Derrotar um guardião | `+300` pontos | Libera a bandeira da fase. |
 | Quebrar a retroescavadeira | `+300` pontos | Faz o operador sair da máquina. |
-| Derrotar o caçador da caminhonete | `+500` pontos | Abre as gaiolas e libera o final do jogo. |
+| Derrotar o caçador da caminhonete | `+500` pontos | Abre os sacos e libera o final do jogo. |
 | Resgatar um animal | `+250` pontos | Contribui para a recuperação visual da floresta. |
 | Coletar uma fruta | `+25` pontos | Recupera um coração, respeitando o máximo de três. |
 
 ### Resgates e resposta ambiental
 
-Animais presos podem ser libertados ao pressionar `J` perto de uma gaiola. O progresso é registrado pelo sistema de resgates e apresentado na HUD.
+Animais presos podem ser libertados ao pressionar `J` perto de um saco. O progresso é registrado pelo sistema de resgates e apresentado na HUD.
 
 À medida que os resgates acontecem, a floresta deixa os tons degradados e recupera gradualmente uma aparência mais viva e verde. Essa mudança oferece retorno visual imediato e reforça a mensagem ambiental do jogo.
 
@@ -171,7 +171,7 @@ A interface observa os sinais desses sistemas e atualiza automaticamente os indi
 
 ### Composição de cenas
 
-Jogador, inimigos, gaiolas, frutas, espinhos, cipós, plataformas, checkpoints e bandeiras são mantidos como cenas reutilizáveis. Cada instância pode ser posicionada e configurada pelo Inspector da Godot, facilitando a ampliação das fases sem duplicar as mecânicas centrais.
+Jogador, inimigos, sacos de resgate, frutas, espinhos, cipós, plataformas, checkpoints e bandeiras são mantidos como cenas reutilizáveis. Cada instância pode ser posicionada e configurada pelo Inspector da Godot, facilitando a ampliação das fases sem duplicar as mecânicas centrais.
 
 ---
 

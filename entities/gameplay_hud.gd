@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-@export_multiline var tutorial_text := "J RESGATA  •  E ATACA"
+@export_multiline var tutorial_text := "J RESGATA  |  E ATACA"
 
 @onready var hearts: Array[TextureRect] = [
 	$SafeArea/TopBar/HealthPanel/Padding/Hearts/Heart1,

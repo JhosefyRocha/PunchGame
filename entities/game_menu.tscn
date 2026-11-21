@@ -141,7 +141,7 @@ theme_override_styles/normal = SubResource("StyleButton")
 theme_override_styles/hover = SubResource("StyleButtonHover")
 theme_override_styles/pressed = SubResource("StyleButtonPressed")
 theme_override_styles/focus = SubResource("StyleButtonHover")
-text = "  ▶  INICIAR JOGO"
+text = "INICIAR JOGO"
 alignment = 0
 
 [node name="ControlsButton" type="Button" parent="Overlay/Center/MenuPanel/Margin/VBox"]
@@ -154,7 +154,7 @@ theme_override_styles/normal = SubResource("StyleButton")
 theme_override_styles/hover = SubResource("StyleButtonHover")
 theme_override_styles/pressed = SubResource("StyleButtonPressed")
 theme_override_styles/focus = SubResource("StyleButtonHover")
-text = "  ◆  CONTROLES"
+text = "CONTROLES"
 alignment = 0
 
 [node name="RestartButton" type="Button" parent="Overlay/Center/MenuPanel/Margin/VBox"]
@@ -167,7 +167,7 @@ theme_override_styles/normal = SubResource("StyleButton")
 theme_override_styles/hover = SubResource("StyleButtonHover")
 theme_override_styles/pressed = SubResource("StyleButtonPressed")
 theme_override_styles/focus = SubResource("StyleButtonHover")
-text = "  ↻  REINICIAR FASE"
+text = "REINICIAR FASE"
 alignment = 0
 
 [node name="CreditsButton" type="Button" parent="Overlay/Center/MenuPanel/Margin/VBox"]
@@ -180,7 +180,7 @@ theme_override_styles/normal = SubResource("StyleButton")
 theme_override_styles/hover = SubResource("StyleButtonHover")
 theme_override_styles/pressed = SubResource("StyleButtonPressed")
 theme_override_styles/focus = SubResource("StyleButtonHover")
-text = "  ★  CRÉDITOS"
+text = "CRÉDITOS"
 alignment = 0
 
 [node name="MainMenuButton" type="Button" parent="Overlay/Center/MenuPanel/Margin/VBox"]
@@ -193,14 +193,14 @@ theme_override_styles/normal = SubResource("StyleButton")
 theme_override_styles/hover = SubResource("StyleButtonHover")
 theme_override_styles/pressed = SubResource("StyleButtonPressed")
 theme_override_styles/focus = SubResource("StyleButtonHover")
-text = "  ◀  VOLTAR AO MENU"
+text = "VOLTAR AO MENU"
 alignment = 0
 
 [node name="Hint" type="Label" parent="Overlay/Center/MenuPanel/Margin/VBox"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.55, 0.65, 0.54, 1)
 theme_override_font_sizes/font_size = 8
-text = "ESC  •  ABRIR / FECHAR"
+text = "ESC  |  ABRIR / FECHAR"
 horizontal_alignment = 1
 
 [node name="ControlsPanel" type="PanelContainer" parent="Overlay/Center"]
@@ -231,7 +231,7 @@ horizontal_alignment = 1
 layout_mode = 2
 theme_override_colors/font_color = Color(0.88, 0.92, 0.85, 1)
 theme_override_font_sizes/font_size = 11
-text = "A / ←   Mover para esquerda\nD / →   Mover para direita\nW / ↑ / Espaço   Pular\nW/S ou ↑/↓   Escalar cipó\nEspaço   Soltar cipó\nE   Atacar\nJ   Interagir / resgatar\nEsc   Abrir ou fechar menu"
+text = "A / Seta esq.   Mover para esquerda\nD / Seta dir.   Mover para direita\nW / Seta cima / Espaço   Pular\nW/S ou setas cima/baixo   Escalar cipó\nEspaço   Soltar cipó\nE   Atacar\nJ   Interagir / resgatar\nEsc   Abrir ou fechar menu"
 horizontal_alignment = 1
 
 [node name="BackButton" type="Button" parent="Overlay/Center/ControlsPanel/Margin/VBox"]
@@ -325,7 +325,7 @@ theme_override_styles/normal = SubResource("StyleButton")
 theme_override_styles/hover = SubResource("StyleButtonHover")
 theme_override_styles/pressed = SubResource("StyleButtonPressed")
 theme_override_styles/focus = SubResource("StyleButtonHover")
-text = "↻  REINICIAR FASE"
+text = "REINICIAR FASE"
 
 [node name="MenuButton" type="Button" parent="Overlay/Center/DeathPanel/Margin/VBox"]
 custom_minimum_size = Vector2(0, 25)
@@ -337,7 +337,7 @@ theme_override_styles/normal = SubResource("StyleButton")
 theme_override_styles/hover = SubResource("StyleButtonHover")
 theme_override_styles/pressed = SubResource("StyleButtonPressed")
 theme_override_styles/focus = SubResource("StyleButtonHover")
-text = "◆  VOLTAR AO MENU"
+text = "VOLTAR AO MENU"
 
 [connection signal="pressed" from="Overlay/Center/MenuPanel/Margin/VBox/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="Overlay/Center/MenuPanel/Margin/VBox/ControlsButton" to="." method="_on_controls_button_pressed"]

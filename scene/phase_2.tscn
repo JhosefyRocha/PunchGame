@@ -243,7 +243,7 @@ volume_db = -8.0
 script = ExtResource("19_music_script")
 
 [node name="GameplayHUD" parent="." unique_id=675142284 instance=ExtResource("11_hud")]
-tutorial_text = "CIPÓ W/S OU ↑/↓  •  ESPAÇO SOLTA"
+tutorial_text = "CIPÓ W/S OU SETAS  |  ESPAÇO SOLTA"
 
 [node name="LevelCompleteMenu" parent="." unique_id=1770381865 instance=ExtResource("13_complete")]
 visible = false

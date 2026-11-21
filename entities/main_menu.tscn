@@ -275,9 +275,9 @@ layout_mode = 2
 size_flags_vertical = 0
 theme_override_colors/font_color = Color(1, 0.79, 0.34, 1)
 theme_override_font_sizes/font_size = 8
-text = "A/D  ←/→
-W/↑/Espaço
-W/S  ↑/↓
+text = "A/D  setas esq/dir
+W/Seta cima/Espaço
+W/S  setas cima/baixo
 Esc"
 
 [node name="LeftActions" type="Label" parent="SettingsOverlay/Center/Panel/Margin/VBox/Controls"]

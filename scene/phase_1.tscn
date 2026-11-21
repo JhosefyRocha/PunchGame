@@ -32,6 +32,8 @@
 
 [ext_resource type="Script" path="res://entities/scenery_reaction.gd" id="scenery_script"]
 
+[ext_resource type="PackedScene" path="res://entities/fire.tscn" id="new_fire"]
+
 [node name="Game" type="Node2D" unique_id=2002910798]
 
 [node name="CharacterBody2D" parent="." unique_id=381482022 instance=ExtResource("1_yjf0y")]

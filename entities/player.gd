@@ -118,9 +118,9 @@ func try_hit_enemy(target: Node) -> void:
 		return
 
 	var enemy := target
-	if not enemy.is_in_group(&"enemies"):
+	if not _is_attackable(enemy):
 		enemy = target.get_parent()
-	if enemy == null or not enemy.is_in_group(&"enemies"):
+	if enemy == null or not _is_attackable(enemy):
 		return
 	if attack_targets_hit.has(enemy) or not enemy.has_method(&"take_damage"):
 		return
@@ -130,6 +130,10 @@ func try_hit_enemy(target: Node) -> void:
 	enemy.take_damage(attack_damage, global_position)
 	if is_first_connection:
 		punch_hit_sound.play()
+
+
+func _is_attackable(node: Node) -> bool:
+	return node.is_in_group(&"enemies") or node.is_in_group(&"fires")
 
 
 func _on_attack_hitbox_body_entered(body: Node2D) -> void:

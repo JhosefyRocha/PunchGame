@@ -28,6 +28,8 @@
 
 [ext_resource type="Script" path="res://entities/scenery_reaction.gd" id="scenery_script"]
 
+[ext_resource type="PackedScene" path="res://entities/fire.tscn" id="new_fire"]
+
 [node name="Phase2" type="Node2D" unique_id=1082971088]
 
 [node name="Background" type="ParallaxBackground" parent="." unique_id=572367135]

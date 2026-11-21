@@ -65,7 +65,7 @@ region_enabled = true
 region_rect = Rect2(16, 16, 48, 48)
 
 [node name="FenceA" type="Sprite2D" parent="Decorations"]
-position = Vector2(96, 170)
+position = Vector2(72, 170)
 texture = ExtResource("3_decor")
 region_enabled = true
 region_rect = Rect2(80, 80, 48, 16)
@@ -83,31 +83,31 @@ texture = ExtResource("3_decor")
 region_enabled = true
 region_rect = Rect2(16, 80, 16, 16)
 
+[node name="TreeC" type="Sprite2D" parent="Decorations"]
+position = Vector2(464, 150)
+scale = Vector2(1.35, 1.35)
+texture = ExtResource("3_decor")
+region_enabled = true
+region_rect = Rect2(16, 16, 48, 48)
+
 [node name="BushB" type="Sprite2D" parent="Decorations"]
 position = Vector2(944, 170)
 texture = ExtResource("3_decor")
 region_enabled = true
 region_rect = Rect2(16, 80, 16, 16)
 
-[node name="TreeC" type="Sprite2D" parent="Decorations"]
-position = Vector2(1240, 150)
-scale = Vector2(1.35, 1.35)
-texture = ExtResource("3_decor")
-region_enabled = true
-region_rect = Rect2(16, 16, 48, 48)
-
-[node name="TreeD" type="Sprite2D" parent="Decorations"]
-position = Vector2(1620, 150)
-scale = Vector2(1.35, 1.35)
-texture = ExtResource("3_decor")
-region_enabled = true
-region_rect = Rect2(144, 16, 48, 48)
-
 [node name="FenceB" type="Sprite2D" parent="Decorations"]
 position = Vector2(1840, 170)
 texture = ExtResource("3_decor")
 region_enabled = true
 region_rect = Rect2(80, 80, 48, 16)
+
+[node name="TreeD" type="Sprite2D" parent="Decorations"]
+position = Vector2(1888, 150)
+scale = Vector2(1.35, 1.35)
+texture = ExtResource("3_decor")
+region_enabled = true
+region_rect = Rect2(144, 16, 48, 48)
 
 [node name="Player" parent="." instance=ExtResource("5_player")]
 position = Vector2(40, 150)
@@ -140,7 +140,7 @@ platform_size = Vector2(512, 32)
 tile_texture = ExtResource("2_terrain")
 
 [node name="HighPerch" parent="Terrain" instance=ExtResource("6_platform")]
-position = Vector2(144, 112)
+position = Vector2(112, 112)
 platform_size = Vector2(40, 16)
 tile_texture = ExtResource("2_terrain")
 
@@ -160,15 +160,15 @@ platform_size = Vector2(40, 16)
 tile_texture = ExtResource("2_terrain")
 
 [node name="SeaPerch" parent="Terrain" instance=ExtResource("6_platform")]
-position = Vector2(1496, 96)
+position = Vector2(1480, 72)
 platform_size = Vector2(40, 16)
 tile_texture = ExtResource("2_terrain")
 
 [node name="Raft" parent="Terrain" instance=ExtResource("7_moving")]
-position = Vector2(600, 136)
+position = Vector2(544, 152)
 platform_size = Vector2(48, 16)
-movement = Vector2(56, 0)
-travel_time = 2
+movement = Vector2(128, 0)
+travel_time = 2.4
 tile_texture = ExtResource("2_terrain")
 
 [node name="LiftA" parent="Terrain" instance=ExtResource("7_moving")]
@@ -192,23 +192,33 @@ movement = Vector2(0, 48)
 travel_time = 1.6
 tile_texture = ExtResource("2_terrain")
 
+[node name="FerrySea" parent="Terrain" instance=ExtResource("7_moving")]
+position = Vector2(1424, 152)
+platform_size = Vector2(48, 16)
+movement = Vector2(80, 0)
+travel_time = 2.0
+tile_texture = ExtResource("2_terrain")
+
 [node name="Hazards" type="Node2D" parent="."]
 
-[node name="Spike1" parent="Hazards" instance=ExtResource("8_spike")]
-art_texture = ExtResource("spike_thicket")
-position = Vector2(480, 169)
-
 [node name="Lenhador1" parent="Hazards" instance=ExtResource("9_logger")]
-position = Vector2(420, 165)
+position = Vector2(410, 165)
 patrol_distance = 30
+
+[node name="FireA" parent="Hazards" instance=ExtResource("new_fire")]
+position = Vector2(488, 169)
 
 [node name="Capanga1" parent="Hazards" instance=ExtResource("10_henchman")]
 position = Vector2(924, 165)
 patrol_distance = 20
 
+[node name="Spike1" parent="Hazards" instance=ExtResource("8_spike")]
+art_texture = ExtResource("spike_thicket")
+position = Vector2(1288, 169)
+
 [node name="Cacador1" parent="Hazards" instance=ExtResource("11_hunter")]
-position = Vector2(1312, 165)
-patrol_distance = 36
+position = Vector2(1344, 165)
+patrol_distance = 24
 
 [node name="Capanga2" parent="Hazards" instance=ExtResource("10_henchman")]
 position = Vector2(1690, 165)
@@ -274,8 +284,14 @@ position = Vector2(1544, 210)
 [node name="Fruit1" parent="Pickups" instance=ExtResource("13_fruit")]
 position = Vector2(808, 168)
 
+[node name="SeedP4" parent="Pickups" instance=ExtResource("new_1")]
+position = Vector2(860, 128)
+
 [node name="Fruit2" parent="Pickups" instance=ExtResource("13_fruit")]
-position = Vector2(1240, 168)
+position = Vector2(1248, 168)
+
+[node name="FruitPitaiaP4" parent="Pickups" instance=ExtResource("new_2")]
+position = Vector2(1392, 168)
 
 [node name="Fruit3" parent="Pickups" instance=ExtResource("13_fruit")]
 position = Vector2(1752, 168)
@@ -289,31 +305,25 @@ position = Vector2(1592, 165)
 [node name="RescueCages" type="Node2D" parent="."]
 
 [node name="CageA" parent="RescueCages" instance=ExtResource("15_cage")]
-position = Vector2(164, 87)
+position = Vector2(132, 97)
 rescue_id = &"phase_4_cage_a"
 animal_kind = &"turtle"
 
 [node name="CageB" parent="RescueCages" instance=ExtResource("15_cage")]
-position = Vector2(924, 75)
+position = Vector2(924, 85)
 rescue_id = &"phase_4_cage_b"
 animal_kind = &"parrot"
 
 [node name="CageC" parent="RescueCages" instance=ExtResource("15_cage")]
-position = Vector2(1516, 71)
+position = Vector2(1500, 57)
 rescue_id = &"phase_4_cage_c"
 animal_kind = &"monkey"
 reward_points = 500
 
 [node name="Vines" type="Node2D" parent="."]
 
-[node name="Vine1" parent="Vines" instance=ExtResource("16_vine")]
-position = Vector2(568, 84)
-
-[node name="Vine2" parent="Vines" instance=ExtResource("16_vine")]
-position = Vector2(728, 84)
-
 [node name="Vine3" parent="Vines" instance=ExtResource("16_vine")]
-position = Vector2(1448, 84)
+position = Vector2(1456, 80)
 
 [node name="Guardian" parent="." instance=ExtResource("17_guardian_hunter")]
 position = Vector2(1960, 158)
@@ -344,17 +354,9 @@ bounds = Rect2(0, 0, 2080, 208)
 [node name="PhaseTransition" parent="." instance=ExtResource("24_transition")]
 fade_color = Color(0.05, 0.09, 0.04, 1)
 
-[node name="SeedP4" parent="Pickups" instance=ExtResource("new_1")]
-position = Vector2(848, 168)
-
-[node name="FruitPitaiaP4" parent="Pickups" instance=ExtResource("new_2")]
-position = Vector2(1280, 168)
-
 [node name="SceneryReaction" type="Node2D" parent="."]
 script = ExtResource("scenery_script")
 canopy_path = NodePath("../Background/Sky/Sprite2D")
 rescue_prefix = "phase_4_cage_"
 total_cages = 3
-
-[node name="FireA" parent="Hazards" instance=ExtResource("new_fire")]
-position = Vector2(520, 169)
+level_width = 2080.0

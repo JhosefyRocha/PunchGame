@@ -126,7 +126,8 @@ func _build_key_buttons() -> void:
 	vbox.move_child(keys_box, $SettingsOverlay/Center/Panel/Margin/VBox/ControlsTitle.get_index() + 1)
 	for action in SettingsManager.KEY_ACTIONS:
 		var button := Button.new()
-		button.add_theme_font_size_override("font_size", 9)
+		button.add_theme_font_size_override("font_size", 8)
+		button.custom_minimum_size = Vector2(0, 16)
 		button.pressed.connect(_on_key_button_pressed.bind(action))
 		keys_box.add_child(button)
 		key_buttons[action] = button

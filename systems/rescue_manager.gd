@@ -18,9 +18,6 @@ func rescue_animal(rescue_id: StringName, animal_kind: StringName) -> bool:
 
 	rescued_animals[rescue_id] = animal_kind
 	rescue_count_changed.emit(get_rescue_count(), TOTAL_ANIMALS)
-	SaveManager.unlock(&"primeiro_resgate")
-	if get_rescue_count() == TOTAL_ANIMALS:
-		SaveManager.unlock(&"todos_animais")
 	return true
 
 

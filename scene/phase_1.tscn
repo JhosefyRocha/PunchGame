@@ -550,7 +550,7 @@ tip = "Espinhos tiram 1 vida. Pule por cima deles"
 
 [node name="TipFire" parent="." instance=ExtResource("new_tut")]
 position = Vector2(236, 150)
-tip = "Fogo tira 1 vida. Ataque com E para apagar (+150)"
+tip = "Fogo tira 1 vida. Chegue perto e aperte J para apagar (+150)"
 
 [node name="TipCage" parent="." instance=ExtResource("new_tut")]
 position = Vector2(95, 100)

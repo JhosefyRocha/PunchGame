@@ -32,7 +32,6 @@
 
 [ext_resource type="PackedScene" path="res://entities/fire.tscn" id="new_fire"]
 
-[ext_resource type="PackedScene" path="res://entities/fallen_log.tscn" id="new_log"]
 
 [node name="Phase3" type="Node2D"]
 
@@ -319,14 +318,6 @@ total_cages = 3
 [node name="FireA" parent="Hazards" instance=ExtResource("new_fire")]
 position = Vector2(500, 169)
 
-[node name="FallenLogA" parent="." instance=ExtResource("new_log")]
-position = Vector2(304, 177)
 
-[node name="FallenLogB" parent="." instance=ExtResource("new_log")]
-position = Vector2(704, 177)
 
-[node name="FallenLogC" parent="." instance=ExtResource("new_log")]
-position = Vector2(632, 177)
 
-[node name="FallenLogD" parent="." instance=ExtResource("new_log")]
-position = Vector2(776, 177)

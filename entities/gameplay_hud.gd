@@ -19,7 +19,6 @@ var tip_serial := 0
 
 func _ready() -> void:
 	add_to_group(&"gameplay_hud")
-	SaveManager.achievement_unlocked.connect(_on_achievement_unlocked)
 	HealthManager.lives_changed.connect(_on_lives_changed)
 	ScoreManager.score_changed.connect(_on_score_changed)
 	RescueManager.rescue_count_changed.connect(_on_rescue_count_changed)
@@ -29,9 +28,6 @@ func _ready() -> void:
 	_on_score_changed(ScoreManager.current_score)
 	_on_rescue_count_changed(RescueManager.get_rescue_count(), RescueManager.TOTAL_ANIMALS)
 
-
-func _on_achievement_unlocked(title: String) -> void:
-	show_tip("CONQUISTA: " + title, 4.0)
 
 
 func show_tip(text: String, duration: float = 4.5) -> void:

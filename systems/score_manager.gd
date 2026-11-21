@@ -13,8 +13,6 @@ var phase_start_fires := 0
 
 func register_enemy_defeat() -> void:
 	enemies_defeated += 1
-	if enemies_defeated == 10:
-		SaveManager.unlock(&"inimigos_10")
 
 
 func register_seed() -> void:

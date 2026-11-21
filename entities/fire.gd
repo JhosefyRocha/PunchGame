@@ -1,23 +1,28 @@
 extends Area2D
 
 const EXTINGUISH_SCORE := 150
-const FireQuiz := preload("res://entities/fire_quiz.gd")
 
 @onready var flames: Node2D = $Flames
 @onready var collision: CollisionShape2D = $CollisionShape2D
-@onready var quiz_zone: Area2D = $QuizZone
+@onready var interact_zone: Area2D = $InteractZone
+@onready var interaction_hint: Label = $InteractionHint
 
 var is_out := false
-var quiz_open := false
+var player_nearby := false
 
 
 func _ready() -> void:
-	add_to_group(&"fires")
-	quiz_zone.body_entered.connect(_on_quiz_zone_body_entered)
-	quiz_zone.body_exited.connect(_on_quiz_zone_body_exited)
+	interaction_hint.hide()
+	interact_zone.body_entered.connect(_on_interact_zone_body_entered)
+	interact_zone.body_exited.connect(_on_interact_zone_body_exited)
 	var flicker := create_tween().set_loops().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 	flicker.tween_property(flames, "scale", Vector2(1.08, 0.9), 0.22)
 	flicker.tween_property(flames, "scale", Vector2.ONE, 0.22)
+
+
+func _process(_delta: float) -> void:
+	if player_nearby and not is_out and Input.is_action_just_pressed(&"interact"):
+		_extinguish()
 
 
 func _on_body_entered(body: Node2D) -> void:
@@ -29,41 +34,29 @@ func _on_body_entered(body: Node2D) -> void:
 		body.die()
 
 
-func _on_quiz_zone_body_entered(body: Node2D) -> void:
-	if is_out or quiz_open or not body.is_in_group(&"player"):
+func _on_interact_zone_body_entered(body: Node2D) -> void:
+	if is_out or not body.is_in_group(&"player"):
 		return
-	quiz_open = true
-	get_tree().paused = true
-	var quiz := FireQuiz.new()
-	quiz.finished.connect(_on_quiz_finished)
-	get_tree().current_scene.add_child(quiz)
+	player_nearby = true
+	interaction_hint.show()
 
 
-func _on_quiz_zone_body_exited(body: Node2D) -> void:
+func _on_interact_zone_body_exited(body: Node2D) -> void:
 	if body.is_in_group(&"player"):
-		quiz_open = false
-
-
-func _on_quiz_finished(correct: bool) -> void:
-	get_tree().paused = false
-	if correct:
-		_extinguish()
-
-
-func take_damage(_amount: int = 1, _source_position: Vector2 = Vector2.INF) -> void:
-	_extinguish()
+		player_nearby = false
+		interaction_hint.hide()
 
 
 func _extinguish() -> void:
 	if is_out:
 		return
 	is_out = true
+	player_nearby = false
+	interaction_hint.hide()
 	ScoreManager.add_points(EXTINGUISH_SCORE)
 	ScoreManager.register_fire_put_out()
-	SaveManager.unlock(&"primeiro_incendio")
-	remove_from_group(&"fires")
 	set_deferred(&"monitoring", false)
-	quiz_zone.set_deferred(&"monitoring", false)
+	interact_zone.set_deferred(&"monitoring", false)
 	collision.set_deferred(&"disabled", true)
 
 	var tween := create_tween().set_parallel(true)

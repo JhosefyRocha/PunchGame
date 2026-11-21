@@ -133,7 +133,7 @@ func try_hit_enemy(target: Node) -> void:
 
 
 func _is_attackable(node: Node) -> bool:
-	return node.is_in_group(&"enemies") or node.is_in_group(&"fires")
+	return node.is_in_group(&"enemies")
 
 
 func _on_attack_hitbox_body_entered(body: Node2D) -> void:

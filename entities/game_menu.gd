@@ -25,12 +25,24 @@ static func reset_run_state() -> void:
 static func mark_phase_start() -> void:
 	phase_start_score = ScoreManager.current_score
 	phase_start_rescues = RescueManager.rescued_animals.duplicate()
+	ScoreManager.mark_phase_counts()
 
 
 static func restore_phase_start() -> void:
 	HealthManager.reset_game_state()
 	ScoreManager.set_score(phase_start_score)
 	RescueManager.set_rescued_animals(phase_start_rescues)
+	ScoreManager.restore_phase_counts()
+
+
+static func phase_summary(rescue_prefix: String, total_cages: int) -> String:
+	var rescued := 0
+	for rescue_id in RescueManager.rescued_animals:
+		if String(rescue_id).begins_with(rescue_prefix):
+			rescued += 1
+	return "Animais libertados: %d/%d\nIncêndios apagados: %d\nInimigos derrotados: %d\nSementes coletadas: %d\nPontuação total: %06d" % [
+		rescued, total_cages, ScoreManager.get_phase_fires(), ScoreManager.get_phase_enemies(), ScoreManager.get_phase_seeds(), ScoreManager.current_score,
+	]
 
 
 @onready var death_tint: ColorRect = $Overlay/DeathTint

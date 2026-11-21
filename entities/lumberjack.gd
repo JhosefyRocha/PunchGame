@@ -308,6 +308,7 @@ func die() -> void:
 	cancel_attack()
 	velocity = Vector2.ZERO
 	ScoreManager.add_points(score_reward)
+	ScoreManager.register_enemy_defeat()
 	defeated.emit(score_reward)
 	set_physics_process(false)
 	set_collision_layer_value(2, false)

@@ -12,6 +12,7 @@ script = ExtResource("1_fruit")
 heal_amount = 0
 score_reward = 50
 consume_at_full_health = true
+counts_as_seed = true
 
 [node name="Art" type="Node2D" parent="."]
 

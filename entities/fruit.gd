@@ -7,6 +7,7 @@ class_name HealingFruit
 ## Com `false`, encostar na fruta com 3/3 coracoes nao a consome -- ela fica no
 ## mapa para quando fizer falta. Regra descrita em AUDITORIA_GDD.md 4.4.
 @export var consume_at_full_health := false
+@export var counts_as_seed := false
 
 ## Deixe vazio para usar a arte procedural desenhada na cena. Ao atribuir um PNG
 ## aqui, a maca procedural some sozinha -- nenhuma mudanca de codigo.
@@ -52,6 +53,8 @@ func _on_body_entered(body: Node2D) -> void:
 	monitoring = false
 	HealthManager.heal(heal_amount)
 	ScoreManager.add_points(score_reward)
+	if counts_as_seed:
+		ScoreManager.register_seed()
 
 	var tween := create_tween().set_parallel(true)
 	tween.tween_property(self, "scale", Vector2.ONE * 1.35, 0.12)

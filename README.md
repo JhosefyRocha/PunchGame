@@ -1,6 +1,6 @@
 <div align="center">
 
-![Ícone do Punch](icon.svg)
+<img src="docs/images/punch-rosto.png" alt="Rosto do Punch" width="160">
 
 # Punch
 
@@ -40,15 +40,33 @@ O projeto dialoga diretamente com o **Objetivo de Desenvolvimento Sustentável 1
 
 ## Galeria / Screenshots
 
-### Fase da floresta
+### Menu principal
 
-![Punch explorando a fase da floresta](docs/images/punch-fase-floresta.png)
+![Menu principal do Punch](docs/images/punch-menu.png)
+
+### Fase 1 — floresta em chamas
+
+![Punch no telhado de uma casa na fase 1, com fogo, um lenhador e um saco com animal preso](docs/images/punch-fase-1.png)
+
+### Fase 2 — cipós na floresta de outono
+
+![Punch na fase 2, entre cipós, um capanga e um saco no alto de uma plataforma](docs/images/punch-fase-2.png)
+
+### Fase 3 — os primeiros animais voltam
+
+![Punch na fase 3, com um sabiá, uma capivara na beira da água e um saco para resgatar](docs/images/punch-fase-3.png)
+
+### Fase 4 — ilhas e plataformas móveis
+
+![Punch na fase 4, perto de uma preguiça pendurada, de um beija-flor e de um saco no topo do acampamento](docs/images/punch-fase-4.png)
+
+### Fase 5 — o chefe caçador e a bandeira final
+
+![Punch na fase 5, diante do caçador chefe na caminhonete, com animais da floresta e a bandeira de chegada](docs/images/punch-fase-5.png)
 
 ### Interface durante o gameplay
 
-![Interface do Punch com vida, pontuação, resgates e controles](docs/images/punch-hud-gameplay.png)
-
-> A galeria pode ser ampliada com novas capturas em `docs/images/`, incluindo combate, travessias com cipós e a recuperação visual da floresta.
+![Interface com vida, pontuação, resgates da fase e a mensagem SALVE A FLORESTA](docs/images/punch-hud.png)
 
 ---
 

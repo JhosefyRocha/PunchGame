@@ -32,8 +32,6 @@
 [ext_resource type="PackedScene" path="res://entities/seed.tscn" id="new_1"]
 [ext_resource type="PackedScene" path="res://entities/fruit_pitaia.tscn" id="new_2"]
 
-[ext_resource type="Script" path="res://entities/scenery_reaction.gd" id="scenery_script"]
-
 [ext_resource type="PackedScene" path="res://entities/fire.tscn" id="new_fire"]
 
 [ext_resource type="PackedScene" path="res://entities/tutorial_trigger.tscn" id="new_tut"]
@@ -408,12 +406,6 @@ bounds = Rect2(0, 0, 3840, 208)
 [node name="PhaseTransition" parent="." unique_id=1806634267 instance=ExtResource("9_transition")]
 visible = false
 fade_color = Color(0.12, 0.03, 0.02, 1)
-
-[node name="SceneryReaction" type="Node2D" parent="."]
-script = ExtResource("scenery_script")
-canopy_path = NodePath("../ParallaxBackground/ParallaxLayer/Sprite2D")
-rescue_prefix = "phase_1_cage_"
-total_cages = 3
 
 [node name="TipMover" parent="." instance=ExtResource("new_tut")]
 position = Vector2(60, 120)

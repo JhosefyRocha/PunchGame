@@ -37,7 +37,6 @@ func free_animal() -> void:
 		return
 
 	ScoreManager.add_points(reward_points)
-	_spawn_celebration()
 	struggle.kill()
 	visual.position.y = 0.0
 	is_opening = true
@@ -51,26 +50,6 @@ func free_animal() -> void:
 	tween.tween_property(visual, "modulate:a", 0.0, 0.2).set_delay(0.04)
 	await tween.finished
 	queue_free()
-
-
-func _spawn_celebration() -> void:
-	var burst := CPUParticles2D.new()
-	burst.one_shot = true
-	burst.explosiveness = 1.0
-	burst.amount = 24
-	burst.lifetime = 1.0
-	burst.direction = Vector2.UP
-	burst.spread = 75.0
-	burst.initial_velocity_min = 45.0
-	burst.initial_velocity_max = 110.0
-	burst.gravity = Vector2(0.0, 140.0)
-	burst.scale_amount_min = 1.5
-	burst.scale_amount_max = 2.5
-	burst.color = Color(0.62, 0.95, 0.36, 1.0)
-	burst.global_position = global_position + Vector2(0.0, -10.0)
-	get_tree().current_scene.add_child(burst)
-	burst.emitting = true
-	get_tree().create_timer(1.6).timeout.connect(burst.queue_free)
 
 
 func _on_body_entered(body: Node2D) -> void:

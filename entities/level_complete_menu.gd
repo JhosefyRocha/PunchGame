@@ -1,7 +1,6 @@
 extends CanvasLayer
 
 @onready var message: Label = $Overlay/Center/Panel/Margin/VBox/Message
-@onready var eco_message: Label = $Overlay/Center/Panel/Margin/VBox/EcoMessage
 @onready var stats_label: Label = $Overlay/Center/Panel/Margin/VBox/StatsLabel
 
 var next_scene_path := "res://scene/phase_2.tscn"
@@ -16,7 +15,6 @@ func show_level_complete(scene_path: String) -> void:
 	next_scene_path = scene_path
 	var completed_index := SaveManager.get_level_index(get_tree().current_scene.scene_file_path)
 	if completed_index >= 0:
-		eco_message.text = SaveManager.ECO_MESSAGES[completed_index]
 		stats_label.text = GameMenu.phase_summary("phase_%d_cage_" % (completed_index + 1), 3)
 	var unlocked_index := SaveManager.complete_current_level()
 	if unlocked_index >= 0:

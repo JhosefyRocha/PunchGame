@@ -30,8 +30,6 @@
 [ext_resource type="PackedScene" path="res://entities/seed.tscn" id="new_1"]
 [ext_resource type="PackedScene" path="res://entities/fruit_mamao.tscn" id="new_2"]
 
-[ext_resource type="Script" path="res://entities/scenery_reaction.gd" id="scenery_script"]
-
 [ext_resource type="PackedScene" path="res://entities/fire.tscn" id="new_fire"]
 
 [ext_resource type="PackedScene" path="res://entities/plush.tscn" id="new_plush"]
@@ -416,13 +414,6 @@ bounds = Rect2(0, 0, 2640, 208)
 
 [node name="PhaseTransition" parent="." instance=ExtResource("24_transition")]
 fade_color = Color(0.015, 0.12, 0.105, 1)
-
-[node name="SceneryReaction" type="Node2D" parent="."]
-script = ExtResource("scenery_script")
-canopy_path = NodePath("../Background/Sky/Sprite2D")
-rescue_prefix = "phase_5_cage_"
-total_cages = 3
-level_width = 2640.0
 
 [node name="Plush" parent="." instance=ExtResource("new_plush")]
 position = Vector2(2300, 150)

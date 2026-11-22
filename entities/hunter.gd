@@ -6,6 +6,8 @@ const DART_SCENE := preload("res://entities/dart.tscn")
 @export var muzzle_offset := Vector2(12, 2)
 @export var aim_at_player := false
 
+@onready var shot_sound: AudioStreamPlayer2D = $ShotSound
+
 
 func apply_axe_damage() -> void:
 	var muzzle := global_position + Vector2(muzzle_offset.x * move_direction, muzzle_offset.y)
@@ -18,3 +20,4 @@ func apply_axe_damage() -> void:
 	dart.velocity = travel * dart_speed
 	get_parent().add_child(dart)
 	dart.global_position = muzzle
+	shot_sound.play()

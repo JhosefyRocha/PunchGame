@@ -39,10 +39,7 @@ static func restore_phase_start() -> void:
 
 
 static func phase_summary(rescue_prefix: String, total_cages: int) -> String:
-	var rescued := 0
-	for rescue_id in RescueManager.rescued_animals:
-		if String(rescue_id).begins_with(rescue_prefix):
-			rescued += 1
+	var rescued := RescueManager.count_rescued(rescue_prefix)
 	return "Animais: %d/%d   Incêndios: %d\nInimigos: %d   Sementes: %d\nPontuação: %06d" % [
 		rescued, total_cages, ScoreManager.get_phase_fires(), ScoreManager.get_phase_enemies(), ScoreManager.get_phase_seeds(), ScoreManager.current_score,
 	]

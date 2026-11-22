@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3]
+[gd_scene load_steps=9 format=3]
 
 [ext_resource type="Script" path="res://entities/game_menu.gd" id="1_menu"]
 [ext_resource type="AudioStream" path="res://sounds/menu_music.ogg" id="2_music"]
@@ -54,8 +54,6 @@ corner_radius_bottom_left = 1
 bg_color = Color(0.4, 0.25, 0.08, 1)
 border_width_left = 3
 border_color = Color(1, 0.78, 0.35, 1)
-
-[sub_resource type="StyleBoxEmpty" id="StyleButtonEmpty"]
 
 [node name="GameMenu" type="CanvasLayer"]
 process_mode = 3
@@ -270,7 +268,7 @@ horizontal_alignment = 1
 layout_mode = 2
 theme_override_colors/font_color = Color(0.88, 0.92, 0.85, 1)
 theme_override_font_sizes/font_size = 9
-text = "Jogo criado por\nEnzo Horçai\nGregório Lotz\nAndrey Marucci\nKenzo Yamamoto\nJhosefy Rocha\n\nDesenvolvido com Godot Engine"
+text = "Jogo criado por\nEnzo Horçai\nGregório Lotz\nAndrey Marucci\nKenzo Yamamoto\nJhosefy Rocha\nDesenvolvido com Godot Engine\nSons de macaco: Furuyama et al. e Schel et al. (CC BY)"
 horizontal_alignment = 1
 
 [node name="BackButton" type="Button" parent="Overlay/Center/CreditsPanel/Margin/VBox"]

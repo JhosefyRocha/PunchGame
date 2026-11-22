@@ -10,6 +10,7 @@ const DAMAGE_INVULNERABILITY_TIME := 1.0
 const ROLL_SPEED := 120.0
 const ROLL_INVULNERABLE_FIRST_FRAME := 1
 const ROLL_INVULNERABLE_LAST_FRAME := 6
+const MONKEY_VOICE_CHANCE := 0.15
 
 @export_category("Combat")
 @export var attack_damage := 1
@@ -21,6 +22,10 @@ const ROLL_INVULNERABLE_LAST_FRAME := 6
 @onready var punch_swing_sound: AudioStreamPlayer = $PunchSwingSound
 @onready var punch_hit_sound: AudioStreamPlayer = $PunchHitSound
 @onready var punch_miss_sound: AudioStreamPlayer = $PunchMissSound
+@onready var jump_sound: AudioStreamPlayer = $JumpSound
+@onready var attack_voice: AudioStreamPlayer = $AttackVoice
+@onready var hurt_sound: AudioStreamPlayer = $HurtSound
+@onready var fruit_sound: AudioStreamPlayer = $FruitSound
 @onready var camera: Camera2D = $Camera2D
 
 var is_hitting := false
@@ -67,12 +72,15 @@ func _physics_process(delta: float) -> void:
 	if is_on_vine and Input.is_action_just_pressed(&"vine_release"):
 		velocity.y = JUMP_VELOCITY
 		vines_in_reach = 0
+		play_monkey_voice(jump_sound)
 	elif not is_on_vine and Input.is_action_just_pressed(&"jump"):
 		if is_on_floor():
 			velocity.y = JUMP_VELOCITY
+			play_monkey_voice(jump_sound)
 		elif air_jumps_left > 0:
 			air_jumps_left -= 1
 			velocity.y = DOUBLE_JUMP_VELOCITY
+			play_monkey_voice(jump_sound)
 			# Reinicia a animacao para o segundo pulo ficar visivel.
 			if not is_hitting:
 				anim.play(&"jump")
@@ -124,6 +132,7 @@ func start_attack() -> void:
 	anim.scale = default_sprite_scale * HIT_SCALE_FACTOR
 	anim.play(&"hit")
 	punch_swing_sound.play()
+	play_monkey_voice(attack_voice)
 
 	# Tambem detecta alvos que ja estavam dentro da area quando ela foi ativada.
 	await get_tree().physics_frame
@@ -177,8 +186,19 @@ func update_movement_animation(direction: float, is_on_vine: bool) -> void:
 		anim.play(&"walk" if not is_zero_approx(direction) else &"idle")
 	elif is_on_vine:
 		anim.play(&"idle")
-	else:
-		anim.play(&"fall" if velocity.y > 0.0 else &"jump")
+	elif velocity.y > 0.0:
+		anim.play(&"fall")
+	elif anim.animation != &"jump":
+		anim.play(&"jump")
+
+
+func play_fruit_sound() -> void:
+	play_monkey_voice(fruit_sound)
+
+
+func play_monkey_voice(voice: AudioStreamPlayer) -> void:
+	if randf() < MONKEY_VOICE_CHANCE:
+		voice.play()
 
 
 func set_checkpoint(checkpoint_position: Vector2) -> void:
@@ -191,6 +211,7 @@ func take_damage(amount: int = 1, source_position: Vector2 = Vector2.INF) -> voi
 	if source_position != Vector2.INF and is_roll_invulnerable():
 		return
 
+	play_monkey_voice(hurt_sound)
 	cancel_attack()
 	is_rolling = false
 	if HealthManager.lose_life(amount) <= 0:

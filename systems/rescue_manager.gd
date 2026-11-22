@@ -29,6 +29,14 @@ func get_rescue_count() -> int:
 	return rescued_animals.size()
 
 
+func count_rescued(rescue_prefix: String) -> int:
+	var rescued := 0
+	for rescue_id in rescued_animals:
+		if String(rescue_id).begins_with(rescue_prefix):
+			rescued += 1
+	return rescued
+
+
 func has_pending_cages() -> bool:
 	for cage in get_tree().get_nodes_in_group(&"rescue_cage"):
 		if not cage.is_queued_for_deletion() and not is_rescued(cage.rescue_id):

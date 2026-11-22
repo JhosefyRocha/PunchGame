@@ -46,7 +46,10 @@ func _on_body_exited(body: Node2D) -> void:
 func reach() -> void:
 	was_reached = true
 	set_deferred(&"monitoring", false)
-	get_tree().call_group(&"level_complete_menu", &"show_level_complete", next_scene)
+	if next_scene.is_empty():
+		get_tree().call_group(&"game_complete_menu", &"show_victory")
+	else:
+		get_tree().call_group(&"level_complete_menu", &"show_level_complete", next_scene)
 
 
 func _on_guardian_defeated(_points: int) -> void:

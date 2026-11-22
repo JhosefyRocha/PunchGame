@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3]
+[gd_scene load_steps=7 format=3]
 
 [ext_resource type="PackedScene" path="res://entities/lumberjack.tscn" id="1_base"]
 [ext_resource type="Script" path="res://entities/hunter.gd" id="2_hunter"]
 [ext_resource type="Texture2D" path="res://sprites/enemies/hunter.png" id="3_sprite"]
+[ext_resource type="AudioStream" path="res://sounds/hunter_shot.wav" id="4_shot"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_hunter"]
 animations = [{
@@ -64,3 +65,8 @@ sprite_frames = SubResource("SpriteFrames_hunter")
 
 [node name="CollisionShape2D" parent="DetectionArea"]
 shape = SubResource("DetectionShape_hunter")
+
+[node name="ShotSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_shot")
+volume_db = -8.0
+max_distance = 600.0

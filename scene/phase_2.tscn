@@ -4,8 +4,6 @@
 [ext_resource type="PackedScene" path="res://entities/game_menu.tscn" id="2_menu"]
 [ext_resource type="PackedScene" path="res://entities/tile_platform.tscn" id="3_platform"]
 [ext_resource type="PackedScene" path="res://entities/spike.tscn" id="4_spike"]
-[ext_resource type="Texture2D" path="res://sprites/hazards/spike_tangle.png" id="spike_tangle"]
-[ext_resource type="Texture2D" path="res://sprites/hazards/spike_arch.png" id="spike_arch"]
 [ext_resource type="Texture2D" path="res://sprites/hazards/spike_thicket.png" id="spike_thicket"]
 [ext_resource type="PackedScene" path="res://entities/vine.tscn" id="5_vine"]
 [ext_resource type="PackedScene" path="res://entities/water_hazard.tscn" id="6_water"]
@@ -237,7 +235,6 @@ volume_db = -8.0
 script = ExtResource("19_music_script")
 
 [node name="GameplayHUD" parent="." unique_id=675142284 instance=ExtResource("11_hud")]
-tutorial_text = "CIPÓ W/S OU SETAS  |  ESPAÇO SOLTA"
 
 [node name="LevelCompleteMenu" parent="." unique_id=1770381865 instance=ExtResource("13_complete")]
 visible = false

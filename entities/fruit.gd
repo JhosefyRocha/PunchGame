@@ -55,6 +55,8 @@ func _on_body_entered(body: Node2D) -> void:
 	ScoreManager.add_points(score_reward)
 	if counts_as_seed:
 		ScoreManager.register_seed()
+	elif body.has_method(&"play_fruit_sound"):
+		body.play_fruit_sound()
 
 	var tween := create_tween().set_parallel(true)
 	tween.tween_property(self, "scale", Vector2.ONE * 1.35, 0.12)

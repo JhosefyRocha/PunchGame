@@ -4,8 +4,6 @@ extends Node
 ## carregadas e aplicadas uma vez so, quando o autoload sobe -- antes da
 ## primeira cena tocar qualquer som.
 
-signal settings_changed
-
 const SETTINGS_PATH := "user://settings.cfg"
 const MASTER_BUS := &"Master"
 
@@ -88,8 +86,6 @@ func apply_settings() -> void:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 	elif not fullscreen and is_fullscreen:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_MAXIMIZED)
-
-	settings_changed.emit()
 
 
 func load_settings() -> void:

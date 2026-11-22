@@ -19,7 +19,7 @@
 [ext_resource type="PackedScene" path="res://entities/vine.tscn" id="15_vine"]
 [ext_resource type="PackedScene" path="res://entities/hunter_truck.tscn" id="16_truck"]
 [ext_resource type="PackedScene" path="res://entities/boss_hunter.tscn" id="17_boss_hunter"]
-[ext_resource type="PackedScene" path="res://entities/final_animal_goal.tscn" id="18_goal"]
+[ext_resource type="PackedScene" path="res://entities/finish_flag.tscn" id="18_flag"]
 [ext_resource type="PackedScene" path="res://entities/game_menu.tscn" id="19_menu"]
 [ext_resource type="Script" uid="uid://4bkm6q1n4uaj" path="res://entities/level_music.gd" id="20_music_script"]
 [ext_resource type="PackedScene" path="res://entities/gameplay_hud.tscn" id="21_hud"]
@@ -33,6 +33,19 @@
 [ext_resource type="PackedScene" path="res://entities/fire.tscn" id="new_fire"]
 
 [ext_resource type="PackedScene" path="res://entities/plush.tscn" id="new_plush"]
+[ext_resource type="Texture2D" path="res://sprites/wildlife/capivara.png" id="wl_capivara"]
+[ext_resource type="Texture2D" path="res://sprites/wildlife/passaro_sabia_laranjeira.png" id="wl_passaro_sabia_laranjeira"]
+[ext_resource type="Texture2D" path="res://sprites/wildlife/preguica.png" id="wl_preguica"]
+[ext_resource type="Texture2D" path="res://sprites/wildlife/passaro_gaio_azul.png" id="wl_passaro_gaio_azul"]
+[ext_resource type="Texture2D" path="res://sprites/wildlife/passaro_beija_flor.png" id="wl_passaro_beija_flor"]
+[ext_resource type="Texture2D" path="res://sprites/wildlife/tatu.png" id="wl_tatu"]
+[ext_resource type="Texture2D" path="res://sprites/wildlife/sapo.png" id="wl_sapo"]
+[ext_resource type="Texture2D" path="res://sprites/wildlife/arara.png" id="wl_arara"]
+[ext_resource type="Texture2D" path="res://sprites/wildlife/passaro_cardeal.png" id="wl_passaro_cardeal"]
+[ext_resource type="Texture2D" path="res://sprites/wildlife/tamandua.png" id="wl_tamandua"]
+[ext_resource type="Texture2D" path="res://sprites/wildlife/tucano.png" id="wl_tucano"]
+[ext_resource type="Texture2D" path="res://sprites/wildlife/passaro_sabia_da_mata.png" id="wl_passaro_sabia_da_mata"]
+[ext_resource type="Texture2D" path="res://sprites/wildlife/passaro_gaio_de_steller.png" id="wl_passaro_gaio_de_steller"]
 
 [node name="Phase5" type="Node2D"]
 
@@ -129,6 +142,103 @@ scale = Vector2(1.35, 1.35)
 texture = ExtResource("3_decor")
 region_enabled = true
 region_rect = Rect2(144, 16, 48, 48)
+
+[node name="Wildlife" type="Node2D" parent="."]
+
+[node name="Capivara" type="Sprite2D" parent="Wildlife"]
+position = Vector2(62, 176)
+texture = ExtResource("wl_capivara")
+centered = false
+offset = Vector2(-13, -15)
+
+[node name="SabiaLaranjeira" type="Sprite2D" parent="Wildlife"]
+position = Vector2(104, 136)
+texture = ExtResource("wl_passaro_sabia_laranjeira")
+centered = false
+offset = Vector2(-7, -15)
+flip_h = true
+
+[node name="Preguica" type="Sprite2D" parent="Wildlife"]
+position = Vector2(182, 114)
+texture = ExtResource("wl_preguica")
+centered = false
+offset = Vector2(-8, 0)
+
+[node name="GaioAzul" type="Sprite2D" parent="Wildlife"]
+position = Vector2(262, 148)
+texture = ExtResource("wl_passaro_gaio_azul")
+centered = false
+offset = Vector2(-7, -15)
+flip_h = true
+
+[node name="BeijaFlor" type="Sprite2D" parent="Wildlife"]
+position = Vector2(346, 120)
+texture = ExtResource("wl_passaro_beija_flor")
+centered = false
+offset = Vector2(-7, -12)
+
+[node name="Tatu" type="Sprite2D" parent="Wildlife"]
+position = Vector2(404, 176)
+texture = ExtResource("wl_tatu")
+centered = false
+offset = Vector2(-10, -11)
+
+[node name="Sapo" type="Sprite2D" parent="Wildlife"]
+position = Vector2(904, 128)
+texture = ExtResource("wl_sapo")
+centered = false
+offset = Vector2(-6, -10)
+flip_h = true
+
+[node name="Arara" type="Sprite2D" parent="Wildlife"]
+position = Vector2(1406, 176)
+texture = ExtResource("wl_arara")
+centered = false
+offset = Vector2(-7, -15)
+
+[node name="Preguica2" type="Sprite2D" parent="Wildlife"]
+position = Vector2(1638, 114)
+texture = ExtResource("wl_preguica")
+centered = false
+offset = Vector2(-8, 0)
+
+[node name="Cardeal" type="Sprite2D" parent="Wildlife"]
+position = Vector2(1770, 128)
+texture = ExtResource("wl_passaro_cardeal")
+centered = false
+offset = Vector2(-6, -15)
+
+[node name="Tamandua" type="Sprite2D" parent="Wildlife"]
+position = Vector2(1960, 176)
+texture = ExtResource("wl_tamandua")
+centered = false
+offset = Vector2(-18, -15)
+flip_h = true
+
+[node name="Tucano" type="Sprite2D" parent="Wildlife"]
+position = Vector2(2080, 176)
+texture = ExtResource("wl_tucano")
+centered = false
+offset = Vector2(-9, -17)
+
+[node name="SabiaDaMata" type="Sprite2D" parent="Wildlife"]
+position = Vector2(2455, 176)
+texture = ExtResource("wl_passaro_sabia_da_mata")
+centered = false
+offset = Vector2(-7, -15)
+flip_h = true
+
+[node name="Capivara2" type="Sprite2D" parent="Wildlife"]
+position = Vector2(2500, 176)
+texture = ExtResource("wl_capivara")
+centered = false
+offset = Vector2(-13, -15)
+
+[node name="GaioDeSteller" type="Sprite2D" parent="Wildlife"]
+position = Vector2(2612, 176)
+texture = ExtResource("wl_passaro_gaio_de_steller")
+centered = false
+offset = Vector2(-7, -16)
 
 [node name="Player" parent="." instance=ExtResource("5_player")]
 position = Vector2(40, 150)
@@ -391,9 +501,9 @@ boss_path = NodePath("../Guardian")
 position = Vector2(2360, 132)
 patrol_distance = 12
 
-[node name="FinalAnimalGoal" parent="." instance=ExtResource("18_goal")]
-position = Vector2(2570, 151)
-scale = Vector2(0.88, 0.88)
+[node name="FinishFlag" parent="." instance=ExtResource("18_flag")]
+position = Vector2(2570, 166)
+next_scene = ""
 guardian_path = NodePath("../Guardian")
 
 [node name="GameMenu" parent="." instance=ExtResource("19_menu")]
@@ -405,7 +515,6 @@ volume_db = -9.0
 script = ExtResource("20_music_script")
 
 [node name="GameplayHUD" parent="." instance=ExtResource("21_hud")]
-tutorial_text = "LIBERTE TODOS OS ANIMAIS!"
 
 [node name="GameCompleteMenu" parent="." instance=ExtResource("22_game_complete")]
 

@@ -10,10 +10,10 @@
 [ext_resource type="Texture2D" uid="uid://crxxgt6pjhmxq" path="res://sprites/PunchRunning certo/sprite_00.png" id="8_x08pd"]
 [ext_resource type="Texture2D" uid="uid://bb2swne1oluwa" path="res://sprites/PunchRunning certo/sprite_01.png" id="9_dchgp"]
 [ext_resource type="Texture2D" uid="uid://cl2upek5ajrtj" path="res://sprites/PunchRunning certo/sprite_02.png" id="10_kdgjc"]
-[ext_resource type="Texture2D" uid="uid://djwqwr1wtxthf" path="res://sprites/PunchJumping/sprite_03.png" id="11_1n8aq"]
+[ext_resource type="Texture2D" uid="uid://r477fivqb6ml" path="res://sprites/PunchJumping/sprite_00.png" id="11_1n8aq"]
 [ext_resource type="Texture2D" uid="uid://bifsfrg73dlhh" path="res://sprites/PunchRunning certo/sprite_03.png" id="11_q0i8f"]
-[ext_resource type="Texture2D" uid="uid://cywm73lytbhha" path="res://sprites/PunchJumping/sprite_04.png" id="12_28s6d"]
-[ext_resource type="Texture2D" uid="uid://cqdby4cxqvuwn" path="res://sprites/PunchJumping/sprite_05.png" id="13_cicqb"]
+[ext_resource type="Texture2D" uid="uid://cjocawb00dlw5" path="res://sprites/PunchJumping/sprite_01.png" id="12_28s6d"]
+[ext_resource type="Texture2D" uid="uid://bxmd3u60vd3d7" path="res://sprites/PunchJumping/sprite_02.png" id="13_cicqb"]
 [ext_resource type="Texture2D" uid="uid://c7omwio3g8d1w" path="res://sprites/HitPunch/sprite_0.png" id="14_hit0"]
 [ext_resource type="Texture2D" uid="uid://cb5nmd4xy5aj" path="res://sprites/HitPunch/sprite_1.png" id="15_hit1"]
 [ext_resource type="Texture2D" uid="uid://dkm50fce3jsy7" path="res://sprites/HitPunch/sprite_2.png" id="16_hit2"]
@@ -38,6 +38,9 @@
 [ext_resource type="Texture2D" uid="uid://ca8jfvok6qmk" path="res://sprites/PunchRoll/sprite_6.png" id="35_roll6"]
 [ext_resource type="Texture2D" uid="uid://stq07vdx7opy" path="res://sprites/PunchRoll/sprite_7.png" id="36_roll7"]
 [ext_resource type="Texture2D" uid="uid://c35x5hschg78j" path="res://sprites/PunchRoll/sprite_8.png" id="37_roll8"]
+[ext_resource type="AudioStream" path="res://sounds/macaque_coo_01.wav" id="38_coo1"]
+[ext_resource type="AudioStream" path="res://sounds/macaque_coo_02.wav" id="39_coo2"]
+[ext_resource type="AudioStream" path="res://sounds/chimp_waa_bark.wav" id="40_bark"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qly61"]
 atlas = ExtResource("2_rfe5m")
@@ -166,7 +169,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ib8tg")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"jump",
 "speed": 11.0
 }, {
@@ -234,6 +237,14 @@ stream_0/stream = ExtResource("24_punch1")
 stream_1/stream = ExtResource("25_punch2")
 stream_2/stream = ExtResource("26_punch3")
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_monkey"]
+random_pitch = 1.12
+random_volume_offset_db = 2.0
+streams_count = 3
+stream_0/stream = ExtResource("38_coo1")
+stream_1/stream = ExtResource("39_coo2")
+stream_2/stream = ExtResource("40_bark")
+
 [node name="CharacterBody2D" type="CharacterBody2D" unique_id=381482022 groups=["player"]]
 collision_layer = 4
 collision_mask = 1
@@ -279,6 +290,23 @@ volume_db = -3.0
 
 [node name="PunchMissSound" type="AudioStreamPlayer" parent="." unique_id=96731397]
 stream = ExtResource("28_missed")
+volume_db = -9.0
+
+[node name="JumpSound" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_monkey")
+volume_db = -14.0
+
+[node name="AttackVoice" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_monkey")
+volume_db = -11.0
+
+[node name="HurtSound" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = SubResource("AudioStreamRandomizer_monkey")
+volume_db = -7.0
+
+[node name="FruitSound" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_monkey")
 volume_db = -9.0
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

@@ -270,6 +270,13 @@ A licença principal do código e dos recursos originais do projeto ainda precis
 
 Recursos de terceiros podem possuir termos próprios. Consulte os arquivos de licença incluídos nas respectivas pastas antes de reutilizar ou redistribuir qualquer asset.
 
+### Sons de macaco
+
+As vozes do Punch são gravações reais de primatas, recortadas e com volume ajustado para o jogo:
+
+- `sounds/macaque_coo_01.wav` e `sounds/macaque_coo_02.wav`: chamados "coo" de macaco-japonês. Furuyama T, Kobayasi K, Riquimaroux H, *Role of vocal tract characteristics in individual discrimination by Japanese macaques* (Scientific Reports, 2016), áudios suplementares 3 e 4. Licença [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). Fonte: [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Role-of-vocal-tract-characteristics-in-individual-discrimination-by-Japanese-macaques-(Macaca-srep32042-s4.oga).
+- `sounds/chimp_waa_bark.wav`: latido "waa" de chimpanzé. Schel A, Townsend S, Machanda Z, Zuberbühler K, Slocombe K, *Chimpanzee Alarm Call Production Meets Key Criteria for Intentionality* (PLOS ONE, 2013). Licença [CC BY 2.5](https://creativecommons.org/licenses/by/2.5/). Fonte: [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Chimpanzee-Alarm-Call-Production-Meets-Key-Criteria-for-Intentionality-pone.0076674.s006.oga).
+
 ---
 
 <div align="center">

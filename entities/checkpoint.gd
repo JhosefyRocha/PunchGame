@@ -1,8 +1,6 @@
 extends Area2D
 class_name Checkpoint
 
-signal activated(checkpoint: Checkpoint)
-
 @export var respawn_offset := Vector2(0.0, -12.0)
 @export var one_shot := true
 
@@ -20,4 +18,3 @@ func _on_body_entered(body: Node2D) -> void:
 	is_active = true
 	body.set_checkpoint(global_position + respawn_offset)
 	flag_visual.modulate = Color(0.45, 1.0, 0.38, 1.0)
-	activated.emit(self)

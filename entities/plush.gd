@@ -30,7 +30,4 @@ func _on_body_entered(body: Node2D) -> void:
 		return
 	RescueManager.recover_plush()
 	set_deferred(&"monitoring", false)
-	var hud := get_tree().get_first_node_in_group(&"gameplay_hud")
-	if hud != null and hud.has_method(&"show_tip"):
-		hud.show_tip("Pelúcia de orangotango recuperada!", 4.0)
 	queue_free()

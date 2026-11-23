@@ -16,6 +16,8 @@ const MONKEY_VOICE_CHANCE := 0.15
 @export var attack_damage := 1
 @export_range(0.05, 1.0, 0.01) var attack_active_time := 0.16
 @export var attack_offset := 12.0
+## Espera depois de cada rolamento antes de poder rolar de novo.
+@export_range(0.0, 3.0, 0.05) var roll_cooldown := 0.6
 
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
 @onready var attack_hitbox: Area2D = $AttackHitbox
@@ -32,6 +34,7 @@ var is_hitting := false
 var is_dead := false
 var is_invulnerable := false
 var is_rolling := false
+var roll_cooldown_left := 0.0
 var roll_direction := 1.0
 var default_sprite_scale: Vector2
 var vines_in_reach := 0
@@ -61,7 +64,8 @@ func _physics_process(delta: float) -> void:
 	if is_on_floor() or is_on_vine:
 		air_jumps_left = MAX_AIR_JUMPS
 
-	if Input.is_action_just_pressed(&"roll") and is_on_floor() and not is_hitting and not is_rolling:
+	roll_cooldown_left = maxf(0.0, roll_cooldown_left - delta)
+	if Input.is_action_just_pressed(&"roll") and is_on_floor() and not is_hitting and not is_rolling and roll_cooldown_left <= 0.0:
 		start_roll()
 
 	if is_rolling:
@@ -111,6 +115,28 @@ func start_roll() -> void:
 	roll_direction = -1.0 if anim.flip_h else 1.0
 	is_rolling = true
 	anim.play(&"roll")
+
+
+func end_roll() -> void:
+	if is_rolling:
+		roll_cooldown_left = roll_cooldown
+	is_rolling = false
+
+
+## Quanto falta para o rolamento voltar, de 1.0 (acabou de usar) a 0.0 (pronto).
+## Soma o tempo que ainda resta da animacao com a espera depois dela.
+func get_roll_recharge() -> float:
+	var frame_count := anim.sprite_frames.get_frame_count(&"roll")
+	var fps := anim.sprite_frames.get_animation_speed(&"roll")
+	var animation_time := frame_count / fps if fps > 0.0 else 0.0
+	var total := animation_time + roll_cooldown
+	if total <= 0.0:
+		return 0.0
+	var remaining := roll_cooldown_left
+	if is_rolling:
+		var played := (anim.frame + anim.frame_progress) / fps if anim.animation == &"roll" and fps > 0.0 else 0.0
+		remaining = maxf(0.0, animation_time - played) + roll_cooldown
+	return clampf(remaining / total, 0.0, 1.0)
 
 
 func is_roll_invulnerable() -> bool:
@@ -213,7 +239,7 @@ func take_damage(amount: int = 1, source_position: Vector2 = Vector2.INF) -> voi
 
 	play_monkey_voice(hurt_sound)
 	cancel_attack()
-	is_rolling = false
+	end_roll()
 	if HealthManager.lose_life(amount) <= 0:
 		die()
 		return
@@ -264,7 +290,7 @@ func exit_vine() -> void:
 
 func _on_animated_sprite_2d_animation_finished() -> void:
 	if anim.animation == &"roll":
-		is_rolling = false
+		end_roll()
 	elif anim.animation == &"hit":
 		cancel_attack()
 	else:

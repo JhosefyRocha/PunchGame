@@ -92,9 +92,9 @@ No fim da jornada, a verdadeira motivação de Punch é revelada: ele estava ten
 | Subir no cipó | `W` ou `↑` | Move Punch para cima enquanto está no cipó. |
 | Descer no cipó | `S` ou `↓` | Move Punch para baixo enquanto está no cipó. |
 | Soltar o cipó | `Espaço` | Desprende Punch do cipó e inicia um salto. |
-| Atacar | `E` | Executa um soco direcional contra os inimigos. |
-| Interagir / resgatar | `J` | Desamarra sacos próximos e liberta os animais. |
-| Rolar | `K` | Rola no chão para a frente, invencível a ataques inimigos durante parte do rolamento. |
+| Atacar | `J` | Executa um soco direcional contra os inimigos. |
+| Interagir / resgatar | `I` | Desamarra sacos próximos e liberta os animais. |
+| Rolar | `O` | Rola no chão para a frente, invencível a ataques inimigos durante parte do rolamento. |
 | Abrir ou fechar o menu | `Esc` | Pausa a partida ou retorna ao jogo. |
 
 ### Vida e dano
@@ -114,14 +114,14 @@ Os dois caminhos levam à **seleção de fases**. Só é possível entrar nas fa
 
 ### Combate
 
-O ataque exclusivo de Punch é um soco direcional ativado pela tecla `E`. O golpe:
+O ataque exclusivo de Punch é um soco direcional ativado pela tecla `J`. O golpe:
 
 - Atinge inimigos na direção para a qual Punch está olhando.
 - Causa dano aos lenhadores, capangas e caçadores.
 - Aplica knockback para afastar o inimigo.
 - Impede múltiplos acertos no mesmo inimigo durante uma única animação.
 
-Para desviar, Punch rola no chão com a tecla `K`. Enquanto está encolhido (do 2º ao 7º quadro da animação), golpes de machado, porrete, pá e dardos não causam dano. Espinhos, fogo, água e quedas continuam machucando.
+Para desviar, Punch rola no chão com a tecla `O`. Depois de cada rolamento há uma espera de 0,6 segundo antes de poder rolar de novo, mostrada no ícone de rolamento da HUD. Enquanto está encolhido (do 2º ao 7º quadro da animação), golpes de machado, porrete, pá e dardos não causam dano. Espinhos, fogo, água e quedas continuam machucando.
 
 ### Inimigos
 
@@ -147,7 +147,7 @@ Para desviar, Punch rola no chão com a tecla `K`. Enquanto está encolhido (do 
 
 ### Resgates e resposta ambiental
 
-Animais presos podem ser libertados ao pressionar `J` perto de um saco. O progresso é registrado pelo sistema de resgates e apresentado na HUD.
+Animais presos podem ser libertados ao pressionar `I` perto de um saco. O progresso é registrado pelo sistema de resgates e apresentado na HUD.
 
 À medida que os resgates acontecem, a floresta deixa os tons degradados e recupera gradualmente uma aparência mais viva e verde. Essa mudança oferece retorno visual imediato e reforça a mensagem ambiental do jogo.
 

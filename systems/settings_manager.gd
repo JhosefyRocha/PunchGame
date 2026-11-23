@@ -12,9 +12,9 @@ const DEFAULT_KEYS := {
 	&"left": KEY_A,
 	&"right": KEY_D,
 	&"jump": KEY_SPACE,
-	&"attack": KEY_E,
-	&"interact": KEY_J,
-	&"roll": KEY_K,
+	&"attack": KEY_J,
+	&"interact": KEY_I,
+	&"roll": KEY_O,
 }
 const ALT_KEYS := {
 	&"left": [KEY_LEFT],

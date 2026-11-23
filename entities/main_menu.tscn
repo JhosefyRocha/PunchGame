@@ -296,8 +296,8 @@ layout_mode = 2
 size_flags_vertical = 0
 theme_override_colors/font_color = Color(1, 0.79, 0.34, 1)
 theme_override_font_sizes/font_size = 8
-text = "E
-J
+text = "J
+I
 Espaço"
 
 [node name="RightActions" type="Label" parent="SettingsOverlay/Center/Panel/Margin/VBox/Controls"]

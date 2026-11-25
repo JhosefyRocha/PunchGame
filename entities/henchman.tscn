@@ -1,21 +1,59 @@
-[gd_scene load_steps=4 format=3]
+[gd_scene load_steps=12 format=3]
 
 [ext_resource type="PackedScene" path="res://entities/lumberjack.tscn" id="1_base"]
-[ext_resource type="Texture2D" path="res://sprites/enemies/henchman.png" id="2_sprite"]
+[ext_resource type="Texture2D" path="res://sprites/enemies/henchman_sheet.png" id="2_sprite"]
+
+[sub_resource type="AtlasTexture" id="hm_0"]
+atlas = ExtResource("2_sprite")
+region = Rect2(0, 0, 36, 40)
+
+[sub_resource type="AtlasTexture" id="hm_1"]
+atlas = ExtResource("2_sprite")
+region = Rect2(36, 0, 36, 40)
+
+[sub_resource type="AtlasTexture" id="hm_2"]
+atlas = ExtResource("2_sprite")
+region = Rect2(72, 0, 36, 40)
+
+[sub_resource type="AtlasTexture" id="hm_3"]
+atlas = ExtResource("2_sprite")
+region = Rect2(108, 0, 36, 40)
+
+[sub_resource type="AtlasTexture" id="hm_4"]
+atlas = ExtResource("2_sprite")
+region = Rect2(144, 0, 36, 40)
+
+[sub_resource type="AtlasTexture" id="hm_5"]
+atlas = ExtResource("2_sprite")
+region = Rect2(180, 0, 36, 40)
+
+[sub_resource type="AtlasTexture" id="hm_6"]
+atlas = ExtResource("2_sprite")
+region = Rect2(216, 0, 36, 40)
+
+[sub_resource type="AtlasTexture" id="hm_7"]
+atlas = ExtResource("2_sprite")
+region = Rect2(252, 0, 36, 40)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_henchman"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_sprite")
+"texture": SubResource("hm_5")
+}, {
+"duration": 1.5,
+"texture": SubResource("hm_6")
+}, {
+"duration": 2.0,
+"texture": SubResource("hm_7")
 }],
 "loop": false,
 "name": &"attack",
-"speed": 8.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_sprite")
+"texture": SubResource("hm_0")
 }],
 "loop": false,
 "name": &"die",
@@ -23,15 +61,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_sprite")
-}],
-"loop": true,
-"name": &"idle",
-"speed": 2.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_sprite")
+"texture": SubResource("hm_0")
 }],
 "loop": false,
 "name": &"hurt",
@@ -39,14 +69,32 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_sprite")
+"texture": SubResource("hm_0")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("hm_1")
+}, {
+"duration": 1.0,
+"texture": SubResource("hm_2")
+}, {
+"duration": 1.0,
+"texture": SubResource("hm_3")
+}, {
+"duration": 1.0,
+"texture": SubResource("hm_4")
 }],
 "loop": true,
 "name": &"walk",
-"speed": 6.0
+"speed": 8.0
 }]
 
 [node name="Capanga" instance=ExtResource("1_base")]
+throws_axe = false
 patrol_speed = 34.0
 chase_speed = 56.0
 max_health = 2

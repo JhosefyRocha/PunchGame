@@ -2,6 +2,8 @@ extends Area2D
 
 @export var damage := 1
 @export var lifetime := 2.5
+@export var arc_gravity := 0.0
+@export var spin_speed := 0.0
 
 @onready var art: Node2D = $Art
 
@@ -13,7 +15,9 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	velocity.y += arc_gravity * delta
 	position += velocity * delta
+	art.rotation += spin_speed * signf(velocity.x) * delta
 	lifetime -= delta
 	if lifetime <= 0.0:
 		queue_free()

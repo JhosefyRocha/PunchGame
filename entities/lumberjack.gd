@@ -3,6 +3,7 @@ class_name Lumberjack
 
 signal defeated(points_awarded: int)
 
+const THROWN_AXE_SCENE := preload("res://entities/thrown_axe.tscn")
 const SPRITE_BASE_Y := 0.1
 ## A arte-base (`sprites/enemies/lumberjack.png`) desenha o tronco a direita do
 ## centro da textura, com o machado esticado para a esquerda. `flip_h` espelha a
@@ -39,6 +40,16 @@ enum State {
 @export var attack_recovery := 0.32
 @export var attack_cooldown := 0.8
 
+@export_category("Axe Throw")
+@export var throws_axe := false
+@export var throw_min_distance := 36.0
+@export var throw_windup := 0.35
+@export var throw_recovery := 0.4
+@export var throw_cooldown := 2.4
+@export var throw_speed := 110.0
+@export var throw_gravity := 320.0
+@export var throw_hand_offset := Vector2(8, -4)
+
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var body_collision: CollisionShape2D = $CollisionShape2D
 @onready var ledge_check: RayCast2D = $LedgeCheck
@@ -54,6 +65,8 @@ var move_direction := -1.0
 var pause_time_left := 0.0
 var hurt_time_left := 0.0
 var attack_cooldown_left := 0.0
+var throw_cooldown_left := 0.0
+var is_throwing := false
 var attack_time_left := 0.0
 ## 0 = preparando o golpe, 1 = recuperando depois dele.
 var attack_phase := 0
@@ -78,6 +91,7 @@ func _physics_process(delta: float) -> void:
 		velocity += get_gravity() * delta
 
 	attack_cooldown_left = maxf(0.0, attack_cooldown_left - delta)
+	throw_cooldown_left = maxf(0.0, throw_cooldown_left - delta)
 
 	match state:
 		State.HURT:
@@ -127,6 +141,10 @@ func process_chase(delta: float, target: Node2D) -> void:
 			start_axe_attack()
 		else:
 			sprite.play(&"idle")
+		return
+
+	if can_throw_axe(offset_x):
+		start_axe_attack(true)
 		return
 
 	# Perseguir nunca justifica cair da plataforma nem entrar na parede.
@@ -206,17 +224,34 @@ func reset_sprite_bob() -> void:
 # sempre um contador correndo em direcao a `finish_attack()`.
 
 
-func start_axe_attack() -> void:
+func can_throw_axe(offset_x: float) -> bool:
+	return (
+		throws_axe
+		and is_on_floor()
+		and absf(offset_x) >= throw_min_distance
+		and is_zero_approx(throw_cooldown_left)
+		and is_zero_approx(attack_cooldown_left)
+	)
+
+
+func start_axe_attack(throwing := false) -> void:
 	state = State.ATTACK
+	is_throwing = throwing
 	attack_phase = 0
-	attack_time_left = attack_windup
+	attack_time_left = throw_windup if throwing else attack_windup
 	# O cooldown trava no inicio do golpe, nao depois do windup: assim um golpe
 	# interrompido por dano nao libera um ataque imediato na sequencia.
 	attack_cooldown_left = attack_cooldown
+	if throwing:
+		throw_cooldown_left = throw_cooldown
 	velocity.x = 0.0
 	reset_sprite_bob()
-	sprite.play(&"attack")
 
+	if throwing:
+		sprite.play(&"throw")
+		return
+
+	sprite.play(&"attack")
 	attack_tween = create_tween()
 	attack_tween.tween_property(sprite, "rotation", 0.12 * move_direction, attack_windup)
 	attack_tween.tween_property(sprite, "rotation", 0.0, attack_recovery)
@@ -231,8 +266,12 @@ func process_attack(delta: float) -> void:
 
 	if attack_phase == 0:
 		attack_phase = 1
-		attack_time_left = attack_recovery
-		apply_axe_damage()
+		if is_throwing:
+			attack_time_left = throw_recovery
+			throw_axe()
+		else:
+			attack_time_left = attack_recovery
+			apply_axe_damage()
 		return
 
 	finish_attack()
@@ -245,6 +284,23 @@ func apply_axe_damage() -> void:
 	for body in axe_hitbox.get_overlapping_bodies():
 		if body.is_in_group(&"player") and body.has_method(&"take_damage"):
 			body.take_damage(contact_damage, global_position)
+
+
+func throw_axe() -> void:
+	var hand := to_global(Vector2(throw_hand_offset.x * move_direction, throw_hand_offset.y))
+	var flight_time := 0.6
+	var drop := 0.0
+	var target := find_target()
+	if target != null:
+		flight_time = clampf(absf(target.global_position.x - hand.x) / throw_speed, 0.25, 1.2)
+		drop = target.global_position.y - hand.y
+
+	var axe := THROWN_AXE_SCENE.instantiate()
+	axe.velocity = Vector2(move_direction * throw_speed, drop / flight_time - 0.5 * throw_gravity * flight_time)
+	axe.arc_gravity = throw_gravity
+	axe.scale = scale
+	get_parent().add_child(axe)
+	axe.global_position = hand
 
 
 func finish_attack() -> void:
@@ -260,6 +316,7 @@ func cancel_attack() -> void:
 	attack_tween = null
 	attack_time_left = 0.0
 	attack_phase = 0
+	is_throwing = false
 	sprite.rotation = 0.0
 
 

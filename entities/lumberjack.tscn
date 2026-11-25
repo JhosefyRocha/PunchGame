@@ -1,26 +1,75 @@
-[gd_scene load_steps=8 format=3]
+[gd_scene load_steps=20 format=3]
 
 [ext_resource type="Script" path="res://entities/lumberjack.gd" id="1_lumberjack"]
-[ext_resource type="Texture2D" path="res://sprites/enemies/lumberjack.png" id="2_sprite"]
+[ext_resource type="Texture2D" path="res://sprites/enemies/lumberjack_sheet.png" id="2_sprite"]
 
-; ARTE PENDENTE: as cinco animacoes abaixo (attack, die, idle, hurt, walk)
-; apontam todas para o mesmo quadro estatico, entao os estados do lenhador
-; nao tem leitura visual propria. O feedback atual vem do codigo (rotacao do
-; golpe, flash vermelho ao levar dano, giro de morte). Ao receber as folhas
-; de sprite, basta trocar os quadros aqui -- lumberjack.gd nao muda.
+[sub_resource type="AtlasTexture" id="lj_0"]
+atlas = ExtResource("2_sprite")
+region = Rect2(0, 0, 36, 40)
+
+[sub_resource type="AtlasTexture" id="lj_1"]
+atlas = ExtResource("2_sprite")
+region = Rect2(36, 0, 36, 40)
+
+[sub_resource type="AtlasTexture" id="lj_2"]
+atlas = ExtResource("2_sprite")
+region = Rect2(72, 0, 36, 40)
+
+[sub_resource type="AtlasTexture" id="lj_3"]
+atlas = ExtResource("2_sprite")
+region = Rect2(108, 0, 36, 40)
+
+[sub_resource type="AtlasTexture" id="lj_4"]
+atlas = ExtResource("2_sprite")
+region = Rect2(144, 0, 36, 40)
+
+[sub_resource type="AtlasTexture" id="lj_5"]
+atlas = ExtResource("2_sprite")
+region = Rect2(180, 0, 36, 40)
+
+[sub_resource type="AtlasTexture" id="lj_6"]
+atlas = ExtResource("2_sprite")
+region = Rect2(216, 0, 36, 40)
+
+[sub_resource type="AtlasTexture" id="lj_7"]
+atlas = ExtResource("2_sprite")
+region = Rect2(252, 0, 36, 40)
+
+[sub_resource type="AtlasTexture" id="lj_8"]
+atlas = ExtResource("2_sprite")
+region = Rect2(288, 0, 36, 40)
+
+[sub_resource type="AtlasTexture" id="lj_9"]
+atlas = ExtResource("2_sprite")
+region = Rect2(324, 0, 36, 40)
+
+[sub_resource type="AtlasTexture" id="lj_10"]
+atlas = ExtResource("2_sprite")
+region = Rect2(360, 0, 36, 40)
+
+[sub_resource type="AtlasTexture" id="lj_11"]
+atlas = ExtResource("2_sprite")
+region = Rect2(396, 0, 36, 40)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_lumberjack"]
 animations = [{
 "frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_sprite")
+"duration": 1.2,
+"texture": SubResource("lj_5")
+}, {
+"duration": 1.5,
+"texture": SubResource("lj_6")
+}, {
+"duration": 2.0,
+"texture": SubResource("lj_7")
 }],
 "loop": false,
 "name": &"attack",
-"speed": 8.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_sprite")
+"texture": SubResource("lj_0")
 }],
 "loop": false,
 "name": &"die",
@@ -28,15 +77,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_sprite")
-}],
-"loop": true,
-"name": &"idle",
-"speed": 2.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_sprite")
+"texture": SubResource("lj_0")
 }],
 "loop": false,
 "name": &"hurt",
@@ -44,11 +85,45 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_sprite")
+"texture": SubResource("lj_0")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.5,
+"texture": SubResource("lj_8")
+}, {
+"duration": 2.0,
+"texture": SubResource("lj_9")
+}, {
+"duration": 1.5,
+"texture": SubResource("lj_10")
+}, {
+"duration": 2.5,
+"texture": SubResource("lj_11")
+}],
+"loop": false,
+"name": &"throw",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("lj_1")
+}, {
+"duration": 1.0,
+"texture": SubResource("lj_2")
+}, {
+"duration": 1.0,
+"texture": SubResource("lj_3")
+}, {
+"duration": 1.0,
+"texture": SubResource("lj_4")
 }],
 "loop": true,
 "name": &"walk",
-"speed": 6.0
+"speed": 8.0
 }]
 
 [sub_resource type="RectangleShape2D" id="BodyShape"]
@@ -67,10 +142,11 @@ size = Vector2(12, 20)
 collision_layer = 2
 collision_mask = 1
 script = ExtResource("1_lumberjack")
+throws_axe = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, 0.1)
-scale = Vector2(0.019, 0.019)
+scale = Vector2(0.79, 0.77)
 sprite_frames = SubResource("SpriteFrames_lumberjack")
 animation = &"idle"
 autoplay = "idle"

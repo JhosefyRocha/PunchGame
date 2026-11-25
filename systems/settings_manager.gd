@@ -6,6 +6,7 @@ extends Node
 
 const SETTINGS_PATH := "user://settings.cfg"
 const MASTER_BUS := &"Master"
+const CONTROLS_VERSION := 2
 
 const KEY_ACTIONS: Array[StringName] = [&"left", &"right", &"jump", &"attack", &"interact", &"roll"]
 const DEFAULT_KEYS := {
@@ -94,6 +95,8 @@ func load_settings() -> void:
 		return
 	master_volume = clampf(float(config.get_value("audio", "master_volume", master_volume)), 0.0, 1.0)
 	fullscreen = bool(config.get_value("video", "fullscreen", fullscreen))
+	if int(config.get_value("controls", "version", 1)) != CONTROLS_VERSION:
+		return
 	for action in KEY_ACTIONS:
 		if config.has_section_key("controls", action):
 			key_bindings[action] = int(config.get_value("controls", action))
@@ -103,6 +106,7 @@ func save_settings() -> void:
 	var config := ConfigFile.new()
 	config.set_value("audio", "master_volume", master_volume)
 	config.set_value("video", "fullscreen", fullscreen)
+	config.set_value("controls", "version", CONTROLS_VERSION)
 	for action in key_bindings:
 		config.set_value("controls", action, key_bindings[action])
 	config.save(SETTINGS_PATH)

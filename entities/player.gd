@@ -6,7 +6,7 @@ const DOUBLE_JUMP_VELOCITY := -260.0
 const MAX_AIR_JUMPS := 1
 const HIT_SCALE_FACTOR := 0.25
 const VINE_CLIMB_SPEED := 65.0
-const DAMAGE_INVULNERABILITY_TIME := 1.0
+const DAMAGE_INVULNERABILITY_TIME := 0.05
 const ROLL_SPEED := 120.0
 const ROLL_INVULNERABLE_FIRST_FRAME := 1
 const ROLL_INVULNERABLE_LAST_FRAME := 6
@@ -253,11 +253,7 @@ func take_damage(amount: int = 1, source_position: Vector2 = Vector2.INF) -> voi
 	camera.reset_smoothing()
 	anim.play(&"idle")
 
-	var blink := create_tween().set_loops(5)
-	blink.tween_property(anim, "modulate:a", 0.25, 0.08)
-	blink.tween_property(anim, "modulate:a", 1.0, 0.08)
-	await get_tree().create_timer(DAMAGE_INVULNERABILITY_TIME).timeout
-	anim.modulate.a = 1.0
+	await get_tree().create_timer(DAMAGE_INVULNERABILITY_TIME, false, true).timeout
 	is_invulnerable = false
 
 

@@ -37,13 +37,6 @@ func count_rescued(rescue_prefix: String) -> int:
 	return rescued
 
 
-func has_pending_cages() -> bool:
-	for cage in get_tree().get_nodes_in_group(&"rescue_cage"):
-		if not cage.is_queued_for_deletion() and not is_rescued(cage.rescue_id):
-			return true
-	return false
-
-
 func set_rescued_animals(animals: Dictionary) -> void:
 	rescued_animals = animals.duplicate()
 	rescue_count_changed.emit(get_rescue_count(), TOTAL_ANIMALS)

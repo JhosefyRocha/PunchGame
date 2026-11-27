@@ -1,23 +1,23 @@
 extends Area2D
 
-@export var boss_path: NodePath
+@export var truck_path: NodePath
 
 @onready var visual: Node2D = $Visual
 
-var boss: Node
+var truck: Node
 
 
 func _ready() -> void:
-	boss = get_node_or_null(boss_path)
-	if boss == null or RescueManager.plush_recovered:
+	truck = get_node_or_null(truck_path)
+	if truck == null or RescueManager.plush_recovered:
 		queue_free()
 		return
 	visible = false
 	set_deferred(&"monitoring", false)
-	boss.defeated.connect(_on_boss_defeated, CONNECT_ONE_SHOT)
+	truck.sacks_opened.connect(_on_sacks_opened, CONNECT_ONE_SHOT)
 
 
-func _on_boss_defeated(_points: int) -> void:
+func _on_sacks_opened() -> void:
 	visible = true
 	monitoring = true
 	var bob := create_tween().set_loops().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)

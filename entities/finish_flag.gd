@@ -27,15 +27,24 @@ func _ready() -> void:
 func _on_body_entered(body: Node2D) -> void:
 	if was_reached or not body.is_in_group(&"player"):
 		return
-	if guardian != null or RescueManager.has_pending_cages():
-		_show_hint()
-		return
-	reach()
+	_try_reach()
 
 
-func _show_hint() -> void:
-	guardian_hint.text = guardian_text if guardian != null else "LIBERTE OS ANIMAIS!"
-	guardian_hint.show()
+func _try_reach() -> void:
+	var blocker := _blocker_text()
+	if blocker.is_empty():
+		reach()
+	else:
+		guardian_hint.text = blocker
+		guardian_hint.show()
+
+
+func _blocker_text() -> String:
+	if guardian != null:
+		return guardian_text
+	if next_scene.is_empty() and not RescueManager.plush_recovered:
+		return "RESGATE A PELÚCIA!"
+	return ""
 
 
 func _on_body_exited(body: Node2D) -> void:
@@ -60,8 +69,5 @@ func _on_guardian_defeated(_points: int) -> void:
 	tween.tween_property(mark, "modulate", Color.WHITE, 0.4)
 	for body in get_overlapping_bodies():
 		if body.is_in_group(&"player"):
-			if RescueManager.has_pending_cages():
-				_show_hint()
-			else:
-				reach()
+			_try_reach()
 			return

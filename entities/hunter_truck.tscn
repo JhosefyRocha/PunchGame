@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3]
+[gd_scene load_steps=10 format=3]
 
 [ext_resource type="Script" path="res://entities/hunter_truck.gd" id="1_truck"]
 [ext_resource type="Texture2D" path="res://sprites/enemies/hunter_truck.png" id="2_art"]
@@ -23,6 +23,9 @@ point_count = 2
 [sub_resource type="Gradient" id="Gradient_exhaust"]
 offsets = PackedFloat32Array(0, 0.2, 1)
 colors = PackedColorArray(0.28, 0.28, 0.3, 0, 0.32, 0.32, 0.34, 0.75, 0.62, 0.62, 0.64, 0)
+
+[sub_resource type="RectangleShape2D" id="RescueRange"]
+size = Vector2(80, 60)
 
 [node name="HunterTruck" type="StaticBody2D"]
 collision_layer = 1
@@ -67,3 +70,25 @@ color_ramp = SubResource("Gradient_exhaust")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(2, -25, 58, -25, 58, -43, 84, -43, 84, -29, 95, -29, 95, 0, 2, 0)
+
+[node name="RescueZone" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RescueZone"]
+position = Vector2(26, -30)
+shape = SubResource("RescueRange")
+
+[node name="InteractionHint" type="Label" parent="."]
+offset_left = 19.5
+offset_top = -60.0
+offset_right = 37.5
+offset_bottom = -44.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 0.82, 0.28, 1)
+theme_override_colors/font_outline_color = Color(0.06, 0.09, 0.045, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 12
+text = "I"
+horizontal_alignment = 1

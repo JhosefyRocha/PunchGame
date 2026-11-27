@@ -12,10 +12,7 @@ func _ready() -> void:
 func show_victory() -> void:
 	SaveManager.complete_current_level()
 	get_tree().call_group(&"game_menu", &"lock_for_level_complete")
-	var reveal := "Punch só queria a pelúcia. Virou herói sem querer."
-	if not RescueManager.plush_recovered:
-		reveal = "A pelúcia ainda está com os caçadores."
-	message.text = "%d animais foram libertados!\n%s" % [RescueManager.get_rescue_count(), reveal]
+	message.text = "%d animais foram libertados!\nPunch só queria a pelúcia. Virou herói sem querer." % RescueManager.get_rescue_count()
 	stats_label.text = GameMenu.phase_summary("phase_%d_cage_" % SaveManager.get_level_count(), 3)
 	get_tree().paused = true
 	show()

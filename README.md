@@ -66,7 +66,7 @@ O projeto dialoga diretamente com o **Objetivo de Desenvolvimento Sustentável 1
 
 ### Interface durante o gameplay
 
-![Interface com vida, pontuação, resgates da fase e a mensagem SALVE A FLORESTA](docs/images/punch-hud.png)
+![Interface com vida, pontuação, resgates da fase e os ícones de soco, pulo duplo e rolamento](docs/images/punch-hud.png)
 
 ---
 
